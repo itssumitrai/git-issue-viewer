@@ -33,6 +33,6 @@ export default {
         }
 
         // required params not found
-        callback(new Error(500, 'RepoIssueService: require params owner and repo not provided'), null);
+        callback(new Error(500, 'RepoIssueService: params must have owner and repo'), null);
     }
 };

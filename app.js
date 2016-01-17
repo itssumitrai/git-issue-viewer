@@ -26,5 +26,6 @@ app.plug(fetchrPlugin({
 app.registerStore(RouteStore);
 app.registerStore(ApplicationStore);
 app.registerStore(require('./stores/IssueListStore'));
+app.registerStore(require('./stores/IssueStore'));
 
 module.exports = app;

@@ -43,12 +43,13 @@ class IssueListItem extends React.Component {
                 </div>
                 <div className="issue-info">
                     <div className="top">
-                        <NavLink className="title" routeName="issue" navParams={{ issueId: issue.id }} title={title}>
+                        <NavLink className="title" routeName="issue" navParams={{ issueNumber: issue.number }} title={title}>
                             {issue.title}
                         </NavLink>
-                        <NavLink className="number" routeName="issue" navParams={{ issueId: issue.id }} title={title}>
+                        <NavLink className="number" routeName="issue" navParams={{ issueNumber: issue.number }} title={title}>
                             {'#' + issue.number}
                         </NavLink>
+                        <span className="state">{issue.state}</span>
                     </div>
                     <p className="summary">{getSummary(issue.body)}</p>
                     <div className="bottom">

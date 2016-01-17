@@ -6,6 +6,7 @@
 'use strict';
 
 import createIssueList from '../actions/createIssueList';
+import getIssue from '../actions/getIssue';
 import appConfig from './app';
 
 export default {
@@ -23,10 +24,17 @@ export default {
         component: require('../components/IssueList')
     },
     issue: {
-        path: '/:issueId',
+        path: '/:issueNumber',
         method: 'get',
         page: 'issue',
         title: 'Issue',
+        action: function (context, payload, done) {
+            context.executeAction(getIssue, {
+                owner: appConfig.initialGitOwner,
+                repo: appConfig.initialGitRepo,
+                issueNumber: payload.getIn(['params', 'issueNumber'])
+            }, done);
+        },
         component: require('../components/Issue')
     }
 };

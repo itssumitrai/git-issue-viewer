@@ -5,13 +5,34 @@
 
 'use strict';
 
+import request from 'request';
+
 let issueService = {
     name: 'issueService',
 
     read: function(req, resource, params, config, callback) {
-        setTimeout(function () {
-            callback(null, JSON.parse(JSON.stringify(_messages)));
-        }, 10);
+        // Make sure owner and repo are provided in the params
+        if (params && params.owner && params.repo) {
+            let reqOptions = {
+                method: 'GET',
+                url: 'https://api.github.com/repos/' + params.owner + '/' + params.repo + '/issues/' + params.issueNumber,
+                headers: {
+                    'User-Agent': 'Git-Issue-Viewer'
+                },
+                qs: params.query  // pass down any querystring
+            };
+
+            return request.get(reqOptions, function (error, response, body) {
+                if(!error && response.statusCode == 200) {
+                    return callback(null, JSON.parse(body));
+                }
+
+                callback(error, null);
+            });
+        }
+
+        // required params not found
+        callback(new Error(500, 'IssueService: params must have owner,repo and issueId'), null);
     }
 };
 
