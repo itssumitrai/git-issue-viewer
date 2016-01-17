@@ -1,16 +1,32 @@
+/**
+ * Copyright 2016, Sumit Rai
+ * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
+ */
+
+'use strict';
+
+import createIssueList from '../actions/createIssueList';
+
+const GIT_OWNER = 'npm';
+const GIT_REPO = 'npm';
+
 export default {
-    home: {
+    issueList: {
         path: '/',
         method: 'get',
-        page: 'home',
-        title: 'Home',
-        handler: require('../components/Home')
+        page: 'issueList',
+        title: 'Issues',
+        action: function (context, payload, done) {
+            context.executeAction(createIssueList, {
+                owner: GIT_OWNER,
+                repo: GIT_REPO
+            }, done);
+        }
     },
-    about: {
+    issue: {
         path: '/about',
         method: 'get',
-        page: 'about',
-        title: 'About',
-        handler: require('../components/About')
+        page: 'issue',
+        title: 'Issue'
     }
 };

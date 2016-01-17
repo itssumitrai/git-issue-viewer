@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import ApplicationStore from '../stores/ApplicationStore';
 

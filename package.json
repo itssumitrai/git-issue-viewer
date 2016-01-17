@@ -9,7 +9,7 @@
     "dev": "node webpack-dev-server.js",
     "lint": "eslint ./*.js ./**/*.js",
     "start": "node start.js",
-    "test": "jenkins-mocha tests/unit --recursive --full-trace"
+    "test": "jenkins-mocha tests/unit --recursive --full-trace --compilers js:babel/register"
   },
   "dependencies": {
     "babel": "^5.8.23",
@@ -40,6 +40,7 @@
     "mockery": "^1.4.0",
     "nodemon": "^1.2.1",
     "react-hot-loader": "^1.2.8",
+    "request": "^2.67.0",
     "shelljs": "^0.5.3",
     "webpack": "^1.12.4",
     "webpack-dev-server": "^1.6.5"

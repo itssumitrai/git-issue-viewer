@@ -1,3 +1,37 @@
 /**
- * Created by raisumit on 1/16/16.
+ * Copyright 2016, Sumit Rai
+ * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
  */
+
+'use strict';
+
+import request from 'request';
+
+export default {
+    name: 'repoIssuesService',
+
+    read: function(req, resource, params, config, callback) {
+
+        // Make sure owner and repo are provided in the params
+        if (params && params.owner && params.repo) {
+            let reqOptions = {
+                method: 'GET',
+                url: 'https://api.github.com/repos/' + params.owner + '/' + params.repo + '/issues',
+                headers: {
+                    'User-Agent': 'Git-Issue-Viewer'
+                }
+            };
+
+            return request.get(reqOptions, function (error, response, body) {
+                if(!error && response.statusCode == 200) {
+                    return callback(null, JSON.parse(body));
+                }
+
+                callback(error, null);
+            });
+        }
+
+        // required params not found
+        callback(new Error(500, 'RepoIssueService: require params owner and repo not provided'), null);
+    }
+};

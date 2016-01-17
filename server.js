@@ -1,8 +1,6 @@
 /**
- * This leverages Express to create and run the http server.
- * A Fluxible context is created and executes the navigateAction
- * based on the URL. Once completed, the store state is dehydrated
- * and the application is rendered via React.
+ * Copyright 2016, Sumit Rai
+ * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
  */
 
 import express from 'express';
@@ -26,8 +24,20 @@ server.use('/public', express.static(path.join(__dirname, '/build')));
 server.use(compression());
 server.use(bodyParser.json());
 
+// Get access to the fetchr plugin instance
+var fetchrPlugin = app.getPlugin('FetchrPlugin');
+
+// Register our REST services
+fetchrPlugin.registerService(require('./services/issueService'));
+fetchrPlugin.registerService(require('./services/repoIssuesService'));
+
+// Set up the fetchr middleware
+server.use(fetchrPlugin.getXhrPath(), fetchrPlugin.getMiddleware());
+
 server.use((req, res, next) => {
-    const context = app.createContext();
+    const context = app.createContext({
+        req: req
+    });
 
     debug('Executing navigate action');
     context.getActionContext().executeAction(navigateAction, {
