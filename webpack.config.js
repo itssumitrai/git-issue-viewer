@@ -25,7 +25,8 @@ var webpackConfig = {
                     require.resolve('babel-loader')
                 ]
             },
-            { test: /\.json$/, loader: 'json-loader'}
+            { test: /\.json$/, loader: 'json-loader'},
+            { test: /\.scss$/, loaders: ["style", "css", "sass"]}
         ]
     },
     node: {
@@ -36,7 +37,8 @@ var webpackConfig = {
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+                BROWSER: JSON.stringify(true)
             }
         })
     ],

@@ -19,7 +19,8 @@ export default {
                 url: 'https://api.github.com/repos/' + params.owner + '/' + params.repo + '/issues',
                 headers: {
                     'User-Agent': 'Git-Issue-Viewer'
-                }
+                },
+                qs: params.query  // pass down any querystring
             };
 
             return request.get(reqOptions, function (error, response, body) {

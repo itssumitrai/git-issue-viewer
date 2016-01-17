@@ -11,9 +11,10 @@ import pages from '../configs/routes';
 
 class Application extends React.Component {
     render() {
+        var Component = this.props.currentRoute.get('component');
         return (
-            <div className="app">
-                <IssueList />
+            <div>
+                <Component routeParams={this.props.currentRoute.get('params')}/>
             </div>
         );
     }

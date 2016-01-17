@@ -1,0 +1,31 @@
+@import 'variables';
+@import 'issue-list';
+
+body {
+  max-width: $max-screen-size;
+  margin-left: auto;
+  margin-right: auto;
+  font: 13px/1.3 "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+  @media screen and (max-width: $breakpoint-small) {
+    max-width: $max-screen-size;
+  }
+  @media screen and (min-width: $breakpoint-medium) {
+    max-width: $max-screen-size;
+  }
+  @media screen and (min-width: $breakpoint-large) {
+    max-width: $max-screen-size;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+  .italic {
+    font-style: italic;
+  }
+  ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+  }
+}

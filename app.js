@@ -3,6 +3,10 @@
  * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
  */
 
+if(process.env.BROWSER) {
+    require('./styles/app.scss');
+}
+
 import Fluxible from 'fluxible';
 import Application from './components/Application';
 import ApplicationStore from './stores/ApplicationStore';

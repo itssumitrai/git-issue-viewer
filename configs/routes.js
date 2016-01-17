@@ -6,9 +6,7 @@
 'use strict';
 
 import createIssueList from '../actions/createIssueList';
-
-const GIT_OWNER = 'npm';
-const GIT_REPO = 'npm';
+import appConfig from './app';
 
 export default {
     issueList: {
@@ -18,15 +16,17 @@ export default {
         title: 'Issues',
         action: function (context, payload, done) {
             context.executeAction(createIssueList, {
-                owner: GIT_OWNER,
-                repo: GIT_REPO
+                owner: appConfig.initialGitOwner,
+                repo: appConfig.initialGitRepo
             }, done);
-        }
+        },
+        component: require('../components/IssueList')
     },
     issue: {
-        path: '/about',
+        path: '/:issueId',
         method: 'get',
         page: 'issue',
-        title: 'Issue'
+        title: 'Issue',
+        component: require('../components/Issue')
     }
 };

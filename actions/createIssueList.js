@@ -13,6 +13,7 @@ const debug = require('debug')('createIssueListAction');
  * @param {object} params params to the action
  * @param {string} params.owner owner of the git repo
  * @param {string} params.repo exact repo name under a given owner
+ * @param {object} [params.query] query params for the api call
  * @param {function} done callback function
  */
 export default function createIssueList(context, params, done) {

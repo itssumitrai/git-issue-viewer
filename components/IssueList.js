@@ -6,20 +6,30 @@
 'use strict';
 
 import React from 'react';
+
+// Components
+import IssueListItem from '../components/IssueListItem';
+
+// Stores
 import IssueListStore from '../stores/IssueListStore';
+
+// utils
 import { connectToStores } from 'fluxible-addons-react';
+import appConfig from '../configs/app';
 
 class IssueList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pageNumber: 1
+            owner: appConfig.initialGitOwner,
+            repo: appConfig.initialGitRepo,
+            pageNumber: appConfig.initialPageNumber
         };
     }
 
     renderIssue(issue) {
         return (
-            <li key={issue.id}>{issue.title}</li>
+            <IssueListItem key={issue.id} issue={issue} />
         );
     }
 
@@ -28,7 +38,8 @@ class IssueList extends React.Component {
 
         return (
             <div>
-                <ul>
+                <h2>All Issues from {this.state.owner}/{this.state.repo}</h2>
+                <ul className="issue-list">
                     {issueListItems}
                 </ul>
             </div>

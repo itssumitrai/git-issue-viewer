@@ -20,6 +20,8 @@ const env = process.env.NODE_ENV;
 const debug = debugLib('git-issue-viewer');
 
 const server = express();
+delete process.env.BROWSER;
+
 server.use('/public', express.static(path.join(__dirname, '/build')));
 server.use(compression());
 server.use(bodyParser.json());
