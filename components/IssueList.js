@@ -30,9 +30,6 @@ class IssueList extends React.Component {
     }
 
     renderIssue(issue) {
-        /*return (
-            <IssueListItem key={issue.id} issue={issue} />
-        );*/
         const left = <UserTile imgUrl={issue.user.avatar_url} login={issue.user.login} />;
         const right = <IssueListItem issue={issue} />;
 
@@ -44,7 +41,6 @@ class IssueList extends React.Component {
                 right={right}
             />
         )
-
     }
 
     render() {
@@ -66,7 +62,7 @@ IssueList.propTypes = {
 };
 
 IssueList.defaultProps = {
-    itemsPerPage: 25
+    itemsPerPage: appConfig.itemsPerPage
 };
 
 IssueList = connectToStores(IssueList, [IssueListStore], (context, props) => {
