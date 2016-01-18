@@ -30,16 +30,16 @@ class IssueList extends React.Component {
     }
 
     renderIssue(issue) {
-        const left = <UserTile imgUrl={issue.user.avatar_url} login={issue.user.login} />;
+        const left = <UserTile user={issue.user} />;
         const right = <IssueListItem issue={issue} />;
 
         return (
-            <ItemLayout
-                key={issue.id}
-                id={issue.id}
-                left={left}
-                right={right}
-            />
+            <li key={issue.id}>
+                <ItemLayout
+                    left={left}
+                    right={right}
+                />
+            </li>
         )
     }
 

@@ -6,6 +6,7 @@
 'use strict';
 
 import request from 'request';
+import { apiHost } from '../configs/app';
 
 let issueService = {
     name: 'issueService',
@@ -15,7 +16,7 @@ let issueService = {
         if (params && params.owner && params.repo) {
             let reqOptions = {
                 method: 'GET',
-                url: 'https://api.github.com/repos/' + params.owner + '/' + params.repo + '/issues/' + params.issueNumber,
+                url: apiHost + 'repos/' + params.owner + '/' + params.repo + '/issues/' + params.issueNumber,
                 headers: {
                     'User-Agent': 'Git-Issue-Viewer'
                 },

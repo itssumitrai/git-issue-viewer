@@ -11,23 +11,19 @@ class ItemLayout extends React.Component {
     render() {
         const { props } = this;
         return (
-            <li key={props.id} className="item">
+            <div className="item">
                 <div className="left-col">
                     {props.left}
                 </div>
                 <div className="right-col">
                     {props.right}
                 </div>
-            </li>
+            </div>
         );
     }
 }
 
 ItemLayout.propTypes = {
-    id: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.number
-    ]),
     left: React.PropTypes.node,
     right: React.PropTypes.node
 };

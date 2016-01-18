@@ -6,6 +6,7 @@
 'use strict';
 
 import request from 'request';
+import { apiHost } from '../configs/app';
 
 export default {
     name: 'repoIssuesService',
@@ -16,7 +17,7 @@ export default {
         if (params && params.owner && params.repo) {
             let reqOptions = {
                 method: 'GET',
-                url: 'https://api.github.com/repos/' + params.owner + '/' + params.repo + '/issues',
+                url: apiHost + 'repos/' + params.owner + '/' + params.repo + '/issues',
                 headers: {
                     'User-Agent': 'Git-Issue-Viewer'
                 },

@@ -28,6 +28,7 @@ let IssueListStore = createStore({
     },
 
     _handleFailure(error) {
+        console.log('>>> Error Occured:', error);
         this.error = error;
         this.emitChange();
     },

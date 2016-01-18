@@ -9,5 +9,6 @@ export default {
     initialGitOwner: 'npm',
     initialGitRepo: 'npm',
     initialPageNumber: 1,
-    itemsPerPage: 25
+    itemsPerPage: 25,
+    apiHost: 'https://api.github.com/'
 };

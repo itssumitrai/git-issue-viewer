@@ -1,0 +1,32 @@
+/**
+ * Copyright 2016, Sumit Rai
+ * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
+ */
+
+'use strict';
+
+import React from 'react';
+import Date from '../Shared/Date';
+
+class Comment extends React.Component {
+    render() {
+        const { issue } = this.props;
+        const ownerLabel = issue.user.site_admin || true ? 'Owner' : '';
+
+        return (
+            <div className="comment ShadowBox">
+                <p>{issue.body}</p>
+                <div className="Mt-10px">
+                    <span className="labelBox">{ownerLabel}</span>
+                    <Date className="Fl-end Fz-s C-Gray" type="comment" date={issue.created_at}/>
+                </div>
+            </div>
+        );
+    }
+}
+
+Comment.propTypes = {
+    issue: React.PropTypes.object.isRequired
+};
+
+export default Comment;

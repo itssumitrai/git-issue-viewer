@@ -18,7 +18,7 @@ class Labels extends React.Component {
         });
 
         return (
-            <ul className="labels">
+            <ul className={'labels ' + this.props.className }>
                 {labels}
             </ul>
         );
@@ -26,7 +26,8 @@ class Labels extends React.Component {
 }
 
 Labels.propTypes = {
-    labels: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+    labels: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    className: React.PropTypes.string
 };
 
 export default Labels;

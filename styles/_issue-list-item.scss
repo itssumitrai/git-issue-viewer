@@ -1,11 +1,8 @@
 .issue-info {
   padding: $issue-item-padding;
   .top {
-    margin-bottom: 10px;
     .title {
-      font-size: 15px;
       text-decoration: none;
-      font-weight: bold;
       color: $primaryTitle;
       &:hover {
         color: $primaryTitleActive;
@@ -13,30 +10,6 @@
       &:active {
         color: $primaryTitleActive;
       }
-    }
-    .number {
-      margin-left: 10px;
-      color: $primaryGray;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-      &:active {
-        text-decoration: underline;
-      }
-    }
-  }
-  .summary {
-    margin: 0px;
-    overflow: hidden;
-  }
-  .bottom {
-    margin-top: 10px;
-    .create-date {
-      color: $primaryGray;
-      font-size: $font-xsmall;
-      float: right;
     }
   }
 }

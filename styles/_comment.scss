@@ -1,0 +1,9 @@
+.comment {
+  padding: 20px;
+  .labelBox {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+    padding: 2px 5px;
+    color: $primaryGray;
+  }
+}

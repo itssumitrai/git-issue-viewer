@@ -11,30 +11,21 @@ import UserTile from '../Shared/UserTile';
 import Labels from '../Shared/Labels';
 import ItemLayout from '../Shared/ItemLayout';
 import IssueState from '../Shared/IssueState';
+import Date from '../Shared/Date';
 
-function getSummary(summary) {
-    let smallSummary;
-    if (summary.length > 140) {
-        smallSummary = summary.substring(0, 140);
-    } else {
-        smallSummary = summary;
-    }
-
-    return smallSummary;
-}
+import { getMiniSummary } from '../../lib/utils';
 
 class IssueListItem extends React.Component {
     render() {
         const { issue } = this.props;
 
         const title = 'Go to Issue ' + issue.number;
-        const createdTimeText = 'Opened on ' + issue.created_at;
 
         return (
             <div className="issue-info ShadowBox">
-                <div className="top">
+                <div className="top Mb-10px">
                     <NavLink
-                        className="title"
+                        className="title Fz-m bold"
                         routeName="issue"
                         navParams={{ issueNumber: issue.number }}
                         title={title}
@@ -42,19 +33,19 @@ class IssueListItem extends React.Component {
                         {issue.title}
                     </NavLink>
                     <NavLink
-                        className="number"
+                        className="Mstart-10px link C-Gray"
                         routeName="issue"
                         navParams={{ issueNumber: issue.number }}
                         title={title}
                     >
                         {'#' + issue.number}
                     </NavLink>
-                    <IssueState state={issue.state} />
+                    <IssueState state={issue.state} className="Fl-end"/>
                 </div>
-                <p className="summary">{getSummary(issue.body)}</p>
-                <div className="bottom">
+                <p className="Ov-h">{getMiniSummary(issue.body)}</p>
+                <div className="Mt-10px">
                     <Labels labels={issue.labels}/>
-                    <span className="create-date">{createdTimeText}</span>
+                    <Date className="Fl-end Fz-s C-Gray" type="create" date={issue.created_at}/>
                 </div>
             </div>
         );

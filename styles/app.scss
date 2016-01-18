@@ -4,6 +4,8 @@
 @import 'item-layout';
 @import 'issue-list-item';
 @import 'issue-state';
+@import 'issue-detail-header';
+@import 'comment';
 
 body {
   max-width: $max-screen-size;
@@ -22,7 +24,7 @@ body {
   }
 
   .ShadowBox {
-    border: 1px solid $secondaryGray;
+    border: 1px solid $borderGray;
     box-shadow: $boxShadow;
   }
   .Bdrs {
@@ -34,9 +36,67 @@ body {
   .italic {
     font-style: italic;
   }
+  .C-Gray {
+    color: $primaryGray;
+  }
+  .C-SGray {
+    color: $secondaryGray;
+  }
+  .link {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+    &:active {
+      text-decoration: underline;
+    }
+  }
+  .Mstart-10px {
+    margin-left: 10px;
+  }
+  .Mend-10px {
+    margin-right: 10px;
+  }
+  .Mt-10px {
+    margin-top: 10px;
+  }
+  .Mb-10px {
+    margin-bottom: 10px;
+  }
+  .Mb-20px {
+    margin-bottom: 20px;
+  }
+  .Fz-s {
+    font-size: $font-small;
+  }
+  .Fz-xs {
+    font-size: $font-xsmall;
+  }
+  .Fz-m {
+    font-size: $font-medium;
+  }
+  .Fz-l {
+    font-size: $font-large;
+  }
+  .Fw-n {
+    font-weight: normal;
+  }
+  .Fw-b {
+    font-weight: bold;
+  }
+  .Fl-end {
+    float: right;
+  }
+  .Ov-h {
+    overflow: hidden;
+  }
   ul{
     list-style: none;
     padding: 0px;
+    margin: 0px;
+  }
+  p {
     margin: 0px;
   }
 }

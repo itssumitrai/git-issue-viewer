@@ -9,13 +9,14 @@ import React from 'react';
 
 class UserTile extends React.Component {
     render() {
-        const login = '@' + this.props.login;
-
+        const { props } = this;
         return (
             <div className="user-info">
-                <img src={this.props.imgUrl} className="gravatar" alt={login}/>
+                <a href={props.user.html_url}>
+                    <img src={props.user.avatar_url} className="gravatar" alt={props.user.login}/>
+                </a>
                 <div className="gravatar-info">
-                    {login}
+                    <a href={props.user.html_url} className="link Fw-b C-Gray">{props.user.login}</a>
                 </div>
             </div>
         );
@@ -23,8 +24,7 @@ class UserTile extends React.Component {
 }
 
 UserTile.propTypes = {
-    imgUrl: React.PropTypes.string.isRequired,
-    login: React.PropTypes.string.isRequired
+    user: React.PropTypes.object.isRequired
 };
 
 export default UserTile;
