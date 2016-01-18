@@ -52,6 +52,13 @@ body {
       text-decoration: underline;
     }
   }
+  .codeBox {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+    padding: 0px 5px;
+    font-size: $font-medium;
+    color: $primaryGray;
+  }
   .Mstart-10px {
     margin-left: 10px;
   }
@@ -90,6 +97,9 @@ body {
   }
   .Ov-h {
     overflow: hidden;
+  }
+  .Lh-20px {
+    line-height: 20px;
   }
   ul{
     list-style: none;

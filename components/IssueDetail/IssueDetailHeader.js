@@ -9,6 +9,7 @@ import React from 'react';
 import IssueState from '../Shared/IssueState';
 import Labels from '../Shared/Labels';
 import Date from '../Shared/Date';
+import { getParsedMarkupContent } from '../../lib/utils';
 
 class IssueDetailHeader extends React.Component {
     render() {
@@ -17,7 +18,7 @@ class IssueDetailHeader extends React.Component {
         return (
             <div className="Mb-20px">
                 <h2 className="issue-detail-header Fw-n">
-                    <span className="title">{issue.title}</span>
+                    <span className="title" dangerouslySetInnerHTML={getParsedMarkupContent(issue.title)} />
                     <span className="Mstart-10px C-SGray">{'#' + issue.number}</span>
                 </h2>
                 <div className="Mb-10px C-Gray">

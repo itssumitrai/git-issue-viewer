@@ -7,6 +7,7 @@
 
 import React from 'react';
 import Date from '../Shared/Date';
+import { getParsedMarkupContent } from '../../lib/utils';
 
 class Comment extends React.Component {
     render() {
@@ -15,7 +16,7 @@ class Comment extends React.Component {
 
         return (
             <div className="comment ShadowBox">
-                <p className="Ov-h">{issue.body}</p>
+                <p className="Ov-h Lh-20px" dangerouslySetInnerHTML={getParsedMarkupContent(issue.body)} />
                 <div className="Mt-10px">
                     <span className="labelBox">{ownerLabel}</span>
                     <Date className="Fl-end Fz-s C-Gray" type="comment" date={issue.created_at}/>

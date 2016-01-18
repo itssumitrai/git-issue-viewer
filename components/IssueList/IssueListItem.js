@@ -13,7 +13,7 @@ import ItemLayout from '../Shared/ItemLayout';
 import IssueState from '../Shared/IssueState';
 import Date from '../Shared/Date';
 
-import { getMiniSummary } from '../../lib/utils';
+import { getMiniSummary, getParsedMarkupContent } from '../../lib/utils';
 
 class IssueListItem extends React.Component {
     render() {
@@ -42,7 +42,7 @@ class IssueListItem extends React.Component {
                     </NavLink>
                     <IssueState state={issue.state} className="Fl-end"/>
                 </div>
-                <p className="Ov-h">{getMiniSummary(issue.body)}</p>
+                <p className="Ov-h Lh-20px" dangerouslySetInnerHTML={getParsedMarkupContent(getMiniSummary(issue.body))} />
                 <div className="Mt-10px">
                     <Labels labels={issue.labels}/>
                     <Date className="Fl-end Fz-s C-Gray" type="list" date={issue.created_at}/>
