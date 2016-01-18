@@ -31,7 +31,6 @@ var fetchrPlugin = app.getPlugin('FetchrPlugin');
 
 // Register our REST services
 fetchrPlugin.registerService(require('./services/issueService'));
-fetchrPlugin.registerService(require('./services/repoIssuesService'));
 
 // Set up the fetchr middleware
 server.use(fetchrPlugin.getXhrPath(), fetchrPlugin.getMiddleware());

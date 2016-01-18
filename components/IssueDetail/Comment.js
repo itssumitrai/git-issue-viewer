@@ -15,7 +15,7 @@ class Comment extends React.Component {
 
         return (
             <div className="comment ShadowBox">
-                <p>{issue.body}</p>
+                <p className="Ov-h">{issue.body}</p>
                 <div className="Mt-10px">
                     <span className="labelBox">{ownerLabel}</span>
                     <Date className="Fl-end Fz-s C-Gray" type="comment" date={issue.created_at}/>

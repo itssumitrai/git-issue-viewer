@@ -5,6 +5,7 @@
 
 'use strict';
 
+import async from 'async';
 const debug = require('debug')('getIssueAction');
 
 /**
@@ -18,18 +19,45 @@ const debug = require('debug')('getIssueAction');
  * @param {function} done callback function
  */
 export default function getIssue(context, params, done) {
-    debug('getIssueAction:fetching Git Issue', params);
+    debug('getIssueAction:fetching Git Issue Details:', params);
 
-    context.service.read('issueService', params, {}, function (err, res) {
+    async.parallel({
+        fetchIssueDetails: (callback) => {
+            context.service.read('issueService', params, {}, function (err, res) {
+                if (err) {
+                    debug('getIssueAction: fetchIssueDetails failed:', err);
+                    return callback(err, null);
+                }
+
+                callback(null, res);
+            });
+        },
+        fetchIssueComments: (callback) => {
+            const commentsParams = Object.assign({}, params, { isComment: true });
+            context.service.read('issueService', commentsParams, {}, function (err, res) {
+                if (err) {
+                    debug('getIssueAction: fetchIssueComments failed:', err);
+                    return callback(err, null);
+                }
+
+                callback(null, res);
+            });
+        }
+    }, (err, results) => {
         if (err) {
             debug('dispatching ISSUE_FAILURE', err);
             context.dispatch('ISSUE_FAILURE', err);
-            done();
+            typeof done === 'function' && done(err);
             return;
         }
 
-        debug('dispatching ISSUE_SUCCESS', res);
-        context.dispatch('ISSUE_SUCCESS', res);
+        const resultData = {
+            issue: results.fetchIssueDetails,
+            comments: results.fetchIssueComments
+        };
+
+        debug('dispatching ISSUE_SUCCESS', resultData);
+        context.dispatch('ISSUE_SUCCESS', resultData);
         typeof done === 'function' && done();
     });
 };

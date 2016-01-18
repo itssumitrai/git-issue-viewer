@@ -14,9 +14,22 @@ let issueService = {
     read: function(req, resource, params, config, callback) {
         // Make sure owner and repo are provided in the params
         if (params && params.owner && params.repo) {
+            let apiUrl = apiHost + 'repos/' + params.owner + '/' + params.repo + '/issues';
+
+            if (params.issueNumber) {
+                // means its a request for a given issue
+
+                apiUrl += '/' + params.issueNumber;
+                if (params.isComment) {
+                    // means its a request for comments
+
+                    apiUrl += '/comments';
+                }
+            }
+
             let reqOptions = {
                 method: 'GET',
-                url: apiHost + 'repos/' + params.owner + '/' + params.repo + '/issues/' + params.issueNumber,
+                url: apiUrl,
                 headers: {
                     'User-Agent': 'Git-Issue-Viewer'
                 },
@@ -33,7 +46,7 @@ let issueService = {
         }
 
         // required params not found
-        callback(new Error(500, 'IssueService: params must have owner,repo and issueId'), null);
+        callback(new Error(500, 'IssueService: params must have owner and repo'), null);
     }
 };
 

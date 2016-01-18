@@ -21,21 +21,47 @@ import { connectToStores } from 'fluxible-addons-react';
 
 class IssueDetail extends React.Component {
     render() {
-        const { issue } = this.props;
+        const { issue, comments } = this.props;
         if (!issue || Object.keys(issue).length === 0) {
             return null;
         }
 
-        const left = <UserTile user={issue.user} />;
-        const right = <Comment issue={issue} />;
+        const userElement = <UserTile user={issue.user} />;
+        const commentElement = <Comment issue={issue} />;
+
+        let commentList = [];
+        commentList.push(
+            <li key={issue.id}>
+                <ItemLayout
+                    key={issue.id}
+                    left={userElement}
+                    right={commentElement}
+                />
+            </li>
+        );
+
+        // Now iterate over comment Data and create the commentList
+        comments.forEach((commentObj) => {
+            const userElement = <UserTile user={commentObj.user} />;
+            const commentElement = <Comment issue={commentObj}/>;
+
+            commentList.push(
+                <li key={commentObj.id}>
+                    <ItemLayout
+                        left={userElement}
+                        right={commentElement}
+                    />
+                </li>
+            );
+        });
+
         return (
             <div>
                 <h2>Issue from npm/npm</h2>
                 <IssueDetailHeader issue={issue} />
-                <ItemLayout
-                    left={left}
-                    right={right}
-                />
+                <ul>
+                    {commentList}
+                </ul>
             </div>
         );
     }
@@ -46,8 +72,10 @@ IssueDetail.propTypes = {
 };
 
 IssueDetail = connectToStores(IssueDetail, [IssueStore], (context, props) => {
+    const issueStore = context.getStore(IssueStore);
     return {
-        issue: context.getStore(IssueStore).getCurrentIssue()
+        comments: issueStore.getComments(),
+        issue: issueStore.getCurrentIssue()
     }
 });
 

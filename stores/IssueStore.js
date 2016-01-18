@@ -21,14 +21,14 @@ let IssueListStore = createStore({
         this.error = null;
     },
 
-    _loadIssue(issue) {
-        this.issue = issue;
+    _loadIssue(payload) {
+        this.issue = payload.issue;
+        this.comments = payload.comments;
         this.error = null;
         this.emitChange();
     },
 
     _handleFailure(error) {
-        console.log('>>> Error Occured:', error);
         this.error = error;
         this.emitChange();
     },
@@ -37,16 +37,26 @@ let IssueListStore = createStore({
         return this.issue;
     },
 
+    getComments() {
+        return this.comments;
+    },
+
+    getError() {
+        return this.error;
+    },
+
     dehydrate() {
         return {
             error: this.error,
-            issue: this.issue
+            issue: this.issue,
+            comments: this.comments
         };
     },
 
     rehydrate(state) {
         this.error = state.error;
         this.issue = state.issue;
+        this.comments = state.comments;
     }
 });
 

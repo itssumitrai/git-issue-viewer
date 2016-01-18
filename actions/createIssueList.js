@@ -19,7 +19,7 @@ const debug = require('debug')('createIssueListAction');
 export default function createIssueList(context, params, done) {
     debug('createIssueList:fetching Git Issues', params);
 
-    context.service.read('repoIssuesService', params, {}, function (err, res) {
+    context.service.read('issueService', params, {}, function (err, res) {
         if (err) {
             debug('dispatching ISSUE_FETCH_FAILURE', err);
             context.dispatch('ISSUE_FETCH_FAILURE', err);
