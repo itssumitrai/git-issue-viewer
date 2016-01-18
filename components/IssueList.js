@@ -8,7 +8,9 @@
 import React from 'react';
 
 // Components
-import IssueListItem from '../components/IssueListItem';
+import IssueListItem from './IssueList/IssueListItem';
+import ItemLayout from './Shared/ItemLayout';
+import UserTile from './Shared/UserTile';
 
 // Stores
 import IssueListStore from '../stores/IssueListStore';
@@ -28,9 +30,21 @@ class IssueList extends React.Component {
     }
 
     renderIssue(issue) {
-        return (
+        /*return (
             <IssueListItem key={issue.id} issue={issue} />
-        );
+        );*/
+        const left = <UserTile imgUrl={issue.user.avatar_url} login={issue.user.login} />;
+        const right = <IssueListItem issue={issue} />;
+
+        return (
+            <ItemLayout
+                key={issue.id}
+                id={issue.id}
+                left={left}
+                right={right}
+            />
+        )
+
     }
 
     render() {

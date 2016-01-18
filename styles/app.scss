@@ -1,5 +1,9 @@
 @import 'variables';
-@import 'issue-list';
+@import 'user-tile';
+@import 'labels';
+@import 'item-layout';
+@import 'issue-list-item';
+@import 'issue-state';
 
 body {
   max-width: $max-screen-size;
@@ -17,6 +21,13 @@ body {
     max-width: $max-screen-size;
   }
 
+  .ShadowBox {
+    border: 1px solid $secondaryGray;
+    box-shadow: $boxShadow;
+  }
+  .Bdrs {
+    border-radius: 2px;
+  }
   .bold {
     font-weight: bold;
   }

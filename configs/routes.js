@@ -35,6 +35,6 @@ export default {
                 issueNumber: payload.getIn(['params', 'issueNumber'])
             }, done);
         },
-        component: require('../components/Issue')
+        component: require('../components/IssueDetail')
     }
 };

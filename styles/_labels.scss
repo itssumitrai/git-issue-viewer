@@ -1,0 +1,10 @@
+.labels {
+  display: inline-block;
+  .label{
+    font-size: $font-xsmall;
+    display: inline-block;
+    margin-right: 5px;
+    padding: 2px 4px;
+    color: white;
+  }
+}

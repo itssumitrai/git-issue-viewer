@@ -1,0 +1,13 @@
+.user-info {
+  display: inline-block;
+  vertical-align: top;
+  .gravatar {
+    height: $gravator-height;
+    border-radius: 5px;
+  }
+  .gravatar-info {
+    font-size: $font-small;
+    text-align: center;
+    color: $primaryGray
+  }
+}

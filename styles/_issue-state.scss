@@ -1,0 +1,12 @@
+.state {
+  float: right;
+  color: white;
+  padding: 3px;
+  text-transform: capitalize;
+  &.open {
+    background-color: #6cc644;
+  }
+  &.closed {
+    background-color: red;
+  }
+}
