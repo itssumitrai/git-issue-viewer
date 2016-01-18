@@ -5,6 +5,10 @@
     display: inline-block;
     margin-right: 5px;
     padding: 2px 4px;
-    color: white;
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
   }
 }

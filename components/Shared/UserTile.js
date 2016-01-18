@@ -9,14 +9,15 @@ import React from 'react';
 
 class UserTile extends React.Component {
     render() {
-        const { props } = this;
+        const { user } = this.props;
+
         return (
-            <div className="user-info">
-                <a href={props.user.html_url}>
-                    <img src={props.user.avatar_url} className="gravatar" alt={props.user.login}/>
+            <div className="user-info" title={user.login}>
+                <a href={user.html_url}>
+                    <img src={user.avatar_url} className="gravatar" alt={user.login}/>
                 </a>
                 <div className="gravatar-info">
-                    <a href={props.user.html_url} className="link Fw-b C-Gray">{props.user.login}</a>
+                    <a href={user.html_url} className="link Fw-b C-Gray">{user.login}</a>
                 </div>
             </div>
         );

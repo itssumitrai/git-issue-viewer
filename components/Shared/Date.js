@@ -9,6 +9,7 @@ import React from 'react';
 
 const PREFIX_TYPE_MAP = {
     comment: 'commented ',
+    list: 'issue opened ',
     create: 'opened this issue ',
     refer: 'referenced this issue '
 };

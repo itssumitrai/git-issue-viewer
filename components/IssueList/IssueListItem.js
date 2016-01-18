@@ -19,7 +19,7 @@ class IssueListItem extends React.Component {
     render() {
         const { issue } = this.props;
 
-        const title = 'Go to Issue ' + issue.number;
+        const title = 'Go to Issue #' + issue.number;
 
         return (
             <div className="issue-info ShadowBox">
@@ -45,7 +45,7 @@ class IssueListItem extends React.Component {
                 <p className="Ov-h">{getMiniSummary(issue.body)}</p>
                 <div className="Mt-10px">
                     <Labels labels={issue.labels}/>
-                    <Date className="Fl-end Fz-s C-Gray" type="create" date={issue.created_at}/>
+                    <Date className="Fl-end Fz-s C-Gray" type="list" date={issue.created_at}/>
                 </div>
             </div>
         );

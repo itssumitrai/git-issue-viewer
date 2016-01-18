@@ -7,14 +7,12 @@
 
 import React from 'react';
 
+import Label from './Label';
+
 class Labels extends React.Component {
     render() {
         const labels = this.props.labels.map((label, index) => {
-            return (
-                <li key={index} className="label bold Bdrs" style={{ backgroundColor: '#' + label.color }}>
-                    {label.name}
-                </li>
-            )
+            return <Label key={index} label={label} />
         });
 
         return (
