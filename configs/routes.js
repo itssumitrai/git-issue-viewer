@@ -18,7 +18,11 @@ export default {
         action: function (context, payload, done) {
             context.executeAction(createIssueList, {
                 owner: appConfig.initialGitOwner,
-                repo: appConfig.initialGitRepo
+                repo: appConfig.initialGitRepo,
+                query: {
+                    page: 1,
+                    per_page: 25
+                }
             }, done);
         },
         component: require('../components/IssueList')

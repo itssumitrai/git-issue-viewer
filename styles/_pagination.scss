@@ -1,0 +1,14 @@
+.pagination {
+  margin-left: $gutter-width + $gravator-height;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  .page-number-list {
+    .page {
+      display:inline;
+      &.number {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+}

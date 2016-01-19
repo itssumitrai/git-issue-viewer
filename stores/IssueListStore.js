@@ -36,6 +36,10 @@ let IssueListStore = createStore({
         return this.issues;
     },
 
+    getError() {
+        return this.error;
+    },
+
     dehydrate() {
         return {
             error: this.error,

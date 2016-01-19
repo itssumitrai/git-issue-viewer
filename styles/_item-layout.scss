@@ -10,6 +10,6 @@
     display: inline-block;
     white-space: normal;
     margin-left: $gutter-width;
-    width: $max-screen-size - $gutter-width - $gravator-height - 2*$issue-item-padding;
+    width: $max-screen-size - $gutter-width - $gravator-height;
   }
 }

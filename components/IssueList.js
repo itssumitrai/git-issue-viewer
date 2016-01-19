@@ -11,6 +11,7 @@ import React from 'react';
 import IssueListItem from './IssueList/IssueListItem';
 import ItemLayout from './Shared/ItemLayout';
 import UserTile from './Shared/UserTile';
+import PaginationBar from './IssueList/PaginationBar';
 
 // Stores
 import IssueListStore from '../stores/IssueListStore';
@@ -49,9 +50,11 @@ class IssueList extends React.Component {
         return (
             <div>
                 <h2>All Issues from {this.state.owner}/{this.state.repo}</h2>
+                <PaginationBar pageNumber={this.state.pageNumber} totalPages={25}/>
                 <ul className="issue-list">
                     {issueListItems}
                 </ul>
+                <PaginationBar pageNumber={this.state.pageNumber} totalPages={25}/>
             </div>
         );
     }
