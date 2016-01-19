@@ -17,7 +17,7 @@ import { getMiniSummary, getParsedMarkupContent } from '../../lib/utils';
 
 class IssueListItem extends React.Component {
     render() {
-        const { issue } = this.props;
+        const { issue, routeParams } = this.props;
 
         const title = 'Go to Issue #' + issue.number;
 
@@ -27,7 +27,11 @@ class IssueListItem extends React.Component {
                     <NavLink
                         className="title Fz-m bold"
                         routeName="issue"
-                        navParams={{ issueNumber: issue.number }}
+                        navParams={{
+                            owner: routeParams.get('owner'),
+                            repo: routeParams.get('repo'),
+                            issueNumber: issue.number
+                        }}
                         title={title}
                     >
                         {issue.title}
@@ -35,7 +39,11 @@ class IssueListItem extends React.Component {
                     <NavLink
                         className="Mstart-10px link C-Gray"
                         routeName="issue"
-                        navParams={{ issueNumber: issue.number }}
+                        navParams={{
+                            owner: routeParams.get('owner'),
+                            repo: routeParams.get('repo'),
+                            issueNumber: issue.number
+                        }}
                         title={title}
                     >
                         {'#' + issue.number}
@@ -53,7 +61,8 @@ class IssueListItem extends React.Component {
 }
 
 IssueListItem.propTypes = {
-    issue: React.PropTypes.object.isRequired
+    issue: React.PropTypes.object.isRequired,
+    routeParams: React.PropTypes.object.isRequired
 };
 
 IssueListItem.defaultProps = {

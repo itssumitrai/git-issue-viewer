@@ -13,8 +13,12 @@ import strings from '../../lang/strings.json';
 class PaginationBar extends React.Component {
     render() {
         const { props } = this;
-        const pageNumbers = getPageNumbers(props.pageNumber, props.pagesToShow).map((number) => {
-            if (number === props.pageNumber) {
+        const { routeParams } = props;
+        const currentUrlPrefix = '/' + routeParams.get('owner') + '/' + routeParams.get('repo') + '/';
+        const pageNumber = parseInt(props.pageNumber, 10);
+
+        const pageNumbers = getPageNumbers(pageNumber, props.pagesToShow).map((number) => {
+            if (number === pageNumber) {
                 return (
                     <li key={number} className="page number selected">
                         <span className="Fw-b">{number}</span>
@@ -26,10 +30,8 @@ class PaginationBar extends React.Component {
                 <li key={number} className="page number">
                     <NavLink
                         key={number}
-                        href="#"
+                        href={currentUrlPrefix + number}
                         className="link C-LinkBlue"
-                        routeName="issueList"
-                        navParams={{ pageNumber: number }}
                         title="Next"
                     >
                         {number}
@@ -43,10 +45,8 @@ class PaginationBar extends React.Component {
                 <ul className="page-number-list">
                     <li key="previous" className="page">
                         <NavLink
-                            href="#"
                             className="link C-LinkBlue Fl-start"
-                            routeName="issueList"
-                            navParams={{ pageNumber: Math.max(props.pageNumber - 1, 1) }}
+                            href={currentUrlPrefix + Math.max(pageNumber - 1, 1)}
                             title="Previous"
                         >
                             {strings.PREVIOUS}
@@ -55,10 +55,8 @@ class PaginationBar extends React.Component {
                     {pageNumbers}
                     <li key="next" className="page">
                         <NavLink
-                            href="#"
+                            href={currentUrlPrefix + Math.min(pageNumber + 1, props.totalPages)}
                             className="link C-LinkBlue Fl-end"
-                            routeName="issueList"
-                            navParams={{ pageNumber: Math.min(props.pageNumber + 1, props.totalPages) }}
                             title="Next"
                         >
                             {strings.NEXT}
@@ -71,13 +69,14 @@ class PaginationBar extends React.Component {
 }
 
 PaginationBar.propTypes = {
-    pageNumber: React.PropTypes.number.isRequired,
+    routeParams: React.PropTypes.object.isRequired,
+    pageNumber: React.PropTypes.string.isRequired,
     totalPages: React.PropTypes.number.isRequired,
     pagesToShow: React.PropTypes.number
 };
 
 PaginationBar.defaultProps = {
-    pageNumber: 1,
+    pageNumber: '1',
     totalPages: 25,
     pagesToShow: 9
 };

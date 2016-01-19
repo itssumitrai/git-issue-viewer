@@ -11,31 +11,31 @@ import appConfig from './app';
 
 export default {
     issueList: {
-        path: '/',
+        path: '/:owner/:repo/:page',
         method: 'get',
         page: 'issueList',
         title: 'Issues',
         action: function (context, payload, done) {
             context.executeAction(createIssueList, {
-                owner: appConfig.initialGitOwner,
-                repo: appConfig.initialGitRepo,
+                owner: payload.getIn(['params', 'owner']),
+                repo: payload.getIn(['params', 'repo']),
                 query: {
-                    page: 1,
-                    per_page: 25
+                    page: payload.getIn(['params', 'page']),
+                    per_page: appConfig.itemsPerPage
                 }
             }, done);
         },
         component: require('../components/IssueList')
     },
     issue: {
-        path: '/:issueNumber',
+        path: '/:owner/:repo/issue/:issueNumber',
         method: 'get',
         page: 'issue',
         title: 'Issue',
         action: function (context, payload, done) {
             context.executeAction(getIssue, {
-                owner: appConfig.initialGitOwner,
-                repo: appConfig.initialGitRepo,
+                owner: payload.getIn(['params', 'owner']),
+                repo: payload.getIn(['params', 'repo']),
                 issueNumber: payload.getIn(['params', 'issueNumber'])
             }, done);
         },

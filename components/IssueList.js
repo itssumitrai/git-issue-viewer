@@ -24,15 +24,25 @@ class IssueList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            owner: appConfig.initialGitOwner,
-            repo: appConfig.initialGitRepo,
-            pageNumber: appConfig.initialPageNumber
+            owner: props.routeParams.get('owner'),
+            repo: props.routeParams.get('repo'),
+            pageNumber: props.routeParams.get('page')
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.routeParams.equals(this.props.routeParams)) {
+            this.setState({
+                owner: nextProps.routeParams.get('owner'),
+                repo: nextProps.routeParams.get('repo'),
+                pageNumber: nextProps.routeParams.get('page')
+            });
+        }
     }
 
     renderIssue(issue) {
         const left = <UserTile user={issue.user} />;
-        const right = <IssueListItem issue={issue} />;
+        const right = <IssueListItem routeParams={this.props.routeParams} issue={issue} />;
 
         return (
             <li key={issue.id}>
@@ -45,23 +55,25 @@ class IssueList extends React.Component {
     }
 
     render() {
-        let issueListItems = this.props.issues && this.props.issues.map(this.renderIssue);
+        const { props, state } = this;
+        let issueListItems = props.issues && props.issues.map(this.renderIssue, this);
 
         return (
             <div>
-                <h2>All Issues from {this.state.owner}/{this.state.repo}</h2>
-                <PaginationBar pageNumber={this.state.pageNumber} totalPages={25}/>
+                <h2>All Issues from {state.owner}/{state.repo}</h2>
+                <PaginationBar routeParams={props.routeParams} pageNumber={state.pageNumber} totalPages={25}/>
                 <ul className="issue-list">
                     {issueListItems}
                 </ul>
-                <PaginationBar pageNumber={this.state.pageNumber} totalPages={25}/>
+                <PaginationBar routeParams={props.routeParams} pageNumber={state.pageNumber} totalPages={25}/>
             </div>
         );
     }
 }
 
 IssueList.propTypes = {
-    itemsPerPage: React.PropTypes.number
+    itemsPerPage: React.PropTypes.number,
+    routeParams: React.PropTypes.object.isRequired
 };
 
 IssueList.defaultProps = {

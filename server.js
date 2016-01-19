@@ -15,6 +15,7 @@ import ReactDOM from 'react-dom/server';
 import app from './app';
 import HtmlComponent from './components/Html';
 import { createElementWithContext } from 'fluxible-addons-react';
+import appConfig from './configs/app';
 const env = process.env.NODE_ENV;
 
 const debug = debugLib('git-issue-viewer');
@@ -34,6 +35,12 @@ fetchrPlugin.registerService(require('./services/issueService'));
 
 // Set up the fetchr middleware
 server.use(fetchrPlugin.getXhrPath(), fetchrPlugin.getMiddleware());
+
+// Create a default page
+server.get('/', function (req, res) {
+    res.redirect('/' + appConfig.initialGitOwner + '/' + appConfig.initialGitRepo +
+        '/' + appConfig.initialPageNumber);
+});
 
 server.use((req, res, next) => {
     const context = app.createContext({
