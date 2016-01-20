@@ -42,14 +42,14 @@ class IssueDetail extends React.Component {
 
         // Now iterate over comment Data and create the commentList
         comments.forEach((commentObj) => {
-            const userElement = <UserTile user={commentObj.user} />;
-            const commentElement = <Comment issue={commentObj}/>;
+            const leftElement = <UserTile user={commentObj.user} />;
+            const rightElement = <Comment issue={commentObj}/>;
 
             commentList.push(
                 <li key={commentObj.id}>
                     <ItemLayout
-                        left={userElement}
-                        right={commentElement}
+                        left={leftElement}
+                        right={rightElement}
                     />
                 </li>
             );
@@ -76,7 +76,7 @@ IssueDetail = connectToStores(IssueDetail, [IssueStore], (context, props) => {
     return {
         comments: issueStore.getComments(),
         issue: issueStore.getCurrentIssue()
-    }
+    };
 });
 
 export default IssueDetail;

@@ -8,7 +8,7 @@
 import request from 'request';
 import { apiHost } from '../configs/app';
 
-let issueService = {
+export default {
     name: 'issueService',
 
     read: function(req, resource, params, config, callback) {
@@ -37,7 +37,7 @@ let issueService = {
             };
 
             return request.get(reqOptions, function (error, response, body) {
-                if(!error && response.statusCode == 200) {
+                if(!error && response.statusCode === 200) {
                     return callback(null, JSON.parse(body));
                 }
 
@@ -49,5 +49,3 @@ let issueService = {
         callback(new Error(500, 'IssueService: params must have owner and repo'), null);
     }
 };
-
-export default issueService;

@@ -23,12 +23,16 @@ export default function createIssueList(context, params, done) {
         if (err) {
             debug('dispatching ISSUE_FETCH_FAILURE', err);
             context.dispatch('ISSUE_FETCH_FAILURE', err);
-            done();
+            if (typeof done === 'function') {
+                done(err);
+            }
             return;
         }
 
         debug('dispatching ISSUE_FETCH_SUCCESS', res);
         context.dispatch('ISSUE_FETCH_SUCCESS', res);
-        typeof done === 'function' && done();
+        if (typeof done === 'function') {
+            done();
+        }
     });
-};
+}

@@ -47,7 +47,9 @@ export default function getIssue(context, params, done) {
         if (err) {
             debug('dispatching ISSUE_FAILURE', err);
             context.dispatch('ISSUE_FAILURE', err);
-            typeof done === 'function' && done(err);
+            if (typeof done === 'function') {
+                done(err);
+            }
             return;
         }
 
@@ -58,6 +60,8 @@ export default function getIssue(context, params, done) {
 
         debug('dispatching ISSUE_SUCCESS', resultData);
         context.dispatch('ISSUE_SUCCESS', resultData);
-        typeof done === 'function' && done();
+        if (typeof done === 'function') {
+            done();
+        }
     });
-};
+}

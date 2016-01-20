@@ -26,7 +26,7 @@ var webpackConfig = {
                 ]
             },
             { test: /\.json$/, loader: 'json-loader'},
-            { test: /\.scss$/, loaders: ["style", "css", "sass"]}
+            { test: /\.scss$/, loaders: ['style', 'css', 'sass']}
         ]
     },
     node: {

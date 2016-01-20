@@ -21,7 +21,7 @@ export default {
                 repo: payload.getIn(['params', 'repo']),
                 query: {
                     page: payload.getIn(['params', 'page']),
-                    per_page: appConfig.itemsPerPage
+                    'per_page': appConfig.itemsPerPage
                 }
             }, done);
         },

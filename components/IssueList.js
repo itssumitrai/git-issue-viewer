@@ -51,7 +51,7 @@ class IssueList extends React.Component {
                     right={right}
                 />
             </li>
-        )
+        );
     }
 
     render() {
@@ -83,7 +83,7 @@ IssueList.defaultProps = {
 IssueList = connectToStores(IssueList, [IssueListStore], (context, props) => {
     return {
         issues: context.getStore(IssueListStore).getIssues()
-    }
+    };
 });
 
 export default IssueList;

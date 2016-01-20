@@ -9,6 +9,7 @@ import React from 'react';
 import { NavLink } from 'fluxible-router';
 import { getPageNumbers } from '../../lib/utils';
 import { FormattedMessage } from 'react-intl';
+import appConfig from '../../configs/app';
 
 class PaginationBar extends React.Component {
     render() {
@@ -21,7 +22,7 @@ class PaginationBar extends React.Component {
             if (number === pageNumber) {
                 return (
                     <li key={number} className="page number selected">
-                        <span className="Fw-b">{number}</span>
+                        <span className="Fw-b Fz-m">{number}</span>
                     </li>
                 );
             }
@@ -31,7 +32,7 @@ class PaginationBar extends React.Component {
                     <NavLink
                         key={number}
                         href={currentUrlPrefix + number}
-                        className="link C-LinkBlue"
+                        className="Td-n C-LinkBlue Fz-m"
                     >
                         {number}
                     </NavLink>
@@ -44,7 +45,7 @@ class PaginationBar extends React.Component {
                 <ul className="page-number-list">
                     <li key="previous" className="page">
                         <NavLink
-                            className="link C-LinkBlue Fl-start"
+                            className="link C-LinkBlue Fz-m"
                             href={currentUrlPrefix + Math.max(pageNumber - 1, 1)}
                         >
                             <FormattedMessage id="PREVIOUS" />
@@ -54,7 +55,7 @@ class PaginationBar extends React.Component {
                     <li key="next" className="page">
                         <NavLink
                             href={currentUrlPrefix + Math.min(pageNumber + 1, props.totalPages)}
-                            className="link C-LinkBlue Fl-end"
+                            className="link C-LinkBlue Fz-m"
                         >
                             <FormattedMessage id="NEXT" />
                         </NavLink>
@@ -75,7 +76,7 @@ PaginationBar.propTypes = {
 PaginationBar.defaultProps = {
     pageNumber: '1',
     totalPages: 25,
-    pagesToShow: 9
+    pagesToShow: appConfig.pagesToShow
 };
 
 export default PaginationBar;

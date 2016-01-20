@@ -10,5 +10,6 @@ export default {
     initialGitRepo: 'npm',
     initialPageNumber: 1,
     itemsPerPage: 25,
+    pagesToShow: 15,
     apiHost: 'https://api.github.com/'
 };

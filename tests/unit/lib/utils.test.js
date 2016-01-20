@@ -16,15 +16,13 @@ describe('utils', function () {
 
     describe('#getPageNumbers', function () {
         it('should generate correct pageNumbers when pagetoShow is odd', function () {
-            expect(utils.getPageNumbers(3, 9)).to.deep.equal([]);
+            expect(utils.getPageNumbers(3, 9)).to.deep.equal([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            expect(utils.getPageNumbers(7, 9)).to.deep.equal([3, 4, 5, 6, 7, 8, 9, 10, 11]);
         });
 
         it('should generate correct pageNumbers when pagetoShow is even', function () {
-            expect(utils.getPageNumbers(3, 10)).to.deep.equal([]);
-        });
-
-        it('should generate correct pageNumbers when pageNumber is small', function () {
-            expect(utils.getPageNumbers(1, 9)).to.deep.equal([]);
+            expect(utils.getPageNumbers(3, 10)).to.deep.equal([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+            expect(utils.getPageNumbers(7, 10)).to.deep.equal([2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
         });
     });
 
