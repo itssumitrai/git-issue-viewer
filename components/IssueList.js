@@ -56,6 +56,12 @@ class IssueList extends React.Component {
 
     render() {
         const { props, state } = this;
+        if (!props.issues && props.error) {
+            return (
+                <div class="error-message">{props.error}</div>
+            );
+        }
+
         let issueListItems = props.issues && props.issues.map(this.renderIssue, this);
 
         return (
@@ -81,8 +87,10 @@ IssueList.defaultProps = {
 };
 
 IssueList = connectToStores(IssueList, [IssueListStore], (context, props) => {
+    const issueListStore = context.getStore(IssueListStore);
     return {
-        issues: context.getStore(IssueListStore).getIssues()
+        issues: issueListStore.getIssues(),
+        error: issueListStore.getError()
     };
 });
 

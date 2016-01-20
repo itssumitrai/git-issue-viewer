@@ -6,7 +6,6 @@
 'use strict';
 
 import React from 'react';
-import marked from 'marked';
 import { NavLink } from 'fluxible-router';
 import UserTile from '../Shared/UserTile';
 import Labels from '../Shared/Labels';
@@ -55,7 +54,7 @@ class IssueListItem extends React.Component {
                     </NavLink>
                     <IssueState state={issue.state} className="Fl-end"/>
                 </div>
-                <p className="Ov-h Lh-20px" dangerouslySetInnerHTML={{ __html: marked(getMiniSummary(issue.body)) }} />
+                <p className="Ov-h Lh-20px" dangerouslySetInnerHTML={getParsedMarkupContent(getMiniSummary(issue.body))} />
                 <div className="Mt-10px">
                     <Labels labels={issue.labels}/>
                     <Date className="Fl-end Fz-s C-Gray" type="list" date={issue.created_at}/>

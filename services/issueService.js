@@ -41,7 +41,7 @@ export default {
                     return callback(null, JSON.parse(body));
                 }
 
-                callback(error, null);
+                callback(error || body, null);
             });
         }
 

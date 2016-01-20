@@ -21,9 +21,12 @@ import { connectToStores } from 'fluxible-addons-react';
 
 class IssueDetail extends React.Component {
     render() {
-        const { issue, comments } = this.props;
-        if (!issue || Object.keys(issue).length === 0) {
-            return null;
+        const { issue, comments, error } = this.props;
+
+        if (!issue && error) {
+            return (
+                <div class="error-message">{error}</div>
+            );
         }
 
         const userElement = <UserTile user={issue.user} />;
@@ -75,7 +78,8 @@ IssueDetail = connectToStores(IssueDetail, [IssueStore], (context, props) => {
     const issueStore = context.getStore(IssueStore);
     return {
         comments: issueStore.getComments(),
-        issue: issueStore.getCurrentIssue()
+        issue: issueStore.getCurrentIssue(),
+        error: issueStore.getError()
     };
 });
 
