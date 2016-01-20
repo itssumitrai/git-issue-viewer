@@ -1,4 +1,11 @@
 {
+  "COMMENTED": "commented",
+  "COMMENTS": "{number} comments",
+  "GOTO_ISSUE": "Go to Issue #{issue}",
+  "ISSUE_NUMBER": "#{issue}",
+  "ISSUE_OPENED": "issue opened",
+  "NEXT": "Next",
+  "OPENED_THIS_ISSUE": "opened this issue",
   "PREVIOUS": "Previous",
-  "NEXT": "Next"
+  "REFER": "refer"
 }

@@ -12,6 +12,8 @@ import Labels from '../Shared/Labels';
 import ItemLayout from '../Shared/ItemLayout';
 import IssueState from '../Shared/IssueState';
 import Date from '../Shared/Date';
+import { FormattedMessage } from 'react-intl';
+import { GOTO_ISSUE } from '../../lang/strings.json';
 
 import { getMiniSummary, getParsedMarkupContent } from '../../lib/utils';
 
@@ -19,7 +21,9 @@ class IssueListItem extends React.Component {
     render() {
         const { issue, routeParams } = this.props;
 
-        const title = 'Go to Issue #' + issue.number;
+        const owner = routeParams.get('owner');
+        const repo = routeParams.get('repo');
+        const title = GOTO_ISSUE.replace('{issue}', issue.number);
 
         return (
             <div className="issue-info ShadowBox">
@@ -28,8 +32,8 @@ class IssueListItem extends React.Component {
                         className="title Fz-m bold"
                         routeName="issue"
                         navParams={{
-                            owner: routeParams.get('owner'),
-                            repo: routeParams.get('repo'),
+                            owner: owner,
+                            repo: repo,
                             issueNumber: issue.number
                         }}
                         title={title}
@@ -40,13 +44,13 @@ class IssueListItem extends React.Component {
                         className="Mstart-10px link C-Gray"
                         routeName="issue"
                         navParams={{
-                            owner: routeParams.get('owner'),
-                            repo: routeParams.get('repo'),
+                            owner: owner,
+                            repo: repo,
                             issueNumber: issue.number
                         }}
                         title={title}
                     >
-                        {'#' + issue.number}
+                        <FormattedMessage id="ISSUE_NUMBER" values={{ issue: issue.number }} />
                     </NavLink>
                     <IssueState state={issue.state} className="Fl-end"/>
                 </div>

@@ -8,7 +8,7 @@
 import React from 'react';
 import { NavLink } from 'fluxible-router';
 import { getPageNumbers } from '../../lib/utils';
-import strings from '../../lang/strings.json';
+import { FormattedMessage } from 'react-intl';
 
 class PaginationBar extends React.Component {
     render() {
@@ -32,7 +32,6 @@ class PaginationBar extends React.Component {
                         key={number}
                         href={currentUrlPrefix + number}
                         className="link C-LinkBlue"
-                        title="Next"
                     >
                         {number}
                     </NavLink>
@@ -47,9 +46,8 @@ class PaginationBar extends React.Component {
                         <NavLink
                             className="link C-LinkBlue Fl-start"
                             href={currentUrlPrefix + Math.max(pageNumber - 1, 1)}
-                            title="Previous"
                         >
-                            {strings.PREVIOUS}
+                            <FormattedMessage id="PREVIOUS" />
                         </NavLink>
                     </li>
                     {pageNumbers}
@@ -57,9 +55,8 @@ class PaginationBar extends React.Component {
                         <NavLink
                             href={currentUrlPrefix + Math.min(pageNumber + 1, props.totalPages)}
                             className="link C-LinkBlue Fl-end"
-                            title="Next"
                         >
-                            {strings.NEXT}
+                            <FormattedMessage id="NEXT" />
                         </NavLink>
                     </li>
                 </ul>

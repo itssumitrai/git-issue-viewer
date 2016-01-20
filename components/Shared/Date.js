@@ -6,20 +6,24 @@
 'use strict';
 
 import React from 'react';
+import { getTimestamp } from '../../lib/utils';
+import { FormattedMessage, FormattedRelative } from 'react-intl';
 
 const PREFIX_TYPE_MAP = {
-    comment: 'commented ',
-    list: 'issue opened ',
-    create: 'opened this issue ',
-    refer: 'referenced this issue '
+    comment: 'COMMENTED',
+    list: 'ISSUE_OPENED',
+    create: 'OPENED_THIS_ISSUE',
+    refer: 'REFER'
 };
 
 class Date extends React.Component {
     render() {
         const { props } = this;
+        const dateValue = getTimestamp(this.props.date);
+
         return (
             <span className={'create-date ' + this.props.className}>
-                {PREFIX_TYPE_MAP[props.type] + this.props.date}
+                <FormattedMessage id={PREFIX_TYPE_MAP[props.type]}/>&nbsp;<FormattedRelative value={dateValue}/>
             </span>
         );
     }

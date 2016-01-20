@@ -10,6 +10,9 @@ import IssueState from '../Shared/IssueState';
 import Labels from '../Shared/Labels';
 import Date from '../Shared/Date';
 import { getParsedMarkupContent } from '../../lib/utils';
+import { FormattedMessage } from 'react-intl';
+
+const ISSUE_NUMBER_PREFIX = '#';
 
 class IssueDetailHeader extends React.Component {
     render() {
@@ -19,14 +22,14 @@ class IssueDetailHeader extends React.Component {
             <div className="Mb-20px">
                 <h2 className="issue-detail-header Fw-n">
                     <span className="title" dangerouslySetInnerHTML={getParsedMarkupContent(issue.title)} />
-                    <span className="Mstart-10px C-SGray">{'#' + issue.number}</span>
+                    <span className="Mstart-10px C-SGray">{ISSUE_NUMBER_PREFIX + issue.number}</span>
                 </h2>
                 <div className="Mb-10px C-Gray">
                     <IssueState state={issue.state} className="Mend-10px"/>
                     <a href={issue.user.html_url} className="link Fw-b C-Gray">
                         {issue.user.login}
                     </a>
-                    &nbsp;<Date className="C-Gray" type="create" date={issue.created_at}/> &bull; {issue.comments} comments
+                    &nbsp;<Date className="C-Gray" type="create" date={issue.created_at}/>&nbsp;&bull;&nbsp;<FormattedMessage id="COMMENTS" values={{ number: issue.comments }}/>
                 </div>
                 <Labels labels={issue.labels}/>
             </div>

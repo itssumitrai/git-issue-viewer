@@ -7,6 +7,8 @@ import ApplicationStore from '../stores/ApplicationStore';
 import { connectToStores, provideContext } from 'fluxible-addons-react';
 import { handleHistory } from 'fluxible-router';
 import IssueList from '../components/IssueList';
+import { IntlProvider } from 'react-intl';
+import strings from '../lang/strings.json';
 import pages from '../configs/routes';
 
 class Application extends React.Component {
@@ -14,7 +16,9 @@ class Application extends React.Component {
         var Component = this.props.currentRoute.get('component');
         return (
             <div>
-                <Component routeParams={this.props.currentRoute.get('params')}/>
+                <IntlProvider locale="en" messages={strings} >
+                    <Component routeParams={this.props.currentRoute.get('params')}/>
+                </IntlProvider>
             </div>
         );
     }
