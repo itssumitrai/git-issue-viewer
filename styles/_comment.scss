@@ -6,4 +6,15 @@
     padding: 2px 5px;
     color: $primaryGray;
   }
+  a {
+    text-decoration: none;
+    color: $linkBlue;
+
+    &:hover {
+      text-decoration: underline;
+    }
+    &:active {
+      text-decoration: underline;
+    }
+  }
 }

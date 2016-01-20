@@ -30,21 +30,4 @@ describe('utils', function () {
         it('should generate correct miniSummary from given summary', function () {
         });
     });
-
-    describe('#getParsedMarkupContent', function () {
-        it('should parse out multi code blocks', function () {
-        });
-
-        it('should not parse out multi code blocks if code rule is skipped', function () {
-        });
-
-        it('should parse out code blocks', function () {
-        });
-
-        it('should not parse out code blocks if code rule is skipped', function () {
-        });
-
-        it('should parse out user logins', function () {
-        });
-    });
 });

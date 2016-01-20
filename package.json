@@ -26,6 +26,7 @@
     "fluxible-addons-react": "^0.2.0",
     "fluxible-plugin-fetchr": "^0.3.0",
     "fluxible-router": "^0.3.0",
+    "marked": "^0.3.5",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-intl": "^2.0.0-beta-2",

@@ -12,4 +12,15 @@
       }
     }
   }
+  a {
+    text-decoration: none;
+    color: $linkBlue;
+
+    &:hover {
+      text-decoration: underline;
+    }
+    &:active {
+      text-decoration: underline;
+    }
+  }
 }
