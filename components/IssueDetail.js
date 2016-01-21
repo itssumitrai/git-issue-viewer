@@ -29,7 +29,11 @@ class IssueDetail extends React.Component {
                 <div class="error-message">{error}</div>
             );
         } else if (!issue) {
-            return null;
+            return (
+                <div className="spinner">
+                    <div className="image"/>
+                </div>
+            );
         }
 
         const userElement = <UserTile user={issue.user} />;
