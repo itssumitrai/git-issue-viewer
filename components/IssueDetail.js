@@ -27,8 +27,11 @@ class IssueDetail extends React.Component {
             return (
                 <div class="error-message">{error}</div>
             );
+        } else if (!issue) {
+            return null;
         }
 
+        console.log('>>> issue:', issue);
         const userElement = <UserTile user={issue.user} />;
         const commentElement = <Comment issue={issue} />;
 

@@ -17,7 +17,7 @@ let IssueListStore = createStore({
     },
 
     initialize() {
-        this.issue = [];
+        this.issue = null;
         this.error = null;
     },
 

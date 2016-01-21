@@ -60,6 +60,8 @@ class IssueList extends React.Component {
             return (
                 <div class="error-message">{props.error}</div>
             );
+        } else if (!props.issues) {
+            return null;
         }
 
         let issueListItems = props.issues && props.issues.map(this.renderIssue, this);
