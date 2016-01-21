@@ -57,25 +57,37 @@ class IssueList extends React.Component {
         );
     }
 
+    renderMainContent() {
+        if (this.props.isLoading) {
+            return (
+                <div className="spinner">
+                    <div className="image"/>
+                </div>
+            );
+        } else {
+            return (
+                <ul className="issue-list">
+                    {this.props.issues.map(this.renderIssue, this)}
+                </ul>
+            );
+        }
+    }
+
     render() {
         const { props, state } = this;
         if (!props.issues && props.error) {
             return (
                 <div class="error-message">{props.error}</div>
             );
-        } else if (!props.issues) {
+        } else if (!props.issues && !props.isLoading) {
             return null;
         }
-
-        let issueListItems = props.issues && props.issues.map(this.renderIssue, this);
 
         return (
             <div>
                 <h2>All Issues from {state.owner}/{state.repo}</h2>
                 <PaginationBar routeParams={props.routeParams} pageNumber={state.pageNumber} totalPages={25}/>
-                <ul className="issue-list">
-                    {issueListItems}
-                </ul>
+                {this.renderMainContent()}
                 <PaginationBar routeParams={props.routeParams} pageNumber={state.pageNumber} totalPages={25}/>
                 <ScrollUp/>
             </div>
@@ -96,7 +108,8 @@ IssueList = connectToStores(IssueList, [IssueListStore], (context, props) => {
     const issueListStore = context.getStore(IssueListStore);
     return {
         issues: issueListStore.getIssues(),
-        error: issueListStore.getError()
+        error: issueListStore.getError(),
+        isLoading: issueListStore.isLoading()
     };
 });
 

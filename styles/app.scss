@@ -25,6 +25,22 @@ body {
     max-width: $max-screen-size;
   }
 
+  .spinner {
+    height: 400px;
+    position: relative;
+    .image {
+      background: url("../assets/ajax-loader.gif") no-repeat;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 100px;
+      width: 100px;
+    }
+  }
+
   .ShadowBox {
     border: 1px solid $borderGray;
     box-shadow: $boxShadow;
