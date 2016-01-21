@@ -12,8 +12,7 @@ import Labels from '../Shared/Labels';
 import ItemLayout from '../Shared/ItemLayout';
 import IssueState from '../Shared/IssueState';
 import Date from '../Shared/Date';
-import { FormattedMessage } from 'react-intl';
-import { GOTO_ISSUE } from '../../lang/strings.json';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { getMiniSummary, getParsedMarkupContent } from '../../lib/utils';
 
@@ -23,7 +22,7 @@ class IssueListItem extends React.Component {
 
         const owner = routeParams.get('owner');
         const repo = routeParams.get('repo');
-        const title = GOTO_ISSUE.replace('{issue}', issue.number);
+        const title = this.props.intl.formatMessage({ id: 'GOTO_ISSUE' }, { issue: issue.number});
 
         return (
             <div className="issue-info ShadowBox">
@@ -73,4 +72,4 @@ IssueListItem.defaultProps = {
     issue: {}
 };
 
-export default IssueListItem;
+export default injectIntl(IssueListItem);

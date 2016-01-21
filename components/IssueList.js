@@ -12,6 +12,7 @@ import IssueListItem from './IssueList/IssueListItem';
 import ItemLayout from './Shared/ItemLayout';
 import UserTile from './Shared/UserTile';
 import PaginationBar from './IssueList/PaginationBar';
+import ScrollUp from './Shared/ScrollUp';
 
 // Stores
 import IssueListStore from '../stores/IssueListStore';
@@ -26,7 +27,8 @@ class IssueList extends React.Component {
         this.state = {
             owner: props.routeParams.get('owner'),
             repo: props.routeParams.get('repo'),
-            pageNumber: props.routeParams.get('page')
+            pageNumber: props.routeParams.get('page'),
+            scrollVisible: true
         };
     }
 
@@ -35,7 +37,8 @@ class IssueList extends React.Component {
             this.setState({
                 owner: nextProps.routeParams.get('owner'),
                 repo: nextProps.routeParams.get('repo'),
-                pageNumber: nextProps.routeParams.get('page')
+                pageNumber: nextProps.routeParams.get('page'),
+                scrollVisible: false
             });
         }
     }
@@ -74,6 +77,7 @@ class IssueList extends React.Component {
                     {issueListItems}
                 </ul>
                 <PaginationBar routeParams={props.routeParams} pageNumber={state.pageNumber} totalPages={25}/>
+                <ScrollUp/>
             </div>
         );
     }

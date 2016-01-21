@@ -21,7 +21,7 @@ class IssueDetailHeader extends React.Component {
         return (
             <div className="Mb-20px">
                 <h2 className="issue-detail-header Fw-n">
-                    <span className="title" dangerouslySetInnerHTML={getParsedMarkupContent(issue.title)} />
+                    <span className="title D-ib" dangerouslySetInnerHTML={getParsedMarkupContent(issue.title)} />
                     <span className="Mstart-10px C-SGray">{ISSUE_NUMBER_PREFIX + issue.number}</span>
                 </h2>
                 <div className="Mb-10px C-Gray">

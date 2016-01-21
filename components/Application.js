@@ -16,7 +16,7 @@ class Application extends React.Component {
         var Component = this.props.currentRoute.get('component');
         return (
             <div>
-                <IntlProvider locale="en" messages={strings} >
+                <IntlProvider locale="en" messages={strings} initialNow={Date.now()} >
                     <Component routeParams={this.props.currentRoute.get('params')}/>
                 </IntlProvider>
             </div>

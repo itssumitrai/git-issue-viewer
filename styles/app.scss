@@ -7,6 +7,7 @@
 @import 'issue-detail-header';
 @import 'comment';
 @import 'pagination';
+@import 'scroll';
 
 body {
   max-width: $max-screen-size;
@@ -132,6 +133,15 @@ body {
   }
   .Td-n {
     text-decoration: none;
+  }
+  .D-ib {
+    display: inline-block;
+  }
+  .D-n {
+    display: none;
+  }
+  .D-b {
+    display: block;
   }
   ul{
     list-style: none;

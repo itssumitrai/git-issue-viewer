@@ -2,6 +2,7 @@
   "COMMENTED": "commented",
   "COMMENTS": "{number} comments",
   "GOTO_ISSUE": "Go to Issue #{issue}",
+  "GOTO_TOP": "Scroll to the Top",
   "ISSUE_NUMBER": "#{issue}",
   "ISSUE_OPENED": "issue opened",
   "NEXT": "Next",

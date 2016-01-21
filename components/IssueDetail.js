@@ -12,6 +12,7 @@ import IssueDetailHeader from './IssueDetail/IssueDetailHeader';
 import Comment from './IssueDetail/Comment';
 import ItemLayout from './Shared/ItemLayout';
 import UserTile from './Shared/UserTile';
+import ScrollUp from './Shared/ScrollUp';
 
 // Stores
 import IssueStore from '../stores/IssueStore';
@@ -31,7 +32,6 @@ class IssueDetail extends React.Component {
             return null;
         }
 
-        console.log('>>> issue:', issue);
         const userElement = <UserTile user={issue.user} />;
         const commentElement = <Comment issue={issue} />;
 
@@ -68,6 +68,7 @@ class IssueDetail extends React.Component {
                 <ul>
                     {commentList}
                 </ul>
+                <ScrollUp/>
             </div>
         );
     }

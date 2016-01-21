@@ -1,0 +1,10 @@
+.scroll-up {
+  button {
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    padding: 8px 10px;
+    font-size: $font-medium;
+    color: $primaryText;
+  }
+}
