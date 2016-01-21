@@ -12,6 +12,9 @@
         padding: 5px;
         border: 1px solid transparent;
       }
+      &.selected {
+        background-color: $borderGray;
+      }
       &.number:not(.selected):hover {
         text-decoration: none;
         border-color: $borderGray;
