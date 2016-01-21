@@ -1,10 +1,17 @@
 .comment {
-  padding: $issue-item-padding;
   .labelBox {
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 3px;
     padding: 2px 5px;
     color: $primaryGray;
+  }
+  .content {
+    padding: $issue-item-padding;
+  }
+  .bar {
+    padding: 10px;
+    background-color: $backgroundGray;
+    border-bottom: 1px solid $secondaryBorder;
   }
   a {
     text-decoration: none;

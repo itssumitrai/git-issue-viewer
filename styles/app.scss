@@ -57,16 +57,16 @@ body {
     }
   }
   .codeBox {
-    border: 1px solid #cccccc;
-    background-color: #f5f5f5;
+    border: 1px solid $secondaryBorder;
+    background-color: $backgroundGray;
     border-radius: 3px;
     padding: 0px 5px;
     font-size: $font-small;
     color: inherit;
   }
   .large-codeBox {
-    border: 1px solid #cccccc;
-    background-color: #f5f5f5;
+    border: 1px solid $secondaryBorder;
+    background-color: $backgroundGray;
     border-radius: 3px;
     padding: 10px;
     margin: 10px;
@@ -87,6 +87,18 @@ body {
   }
   .Mb-20px {
     margin-bottom: 20px;
+  }
+  .Pt-10px {
+    padding-top: 10px;
+  }
+  .Pb-10px {
+    padding-bottom: 10px;
+  }
+  .Pstart-10px {
+    padding-left: 10px;
+  }
+  .Pend-10px {
+    padding-right: 10px;
   }
   .Fz-s {
     font-size: $font-small;

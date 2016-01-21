@@ -16,10 +16,12 @@ class Comment extends React.Component {
 
         return (
             <div className="comment ShadowBox">
-                <p className="Ov-h Lh-20px" dangerouslySetInnerHTML={getParsedMarkupContent(issue.body, true)} />
-                <div className="Mt-10px">
-                    <span className="labelBox">{ownerLabel}</span>
-                    <Date className="Fl-end Fz-s C-Gray" type="comment" date={issue.created_at}/>
+                <div className="bar">
+                    <Date className="Fz-s C-Gray" type="comment" date={issue.created_at}/>
+                    <span className="labelBox Fl-end">{ownerLabel}</span>
+                </div>
+                <div className="content">
+                    <p className="Ov-h Lh-20px" dangerouslySetInnerHTML={getParsedMarkupContent(issue.body, true)} />
                 </div>
             </div>
         );
