@@ -84,10 +84,14 @@ IssueDetail.propTypes = {
 
 IssueDetail = connectToStores(IssueDetail, [IssueStore], (context, props) => {
     const issueStore = context.getStore(IssueStore);
+    //get the current issueNumber from route
+    const currIssueNumber = parseInt(props.routeParams.get('issueNumber'), 10);
+    // This is to ensure that we are fetching data only for the current issue, and not the previous one
+
     return {
-        comments: issueStore.getComments(),
-        issue: issueStore.getCurrentIssue(),
-        error: issueStore.getError()
+        comments: issueStore.getComments(currIssueNumber),
+        issue: issueStore.getCurrentIssue(currIssueNumber),
+        error: issueStore.getError(currIssueNumber)
     };
 });
 

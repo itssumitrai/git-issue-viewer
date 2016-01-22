@@ -17,6 +17,7 @@ let IssueListStore = createStore({
     },
 
     initialize() {
+        this.issueNumber = null;    // acts as an id so we know we are fetching the right issue
         this.issue = null;
         this.error = null;
     },
@@ -24,6 +25,7 @@ let IssueListStore = createStore({
     _loadIssue(payload) {
         this.issue = payload.issue;
         this.comments = payload.comments;
+        this.issueNumber = payload.issue.number;
         this.error = null;
         this.emitChange();
     },
@@ -33,23 +35,30 @@ let IssueListStore = createStore({
         this.emitChange();
     },
 
-    getCurrentIssue() {
-        return this.issue;
+    getCurrentIssue(issueNumber) {
+        if (issueNumber === this.issueNumber || this.issueNumber === null) {
+            return this.issue;
+        }
     },
 
-    getComments() {
-        return this.comments;
+    getComments(issueNumber) {
+        if (issueNumber === this.issueNumber) {
+            return this.comments;
+        }
     },
 
-    getError() {
-        return this.error;
+    getError(issueNumber) {
+        if (issueNumber === this.issueNumber) {
+            return this.error;
+        }
     },
 
     dehydrate() {
         return {
             error: this.error,
             issue: this.issue,
-            comments: this.comments
+            comments: this.comments,
+            issueNumber: this.issueNumber
         };
     },
 
@@ -57,6 +66,7 @@ let IssueListStore = createStore({
         this.error = state.error;
         this.issue = state.issue;
         this.comments = state.comments;
+        this.issueNumber = state.issueNumber;
     }
 });
 

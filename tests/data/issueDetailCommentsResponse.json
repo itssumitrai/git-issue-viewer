@@ -1,0 +1,30 @@
+[
+  {
+    "url": "https://api.github.com/repos/npm/npm/issues/comments/173693038",
+    "html_url": "https://github.com/npm/npm/issues/11217#issuecomment-173693038",
+    "issue_url": "https://api.github.com/repos/npm/npm/issues/11217",
+    "id": 173693038,
+    "user": {
+      "login": "niksrc",
+      "id": 12221985,
+      "avatar_url": "https://avatars.githubusercontent.com/u/12221985?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/niksrc",
+      "html_url": "https://github.com/niksrc",
+      "followers_url": "https://api.github.com/users/niksrc/followers",
+      "following_url": "https://api.github.com/users/niksrc/following{/other_user}",
+      "gists_url": "https://api.github.com/users/niksrc/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/niksrc/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/niksrc/subscriptions",
+      "organizations_url": "https://api.github.com/users/niksrc/orgs",
+      "repos_url": "https://api.github.com/users/niksrc/repos",
+      "events_url": "https://api.github.com/users/niksrc/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/niksrc/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "created_at": "2016-01-21T20:05:36Z",
+    "updated_at": "2016-01-21T20:05:36Z",
+    "body": "Try installing the module read-package-json globally\r\n```npm install -g read-package-json ```.\r\nIt should work."
+  }
+]
