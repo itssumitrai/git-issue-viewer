@@ -13,6 +13,7 @@ import Comment from './IssueDetail/Comment';
 import ItemLayout from './Shared/ItemLayout';
 import UserTile from './Shared/UserTile';
 import ScrollUp from './Shared/ScrollUp';
+import RepoSelector from './Shared/RepoSelector';
 
 // Stores
 import IssueStore from '../stores/IssueStore';
@@ -35,6 +36,9 @@ class IssueDetail extends React.Component {
                 </div>
             );
         }
+
+        const owner = this.props.routeParams.get('owner');
+        const repo = this.props.routeParams.get('repo');
 
         const userElement = <UserTile user={issue.user} />;
         const commentElement = <Comment issue={issue} />;
@@ -67,7 +71,7 @@ class IssueDetail extends React.Component {
 
         return (
             <div>
-                <h2>Issue from npm/npm</h2>
+                <RepoSelector owner={owner} repo={repo} headingLink={true}/>
                 <IssueDetailHeader issue={issue} />
                 <ul>
                     {commentList}

@@ -7,17 +7,28 @@
     .page {
       display: inline;
       &.number {
-        margin-left: 8px;
-        margin-right: 8px;
-        padding: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 5px 8px;
         border: 1px solid transparent;
       }
       &.selected {
-        background-color: $borderGray;
+        background-color: $primaryBlue;
+        color: white;
+        border-radius: 2px;
       }
       &.number:not(.selected):hover {
         text-decoration: none;
-        border-color: $borderGray;
+        cursor: pointer;
+        background-color: $primaryBlue;
+        border-radius: 2px;
+        color: white;
+        a {
+          color: white;
+        }
+      }
+      a {
+        color: $primaryBlue;
       }
     }
   }

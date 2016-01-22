@@ -1,0 +1,61 @@
+.repo-selector {
+  margin: 15px 0;
+  color: $primaryText;
+
+  .form-container {
+    &:hover{
+      cursor: pointer;
+      .static-form {
+        color: $primaryTitleActive;
+      }
+      .mega-octicon {
+        color: $primaryTitleActive;
+      }
+    }
+
+    .show-issues {
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid $primaryBlue;
+      &:hover {
+        opacity: 0.8;
+      }
+      background-color: $primaryBlue;
+      color: white;
+    }
+    .cancel {
+      padding: 5px;
+      border-radius: 3px;
+      color: $primaryText;
+      border: 1px solid $primaryText;
+      background-color: #d5d5d5;
+      &:hover {
+        background-color: $backgroundGray;
+      }
+    }
+    input {
+      border: 1px solid $borderGray;
+      font-weight: bold;
+
+      &::-webkit-input-placeholder {
+        font-weight: bold;
+        color: black;
+      }
+
+      &::-moz-placeholder {
+        font-weight: bold;
+        color: black;
+      }
+
+      &:-ms-input-placeholder {
+        font-weight: bold;
+        color: black;
+      }
+
+      &:-moz-placeholder {
+        font-weight: bold;
+        color: black;
+      }
+    }
+  }
+}

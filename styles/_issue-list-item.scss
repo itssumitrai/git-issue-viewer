@@ -1,17 +1,5 @@
 .issue-info {
   padding: $issue-item-padding;
-  .top {
-    .title {
-      text-decoration: none;
-      color: $primaryTitle;
-      &:hover {
-        color: $primaryTitleActive;
-      }
-      &:active {
-        color: $primaryTitleActive;
-      }
-    }
-  }
   a {
     text-decoration: none;
     color: $linkBlue;

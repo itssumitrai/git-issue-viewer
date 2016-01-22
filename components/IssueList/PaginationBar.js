@@ -45,7 +45,7 @@ class PaginationBar extends React.Component {
                 <ul className="page-number-list">
                     <li key="previous" className="page">
                         <NavLink
-                            className="link C-LinkBlue Fz-m"
+                            className="link C-LinkBlue Fz-m Mend-5px"
                             href={currentUrlPrefix + Math.max(pageNumber - 1, 1)}
                         >
                             <FormattedMessage id="PREVIOUS" />
@@ -55,7 +55,7 @@ class PaginationBar extends React.Component {
                     <li key="next" className="page">
                         <NavLink
                             href={currentUrlPrefix + Math.min(pageNumber + 1, props.totalPages)}
-                            className="link C-LinkBlue Fz-m"
+                            className="link C-LinkBlue Fz-m Mstart-5px"
                         >
                             <FormattedMessage id="NEXT" />
                         </NavLink>

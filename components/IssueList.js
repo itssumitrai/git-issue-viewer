@@ -13,6 +13,7 @@ import ItemLayout from './Shared/ItemLayout';
 import UserTile from './Shared/UserTile';
 import PaginationBar from './IssueList/PaginationBar';
 import ScrollUp from './Shared/ScrollUp';
+import RepoSelector from './Shared/RepoSelector';
 
 // Stores
 import IssueListStore from '../stores/IssueListStore';
@@ -85,7 +86,7 @@ class IssueList extends React.Component {
 
         return (
             <div>
-                <h2>All Issues from {state.owner}/{state.repo}</h2>
+                <RepoSelector owner={state.owner} repo={state.repo}/>
                 <PaginationBar routeParams={props.routeParams} pageNumber={state.pageNumber} totalPages={25}/>
                 {this.renderMainContent()}
                 <PaginationBar routeParams={props.routeParams} pageNumber={state.pageNumber} totalPages={25}/>

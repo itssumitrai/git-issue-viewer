@@ -9,10 +9,15 @@ import React from 'react';
 
 class IssueState extends React.Component {
     render() {
-        const stateText = this.props.state;
-        const className = 'state Bdrs Fw-b ' + this.props.className + ' ' + this.props.state;
+        const { props } = this;
+        const octiconClass = props.state === 'closed' ? 'octicon-issue-closed' : 'octicon-issue-opened';
+
+        const className = 'state Bdrs Fw-b ' + props.className + ' ' + props.state;
         return (
-            <span className={className}>{stateText}</span>
+            <span className={className}>
+                <span className={'octicon ' + octiconClass}/>&nbsp;
+                {props.state}
+            </span>
         );
     }
 }

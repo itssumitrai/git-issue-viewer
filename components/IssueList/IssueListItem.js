@@ -28,7 +28,7 @@ class IssueListItem extends React.Component {
             <div className="issue-info ShadowBox">
                 <div className="top Mb-10px">
                     <NavLink
-                        className="title Fz-m bold"
+                        className="titleLink Fz-m bold"
                         routeName="issue"
                         navParams={{
                             owner: owner,

@@ -1,4 +1,7 @@
 {
+  "ALL_ISSUES": "All Issues from {owner}/{repo}",
+  "CANCEL": "Cancel",
+  "CLICK_TO_CHANGE": "Click to Change",
   "COMMENTED": "commented",
   "COMMENTS": "{number} comments",
   "GOTO_ISSUE": "Go to Issue #{issue}",
@@ -8,5 +11,6 @@
   "NEXT": "Next",
   "OPENED_THIS_ISSUE": "opened this issue",
   "PREVIOUS": "Previous",
-  "REFER": "refer"
+  "REFER": "refer",
+  "SHOW_ALL_ISSUES": "Show all Issues"
 }
