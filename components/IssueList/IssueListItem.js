@@ -56,7 +56,10 @@ class IssueListItem extends React.Component {
                 <p className="Ov-h Lh-20px" dangerouslySetInnerHTML={getParsedMarkupContent(getMiniSummary(issue.body))} />
                 <div className="Mt-10px">
                     <Labels labels={issue.labels}/>
-                    <Date className="Fl-end Fz-s C-Gray" type="list" date={issue.created_at}/>
+                    <span className="Fl-end Fz-s C-Gray">
+                        <FormattedMessage id="COMMENTS" values={{ number: String(issue.comments) }} />&nbsp;&bull;&nbsp;
+                        <Date className="Fl-end Fz-s C-Gray" type="list" date={issue.created_at}/>
+                    </span>
                 </div>
             </div>
         );

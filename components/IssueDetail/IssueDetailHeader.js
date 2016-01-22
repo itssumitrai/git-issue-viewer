@@ -29,7 +29,7 @@ class IssueDetailHeader extends React.Component {
                     <a href={issue.user.html_url} className="link Fw-b C-Gray">
                         {issue.user.login}
                     </a>
-                    &nbsp;<Date className="C-Gray" type="create" date={issue.created_at}/>&nbsp;&bull;&nbsp;<FormattedMessage id="COMMENTS" values={{ number: issue.comments }}/>
+                    &nbsp;<Date className="C-Gray" type="create" date={issue.created_at}/>&nbsp;&bull;&nbsp;<FormattedMessage id="COMMENTS" values={{ number: String(issue.comments) }}/>
                 </div>
                 <Labels labels={issue.labels}/>
             </div>
