@@ -1,16 +1,18 @@
 var webpack = require('webpack');
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 var webpackConfig = {
     resolve: {
-        extensions: ['', '.js']
+        extensions: ['', '.js', '.jsx', '.scss']
     },
     entry: [
         './client.js'
     ],
     output: {
-        path: path.resolve('./build/js'),
-        publicPath: '/public/js/',
+        path: path.join(__dirname, './build'),
+        publicPath: '/public',
         filename: 'main.min.js'
     },
     module: {
@@ -23,7 +25,10 @@ var webpackConfig = {
                 ]
             },
             { test: /\.json$/, loader: 'json-loader'},
-            { test: /\.scss$/, loaders: ['style', 'css', 'sass']},
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader?includePaths[]=' + path.resolve(__dirname, './styles'))
+            },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
@@ -47,6 +52,14 @@ var webpackConfig = {
             compress: {
                 warnings: false
             }
+        }),
+        new ExtractTextPlugin('app.css', {
+            allChunks: true
+        })
+    ],
+    postcss: [
+        autoprefixer({
+            browsers: ['last 2 versions']
         })
     ],
     devtool: 'source-map'
