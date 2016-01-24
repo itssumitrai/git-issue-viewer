@@ -10,7 +10,7 @@ import mockery from 'mockery';
 import requestMock from '../../mocks/requestMock';
 import { expect } from 'chai';
 
-describe.only('issueService', function () {
+describe('issueService', function () {
     var issueService;
     var req = {};
 
