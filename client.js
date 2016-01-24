@@ -5,6 +5,7 @@ import React from 'react';
 import debug from 'debug';
 import { createElementWithContext } from 'fluxible-addons-react';
 import app from './app';
+require('./styles/app.scss');
 
 const debugClient = debug('git-issue-viewer');
 const dehydratedState = window.App; // Sent from the server
