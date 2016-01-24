@@ -8,7 +8,7 @@
   "scripts": {
     "build": "webpack & webpack --config webpack.config.production.js",
     "dev": "node webpack-dev-server.js",
-    "lint": "eslint ./*.js ./**/*.js",
+    "lint": "eslint ./*.js ./**/*.js --quiet",
     "start": "node start.js",
     "test": "jenkins-mocha tests/unit --recursive --full-trace --compilers js:babel/register"
   },
