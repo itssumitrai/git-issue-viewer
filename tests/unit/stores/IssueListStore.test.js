@@ -13,12 +13,35 @@ import IssueListStore from '../../../stores/IssueListStore';
 describe('IssueListStore', function () {
     let context;
     let store;
+    let newState;
+    let data;
 
     beforeEach(function () {
         context = createMockActionContext({
             stores: [IssueListStore]
         });
         store = context.getStore(IssueListStore);
+
+        data = [{
+            id: '1',
+            title: 'this is issue 1'
+        }, {
+            id: '2',
+            title: 'this is issue 2'
+        }];
+
+        newState = {
+            error: 'Boom!',
+            issues: [{
+                id: '1',
+                title: 'this is issue 1'
+            }, {
+                id: '2',
+                title: 'this is issue 2'
+            }],
+            loading: true
+        };
+
     });
 
     describe('#initialize', function () {
@@ -34,14 +57,6 @@ describe('IssueListStore', function () {
 
     describe('#_loadIssues', function () {
         it('should handle ISSUE_FETCH_SUCCESS', function () {
-            let data = [{
-                id: '1',
-                title: 'this is issue 1'
-            }, {
-                id: '2',
-                title: 'this is issue 2'
-            }];
-
             store.on('change', function () {
                 expect(store.getIssues()).deep.equal(data);
                 expect(store.isLoading()).to.be.false;
@@ -74,17 +89,6 @@ describe('IssueListStore', function () {
 
     describe('#getIssues', function () {
         it('should return list of issues', function () {
-            let newState = {
-                error: 'Boom!',
-                issues: [{
-                    id: '1',
-                    title: 'this is issue 1'
-                }, {
-                    id: '2',
-                    title: 'this is issue 2'
-                }],
-                loading: true
-            };
             store.rehydrate(newState);
             expect(store.getIssues()).deep.equal(newState.issues);
         });
@@ -92,23 +96,17 @@ describe('IssueListStore', function () {
 
     describe('#getError', function () {
         it('should return the store error', function () {
-            let newState = {
+            store.rehydrate({
                 error: 'Boom!',
                 issues: [],
                 loading: true
-            };
-            store.rehydrate(newState);
+            });
             expect(store.getError()).equal('Boom!');
         });
     });
 
     describe('#isLoading', function () {
         it('should return loading state of store', function () {
-            let newState = {
-                error: 'Boom!',
-                issues: [],
-                loading: true
-            };
             store.rehydrate(newState);
             expect(store.isLoading()).to.be.true;
         });
@@ -126,17 +124,6 @@ describe('IssueListStore', function () {
 
     describe('#rehydrate', function () {
         it('should rehydrate store', function () {
-            let newState = {
-                error: 'Boom!',
-                issues: [{
-                    id: '1',
-                    title: 'this is issue 1'
-                }, {
-                    id: '2',
-                    title: 'this is issue 2'
-                }],
-                loading: true
-            };
             store.rehydrate(newState);
             expect(store.getIssues()).to.deep.equal(newState.issues);
             expect(store.isLoading()).to.be.true;

@@ -8,7 +8,7 @@
 import { createStore } from 'fluxible/addons';
 import RouteStore from './RouteStore';
 
-let IssueListStore = createStore({
+let IssueStore = createStore({
     storeName: 'IssueStore',
 
     handlers: {
@@ -18,6 +18,7 @@ let IssueListStore = createStore({
 
     initialize() {
         this.issueNumber = null;    // acts as an id so we know we are fetching the right issue
+        this.comments = null;
         this.issue = null;
         this.error = null;
     },
@@ -70,4 +71,4 @@ let IssueListStore = createStore({
     }
 });
 
-export default IssueListStore;
+export default IssueStore;
