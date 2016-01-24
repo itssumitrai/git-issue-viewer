@@ -37,15 +37,21 @@ export default {
             };
 
             return request.get(reqOptions, function (error, response, body) {
-                if(!error && response.statusCode === 200) {
-                    return callback(null, JSON.parse(body));
+                if (error) {
+                    return callback(error, body);
                 }
 
-                callback(error || body, null);
+                if (!error && response.statusCode !== 200) {
+                    const message = 'HTTP Status ' + response.statusCode + ' received ' +
+                        'Expected: 200. ' + body.toString().substr(0, 30) + '..';
+                    return callback(new Error(message), body);
+                }
+
+                return callback(null, JSON.parse(body));
             });
         }
 
         // required params not found
-        callback(new Error(500, 'IssueService: params must have owner and repo'), null);
+        callback(new Error('IssueService: params must have owner and repo'), null);
     }
 };
