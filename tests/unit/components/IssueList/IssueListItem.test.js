@@ -19,7 +19,7 @@ describe('IssueListItem', function () {
         mockery.enable({ useCleanCache: true, warnOnUnregistered: false });
         mockery.registerMock('react-intl', reactIntlMock);
         mockery.registerMock('fluxible-router', fluxibleRouterMock);
-        mockery.registerMock('../Shared/Date', jsx.stubComponent('Date', null, true));
+        mockery.registerMock('../Shared/IssueDate', jsx.stubComponent('IssueDate', null, true));
         mockery.registerMock('../Shared/Labels', jsx.stubComponent('Labels', null, true));
         mockery.registerMock('../Shared/IssueState', jsx.stubComponent('IssueState', null, true));
         IssueListItem = require('../../../../components/IssueList/IssueListItem');
@@ -88,7 +88,7 @@ describe('IssueListItem', function () {
 
         it('should render created date', function () {
             jsx.assertRender(IssueListItem, props,
-                '<Date *type="list" data-type="list" data-date="2016-01-20T10:50:02Z"></Date>'
+                '<IssueDate *data-datetype="list" data-date="2016-01-20T10:50:02Z"></IssueDate>'
             );
         });
     });

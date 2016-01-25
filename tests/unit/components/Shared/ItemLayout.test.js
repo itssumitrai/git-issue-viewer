@@ -5,15 +5,30 @@
  */
 
 'use strict';
-import { expect } from 'chai';
 
-describe('stub', function () {
+import { expect } from 'chai';
+import jsx from 'jsx-test';
+
+describe('ItemLayout', function () {
+    let ItemLayout;
+
     before(function () {
+        ItemLayout = require('../../../../components/Shared/ItemLayout');
     });
 
-    describe('#stub', function () {
-        it('should do something', function () {
-            expect(true).to.be.true;
+    describe('#render', function () {
+        let props;
+        beforeEach(function () {
+            props = {
+                left: 'LeftComponent',
+                right: 'RightComponent'
+            };
+        });
+
+        it('should render given components correctly', function () {
+            jsx.assertRender(ItemLayout, props,
+                '<div class="item"><div+>LeftComponent</div><div+>RightComponent</div></div>'
+            );
         });
     });
 });

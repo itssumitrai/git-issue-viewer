@@ -9,7 +9,7 @@ import React from 'react';
 import { NavLink } from 'fluxible-router';
 import Labels from '../Shared/Labels';
 import IssueState from '../Shared/IssueState';
-import Date from '../Shared/Date';
+import IssueDate from '../Shared/IssueDate';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { getMiniSummary, getParsedMarkupContent } from '../../lib/utils';
@@ -56,7 +56,7 @@ class IssueListItem extends React.Component {
                     <Labels labels={issue.labels}/>
                     <span className="Fl-end Fz-s C-Gray">
                         <FormattedMessage id="COMMENTS" values={{ number: String(issue.comments) }} />&nbsp;&bull;&nbsp;
-                        <Date className="Fl-end Fz-s C-Gray" type="list" date={issue.created_at}/>
+                        <IssueDate className="Fl-end Fz-s C-Gray" dateType="list" date={issue.created_at}/>
                     </span>
                 </div>
             </div>

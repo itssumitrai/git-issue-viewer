@@ -16,27 +16,28 @@ const PREFIX_TYPE_MAP = {
     refer: 'REFER'
 };
 
-class Date extends React.Component {
+class IssueDate extends React.Component {
     render() {
         const { props } = this;
         const dateValue = getTimestamp(this.props.date);
 
         return (
             <span className={'create-date ' + this.props.className}>
-                <FormattedMessage id={PREFIX_TYPE_MAP[props.type]}/>&nbsp;<FormattedRelative value={dateValue}/>
+                <FormattedMessage id={PREFIX_TYPE_MAP[props.dateType]}/>&nbsp;<FormattedRelative value={dateValue}/>
             </span>
         );
     }
 }
 
-Date.propTypes = {
+IssueDate.propTypes = {
     className: React.PropTypes.string,
-    type: React.PropTypes.string,
-    date: React.PropTypes.string.isRequired
+    dateType: React.PropTypes.oneOf(['comment', 'list', 'create', 'refer']),
+    date: React.PropTypes.string.isRequired   // Date in timestring format
 };
 
-Date.defaultProps = {
-    type: 'comment'
+IssueDate.defaultProps = {
+    className: '',
+    dateType: 'comment'
 };
 
-export default Date;
+export default IssueDate;

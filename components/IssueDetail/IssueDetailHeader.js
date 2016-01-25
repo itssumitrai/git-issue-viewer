@@ -8,7 +8,7 @@
 import React from 'react';
 import IssueState from '../Shared/IssueState';
 import Labels from '../Shared/Labels';
-import Date from '../Shared/Date';
+import IssueDate from '../Shared/IssueDate';
 import { getParsedMarkupContent } from '../../lib/utils';
 import { FormattedMessage } from 'react-intl';
 
@@ -29,7 +29,7 @@ class IssueDetailHeader extends React.Component {
                     <a href={issue.user.html_url} className="link Fw-b C-Gray">
                         {issue.user.login}
                     </a>
-                    &nbsp;<Date className="C-Gray" type="create" date={issue.created_at}/>&nbsp;&bull;&nbsp;<FormattedMessage id="COMMENTS" values={{ number: String(issue.comments) }}/>
+                    &nbsp;<IssueDate className="C-Gray" dateType="create" date={issue.created_at}/>&nbsp;&bull;&nbsp;<FormattedMessage id="COMMENTS" values={{ number: String(issue.comments) }}/>
                 </div>
                 <Labels labels={issue.labels}/>
             </div>

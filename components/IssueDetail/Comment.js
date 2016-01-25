@@ -6,18 +6,18 @@
 'use strict';
 
 import React from 'react';
-import Date from '../Shared/Date';
+import IssueDate from '../Shared/IssueDate';
 import { getParsedMarkupContent } from '../../lib/utils';
 
 class Comment extends React.Component {
     render() {
         const { issue } = this.props;
-        const ownerLabel = issue.user.site_admin || true ? 'Owner' : '';
+        const ownerLabel = issue.user.site_admin ? 'Owner' : '';
 
         return (
             <div className="comment ShadowBox">
                 <div className="bar">
-                    <Date className="Fz-s C-Gray" type="comment" date={issue.created_at}/>
+                    <IssueDate className="Fz-s C-Gray" dateType="comment" date={issue.created_at}/>
                     <span className="labelBox Fl-end">{ownerLabel}</span>
                 </div>
                 <div className="content">

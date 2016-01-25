@@ -5,15 +5,36 @@
  */
 
 'use strict';
-import { expect } from 'chai';
 
-describe('stub', function () {
+import { expect } from 'chai';
+import jsx from 'jsx-test';
+
+describe('IssueState', function () {
+    let IssueState;
+
     before(function () {
+        IssueState = require('../../../../components/Shared/IssueState');
     });
 
-    describe('#stub', function () {
-        it('should do something', function () {
-            expect(true).to.be.true;
+    describe('#render', function () {
+        let props;
+        beforeEach(function () {
+            props = {
+                state: 'open'
+            };
+        });
+
+        it('should render state of the issue when `state=open`', function () {
+            jsx.assertRender(IssueState, props,
+                '<span class="state*open"><span class="octicon octicon-issue-opened">*<span>open</span></span>'
+            );
+        });
+
+        it('should render state of the issue when `state=closed`', function () {
+            props.state = 'closed';
+            jsx.assertRender(IssueState, props,
+                '<span class="state*closed"><span class="octicon octicon-issue-closed">*<span>closed</span></span>'
+            );
         });
     });
 });

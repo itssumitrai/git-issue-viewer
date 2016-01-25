@@ -5,15 +5,35 @@
  */
 
 'use strict';
-import { expect } from 'chai';
 
-describe('stub', function () {
+import { expect } from 'chai';
+import jsx from 'jsx-test';
+
+describe('Label', function () {
+    let Label;
+    
     before(function () {
+        Label = require('../../../../components/Shared/Label');
     });
 
-    describe('#stub', function () {
-        it('should do something', function () {
-            expect(true).to.be.true;
+    describe('#render', function () {
+        let props;
+        beforeEach(function () {
+            props = {
+                label: {
+                    key: 1,
+                    name: 'bug',
+                    url: 'https://api.github.com/repos/npm/npm/labels/bug',
+                    color: 'C40233'
+                }
+            };
+        });
+
+        it('should render label link and label name correctly', function () {
+            jsx.assertRender(Label, props,
+                '<li title="bug" *style="background-color:#C40233;">' +
+                    '<a href="https://api.github.com/repos/npm/npm/labels/bug">bug</a></li>'
+            );
         });
     });
 });

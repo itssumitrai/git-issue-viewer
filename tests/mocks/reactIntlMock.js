@@ -18,6 +18,16 @@ function formatMessage (obj, values) {
 }
 
 export default {
+    FormattedRelative: React.createClass({
+        render: function () {
+            var props = {};
+            if (this.props.debug) {
+                props.dataProps = this.props;
+            }
+            return React.createElement('span', props, this.props.value);
+        }
+    }),
+
     FormattedNumber: React.createClass({
         render: function () {
             var props = {};
