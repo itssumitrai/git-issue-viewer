@@ -27,7 +27,52 @@ describe('utils', function () {
     });
 
     describe('#getMiniSummary', function () {
-        it('should generate correct miniSummary from given summary', function () {
+        let content;
+        beforeEach(function () {
+            content = 'This is a very very very log text, and its going to be shortened alot by simply cutting off ' +
+                'the extra characters. This works by simply doing calculation of characters and then taking substring' +
+                'of the original string using those number fo characters. Some additional logic is required to make' +
+                'mini summary ends with a clean word. This is done by removing extra chars at the end till the last space';
+        });
+
+        it('should generate correct miniSummary from given summary when max chars is given', function () {
+            expect(utils.getMiniSummary(content, 60))
+                .to.equal('This is a very very very log text, and its going to be ...');
+        });
+
+        it('should generate miniSummary of 140 chars from given summary if no max chars is given', function () {
+            expect(utils.getMiniSummary(content)).to.equal('This is a very very very log text, and its going ' +
+                'to be shortened alot by simply cutting off the extra characters. This works by simply ...');
+        });
+
+        it('should just return summary if summary is smaller than max char length', function () {
+            expect(utils.getMiniSummary('This is a small summary', 60)).to.equal('This is a small summary');
+        });
+    });
+
+    describe('#getParsedMarkupContent', function () {
+        let content;
+        beforeEach(function () {
+            content = 'Hi @itssumitrai, how are you doing ?';
+        });
+
+        it('should return markup content and convert login occurences into anchor tags', function () {
+            expect(utils.getParsedMarkupContent(content, true)).to.deep.equal({
+                __html: '<p>Hi <a href=\"https://github.com/itssumitrai\" class=\"link Fw-b C-LinkBlue\">' +
+                '@itssumitrai</a>, how are you doing ?</p>\n'
+            });
+        });
+
+        it('should return markup content without converting login occurences if `parseLogin` is false', function () {
+            expect(utils.getParsedMarkupContent(content, false)).to.deep.equal({
+                __html: '<p>Hi @itssumitrai, how are you doing ?</p>\n'
+            });
+        });
+    });
+
+    describe('#getTimestamp', function () {
+        it('should return timestamp from the given timestring', function () {
+            expect(utils.getTimestamp('2016-01-21T20:05:36Z')).to.equal(1453406736000);
         });
     });
 });
