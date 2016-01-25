@@ -28,4 +28,8 @@ Labels.propTypes = {
     className: React.PropTypes.string
 };
 
+Labels.defaultProps = {
+    className: ''
+};
+
 export default Labels;

@@ -7,9 +7,7 @@
 
 import React from 'react';
 import { NavLink } from 'fluxible-router';
-import UserTile from '../Shared/UserTile';
 import Labels from '../Shared/Labels';
-import ItemLayout from '../Shared/ItemLayout';
 import IssueState from '../Shared/IssueState';
 import Date from '../Shared/Date';
 import { FormattedMessage, injectIntl } from 'react-intl';
@@ -53,7 +51,7 @@ class IssueListItem extends React.Component {
                     </NavLink>
                     <IssueState state={issue.state} className="Fl-end"/>
                 </div>
-                <p className="Ov-h Lh-20px" dangerouslySetInnerHTML={getParsedMarkupContent(getMiniSummary(issue.body))} />
+                <p className="summary Ov-h Lh-20px" dangerouslySetInnerHTML={getParsedMarkupContent(getMiniSummary(issue.body))} />
                 <div className="Mt-10px">
                     <Labels labels={issue.labels}/>
                     <span className="Fl-end Fz-s C-Gray">
