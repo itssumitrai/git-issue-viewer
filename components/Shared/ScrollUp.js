@@ -7,7 +7,7 @@
 
 import React from 'react';
 import Waypoint from 'react-waypoint';
-import {injectIntl} from 'react-intl';
+import { injectIntl } from 'react-intl';
 
 class ScrollUp extends React.Component {
     constructor(props) {
@@ -20,7 +20,8 @@ class ScrollUp extends React.Component {
         this.handleWaypointLeave = this.handleWaypointLeave.bind(this);
     }
 
-    onClick() {
+    onClick(e) {
+        e.stopPropagation();
         window.scrollTo(0, 0);
         this.setState({
             visible: false

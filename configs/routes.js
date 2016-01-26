@@ -15,7 +15,7 @@ export default {
         method: 'get',
         page: 'issueList',
         title: 'Issues',
-        action: function (context, payload, done) {
+        action: function initializeIssueListPage(context, payload, done) {
             context.executeAction(createIssueList, {
                 owner: payload.getIn(['params', 'owner']),
                 repo: payload.getIn(['params', 'repo']),
@@ -32,7 +32,7 @@ export default {
         method: 'get',
         page: 'issue',
         title: 'Issue',
-        action: function (context, payload, done) {
+        action: function initializeIssuePage(context, payload, done) {
             context.executeAction(getIssue, {
                 owner: payload.getIn(['params', 'owner']),
                 repo: payload.getIn(['params', 'repo']),

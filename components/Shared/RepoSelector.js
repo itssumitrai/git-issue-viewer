@@ -87,8 +87,8 @@ class RepoSelector extends React.Component {
         this.context.executeAction(navigateAction, {
             routeName: 'issueList',
             params: {
-                owner: this.refs.owner.value,
-                repo: this.refs.repo.value,
+                owner: this.refs.owner.value || this.refs.owner.placeholder,
+                repo: this.refs.repo.value || this.refs.repo.placeholder,
                 page: '1'
             }
         });
@@ -109,7 +109,12 @@ class RepoSelector extends React.Component {
             );
         }
 
-        let buttonContainer;
+        let buttonContainer = (
+            <button className="cancel Mstart-10px" onClick={this.onSwitchEditable.bind(this, false)}>
+                <FormattedMessage id="CANCEL" />
+            </button>
+        );
+
         if (this.state.textChanged) {
             // Show button only when some value was changed
             buttonContainer = (
@@ -135,8 +140,6 @@ class RepoSelector extends React.Component {
     }
 
     render() {
-        const { props } = this;
-
         return (
             <div className="repo-selector">
                 <div className="form-container">

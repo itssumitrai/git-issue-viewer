@@ -83,7 +83,7 @@ class IssueDetail extends React.Component {
 }
 
 IssueDetail.propTypes = {
-    routeParams: React.PropTypes.object
+    routeParams: React.PropTypes.object.isRequired
 };
 
 IssueDetail = connectToStores(IssueDetail, [IssueStore], (context, props) => {
