@@ -12,13 +12,16 @@ import { getParsedMarkupContent } from '../../lib/utils';
 class Comment extends React.Component {
     render() {
         const { issue } = this.props;
-        const ownerLabel = issue.user.site_admin ? 'Owner' : '';
+        let ownerLabel;
+        if (issue.user.site_admin) {
+            ownerLabel = <span className="labelBox Fl-end">Owner</span>
+        }
 
         return (
             <div className="comment ShadowBox">
                 <div className="bar">
                     <IssueDate className="Fz-s C-Gray" dateType="comment" date={issue.created_at}/>
-                    <span className="labelBox Fl-end">{ownerLabel}</span>
+                    {ownerLabel}
                 </div>
                 <div className="content">
                     <p className="Ov-h Lh-20px" dangerouslySetInnerHTML={getParsedMarkupContent(issue.body, true)} />

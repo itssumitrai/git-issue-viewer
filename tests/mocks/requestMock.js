@@ -10,12 +10,16 @@ import issueListPaginationResponse from '../data/issueListServicePaginationRespo
 import issueDetailCommentsResponse from '../data/issueDetailCommentsResponse.json';
 import issueDetailServiceResponse from '../data/issueDetailServiceResponse.json';
 import issueServiceErrorResponse from '../data/issueServiceErrorResponse.json';
+import headersData from '../data/headersData.json';
 
 export default {
     get: (options, callback) => {
         const { url, qs } = options;
         let error = 'Incorrect Request';
-        let response = { statusCode: 400 };
+        let response = {
+            statusCode: 400,
+            headers: headersData
+        };
         let body = '{ message: Something definitely wrong }';
 
         if (url === 'https://api.github.com/repos/npm/npm/issues') {

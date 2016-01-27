@@ -33,17 +33,20 @@ describe('issueService', function () {
             };
             issueService.read(req, 'issueService', params, {}, function (err, res) {
                 expect(err).to.be.null;
-                expect(res).to.be.instanceof(Array);
-                expect(res).to.have.length(25);
-                expect(res[0]).to.contain.all.keys(['url', 'comments_url', 'labels_url', 'events_url',
+                expect(res).to.have.property('headers')
+                    .that.is.an('object');
+                expect(res).to.have.property('body')
+                    .that.is.an('array');
+                expect(res.body).to.have.length(25);
+                expect(res.body[0]).to.contain.all.keys(['url', 'comments_url', 'labels_url', 'events_url',
                     'html_url', 'id', 'number', 'title', 'user', 'labels', 'state', 'locked',
                     'assignee', 'milestone', 'comments', 'created_at', 'updated_at', 'closed_at',
                     'pull_request', 'body']);
-                expect(res[0].user).to.contain.all.keys(['login', 'id', 'avatar_url', 'gravatar_id',
+                expect(res.body[0].user).to.contain.all.keys(['login', 'id', 'avatar_url', 'gravatar_id',
                     'url', 'html_url', 'followers_url', 'following_url', 'gists_url',
                     'starred_url', 'subscriptions_url', 'organizations_url', 'repos_url',
                     'events_url', 'received_events_url', 'type', 'site_admin']);
-                expect(res[0].labels).to.be.instanceof(Array);
+                expect(res.body[0].labels).to.be.instanceof(Array);
             });
         });
 
@@ -56,15 +59,15 @@ describe('issueService', function () {
 
             issueService.read(req, 'issueService', params, {}, function (err, res) {
                 expect(err).to.be.null;
-                expect(res).to.contain.all.keys(['url', 'comments_url', 'labels_url', 'events_url',
+                expect(res.body).to.contain.all.keys(['url', 'comments_url', 'labels_url', 'events_url',
                     'html_url', 'id', 'number', 'title', 'user', 'labels', 'state', 'locked',
                     'assignee', 'milestone', 'comments', 'created_at', 'updated_at', 'closed_at',
                     'closed_by', 'body']);
-                expect(res.user).to.contain.all.keys(['login', 'id', 'avatar_url', 'gravatar_id',
+                expect(res.body.user).to.contain.all.keys(['login', 'id', 'avatar_url', 'gravatar_id',
                     'url', 'html_url', 'followers_url', 'following_url', 'gists_url',
                     'starred_url', 'subscriptions_url', 'organizations_url', 'repos_url',
                     'events_url', 'received_events_url', 'type', 'site_admin']);
-                expect(res.number).to.equal(11217);
+                expect(res.body.number).to.equal(11217);
             });
         });
 
@@ -78,14 +81,17 @@ describe('issueService', function () {
 
             issueService.read(req, 'issueService', params, {}, function (err, res) {
                 expect(err).to.be.null;
-                expect(res).to.be.instanceof(Array);
-                expect(res[0]).to.contain.all.keys(['url', 'html_url', 'issue_url', 'id', 'user', 'created_at',
+                expect(res).to.have.property('headers')
+                    .that.is.an('object');
+                expect(res).to.have.property('body')
+                    .that.is.an('array');
+                expect(res.body[0]).to.contain.all.keys(['url', 'html_url', 'issue_url', 'id', 'user', 'created_at',
                     'updated_at', 'body']);
-                expect(res[0].user).to.contain.all.keys(['login', 'id', 'avatar_url', 'gravatar_id',
+                expect(res.body[0].user).to.contain.all.keys(['login', 'id', 'avatar_url', 'gravatar_id',
                     'url', 'html_url', 'followers_url', 'following_url', 'gists_url',
                     'starred_url', 'subscriptions_url', 'organizations_url', 'repos_url',
                     'events_url', 'received_events_url', 'type', 'site_admin']);
-                expect(res[0].issue_url).to.equal('https://api.github.com/repos/npm/npm/issues/11217');
+                expect(res.body[0].issue_url).to.equal('https://api.github.com/repos/npm/npm/issues/11217');
             });
         });
 
@@ -101,17 +107,20 @@ describe('issueService', function () {
 
             issueService.read(req, 'issueService', params, {}, function (err, res) {
                 expect(err).to.be.null;
-                expect(res).to.be.instanceof(Array);
-                expect(res).to.have.length(5);
-                expect(res[0]).to.contain.all.keys(['url', 'comments_url', 'labels_url', 'events_url',
+                expect(res).to.have.property('headers')
+                    .that.is.an('object');
+                expect(res).to.have.property('body')
+                    .that.is.an('array');
+                expect(res.body).to.have.length(5);
+                expect(res.body[0]).to.contain.all.keys(['url', 'comments_url', 'labels_url', 'events_url',
                     'html_url', 'id', 'number', 'title', 'user', 'labels', 'state', 'locked',
                     'assignee', 'milestone', 'comments', 'created_at', 'updated_at', 'closed_at',
                     'body']);
-                expect(res[0].user).to.contain.all.keys(['login', 'id', 'avatar_url', 'gravatar_id',
+                expect(res.body[0].user).to.contain.all.keys(['login', 'id', 'avatar_url', 'gravatar_id',
                     'url', 'html_url', 'followers_url', 'following_url', 'gists_url',
                     'starred_url', 'subscriptions_url', 'organizations_url', 'repos_url',
                     'events_url', 'received_events_url', 'type', 'site_admin']);
-                expect(res[0].labels).to.be.instanceof(Array);
+                expect(res.body[0].labels).to.be.instanceof(Array);
             });
         });
 
@@ -124,7 +133,11 @@ describe('issueService', function () {
 
             issueService.read(req, 'issueService', params, {}, function (err, res) {
                 expect(err).to.equal('Boom!');
-                expect(res).to.equal('Some Error Occured');
+                expect(res).to.have.property('headers')
+                    .that.is.an('object');
+                expect(res).to.have.property('body')
+                    .that.is.a('string')
+                    .that.equals('Some Error Occured');
             });
         });
 
@@ -139,7 +152,10 @@ describe('issueService', function () {
                 expect(err).to.have.property('message')
                     .that.is.a('string')
                     .that.equals('HTTP Status 403 received Expected: 200. {"message":"Maximum number of ..');
-                expect(res).to.be.ok;
+                expect(res).to.have.property('headers')
+                    .that.is.an('object');
+                expect(res).to.have.property('body')
+                    .that.is.a('string');
             });
         });
 

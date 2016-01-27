@@ -19,15 +19,19 @@ describe('createIssueList', function () {
     let resData;
 
     beforeEach(function () {
-        resData = [{
-            id: '1',
-            title: 'This is some issue',
-            number: 12345
-        }, {
-            id: '2',
-            title: 'This is another issue',
-            number: 12346
-        }];
+        resData = {
+            paginationInfo: '<https://api.github.com/repositories/321278/issues?page=2&per_page=25>; rel="next", ' +
+                '<https://api.github.com/repositories/321278/issues?page=75&per_page=25>; rel="last"',
+            issues: [{
+                id: '1',
+                title: 'This is some issue',
+                number: 12345
+            }, {
+                id: '2',
+                title: 'This is another issue',
+                number: 12346
+            }]
+        };
 
         context = createMockActionContext();
         context.service = serviceMock;

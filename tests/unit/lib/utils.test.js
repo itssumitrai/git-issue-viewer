@@ -5,7 +5,9 @@
  */
 
 'use strict';
+
 import { expect } from 'chai';
+import headersData from '../../data/headersData.json';
 
 describe('utils', function () {
     var utils;
@@ -73,6 +75,21 @@ describe('utils', function () {
     describe('#getTimestamp', function () {
         it('should return timestamp from the given timestring', function () {
             expect(utils.getTimestamp('2016-01-21T20:05:36Z')).to.equal(1453406736000);
+        });
+    });
+
+    describe('#extractUsefulHeaders', function () {
+        it('should extract useful headers from the given headers', function () {
+            expect(utils.extractUsefulHeaders(headersData)).to.deep.equal({
+                link: '<https://api.github.com/repositories/321278/issues?page=11&per_page=25>; rel="next", ' +
+                    '<https://api.github.com/repositories/321278/issues?page=75&per_page=25>; rel="last", ' +
+                    '<https://api.github.com/repositories/321278/issues?page=1&per_page=25>; rel="first", ' +
+                    '<https://api.github.com/repositories/321278/issues?page=9&per_page=25>; rel="prev"',
+                status: '200 OK',
+                'x-ratelimit-limit': '60',
+                'x-ratelimit-remaining': '56',
+                'x-ratelimit-reset': '1453886022'
+            });
         });
     });
 });

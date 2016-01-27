@@ -22,13 +22,17 @@ describe('IssueListStore', function () {
         });
         store = context.getStore(IssueListStore);
 
-        data = [{
-            id: '1',
-            title: 'this is issue 1'
-        }, {
-            id: '2',
-            title: 'this is issue 2'
-        }];
+        data = {
+            paginationInfo: '<https://api.github.com/repositories/321278/issues?page=2&per_page=25>; rel="next", ' +
+                '<https://api.github.com/repositories/321278/issues?page=75&per_page=25>; rel="last"',
+            issues: [{
+                id: '1',
+                title: 'this is issue 1'
+            }, {
+                id: '2',
+                title: 'this is issue 2'
+            }]
+        };
 
         newState = {
             error: 'Boom!',
@@ -39,7 +43,8 @@ describe('IssueListStore', function () {
                 id: '2',
                 title: 'this is issue 2'
             }],
-            loading: true
+            loading: true,
+            pageInfo: 'some page info'
         };
 
     });
@@ -50,7 +55,8 @@ describe('IssueListStore', function () {
             expect(store.dehydrate()).to.deep.equal({
                 issues: null,
                 error: null,
-                loading: false
+                loading: false,
+                pageInfo: null
             });
         });
     });
@@ -58,9 +64,10 @@ describe('IssueListStore', function () {
     describe('#_loadIssues', function () {
         it('should handle ISSUE_FETCH_SUCCESS', function () {
             store.on('change', function () {
-                expect(store.getIssues()).deep.equal(data);
+                expect(store.getIssues()).deep.equal(data.issues);
                 expect(store.isLoading()).to.be.false;
                 expect(store.getError()).to.be.null;
+                expect(store.getPageInfo()).equal(data.paginationInfo);
             });
 
             context.dispatch('ISSUE_FETCH_SUCCESS', data);
@@ -99,9 +106,17 @@ describe('IssueListStore', function () {
             store.rehydrate({
                 error: 'Boom!',
                 issues: [],
-                loading: true
+                loading: true,
+                pageInfo: 'something'
             });
             expect(store.getError()).equal('Boom!');
+        });
+    });
+
+    describe('#getPageInfo', function () {
+        it('should return the store page info', function () {
+            store.rehydrate(newState);
+            expect(store.getPageInfo()).equal('some page info');
         });
     });
 
@@ -117,7 +132,8 @@ describe('IssueListStore', function () {
             expect(store.dehydrate()).to.deep.equal({
                 issues: null,
                 error: null,
-                loading: false
+                loading: false,
+                pageInfo: null
             });
         });
     });
@@ -128,6 +144,7 @@ describe('IssueListStore', function () {
             expect(store.getIssues()).to.deep.equal(newState.issues);
             expect(store.isLoading()).to.be.true;
             expect(store.getError()).to.equal('Boom!');
+            expect(store.getPageInfo()).equal('some page info');
         });
     });
 });

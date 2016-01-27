@@ -23,6 +23,8 @@ export default function getIssue(context, params, done) {
 
     async.parallel({
         fetchIssueDetails: (callback) => {
+            debug('getIssueAction:fetchIssueDetails');
+
             context.service.read('issueService', params, {}, function (err, res) {
                 if (err) {
                     debug('getIssueAction: fetchIssueDetails failed:', err);
@@ -33,6 +35,8 @@ export default function getIssue(context, params, done) {
             });
         },
         fetchIssueComments: (callback) => {
+            debug('getIssueAction:fetchIssueComments');
+
             const commentsParams = Object.assign({}, params, { isComment: true });
             context.service.read('issueService', commentsParams, {}, function (err, res) {
                 if (err) {
@@ -53,13 +57,15 @@ export default function getIssue(context, params, done) {
             return;
         }
 
-        const resultData = {
-            issue: results.fetchIssueDetails,
-            comments: results.fetchIssueComments
+        const storePayload = {
+            issue: results.fetchIssueDetails.body,
+            comments: results.fetchIssueComments.body
         };
 
-        debug('dispatching ISSUE_SUCCESS', resultData);
-        context.dispatch('ISSUE_SUCCESS', resultData);
+        debug('dispatching ISSUE_SUCCESS', storePayload);
+
+        context.dispatch('ISSUE_SUCCESS', storePayload);
+
         if (typeof done === 'function') {
             done();
         }

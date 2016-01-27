@@ -21,10 +21,12 @@ let IssueListStore = createStore({
         this.issues = null;
         this.error = null;
         this.loading = false;
+        this.pageInfo = null;
     },
 
-    _loadIssues(issueList) {
-        this.issues = issueList;
+    _loadIssues(payload) {
+        this.pageInfo = payload.paginationInfo;
+        this.issues = payload.issues;
         this.error = null;
         this.loading = false;
         this.emitChange();
@@ -48,6 +50,10 @@ let IssueListStore = createStore({
         return this.error;
     },
 
+    getPageInfo() {
+        return this.pageInfo;
+    },
+
     isLoading() {
         return this.loading;
     },
@@ -56,7 +62,8 @@ let IssueListStore = createStore({
         return {
             error: this.error,
             issues: this.issues,
-            loading: this.loading
+            loading: this.loading,
+            pageInfo: this.pageInfo
         };
     },
 
@@ -64,6 +71,7 @@ let IssueListStore = createStore({
         this.error = state.error;
         this.issues = state.issues;
         this.loading = state.loading;
+        this.pageInfo = state.pageInfo;
     }
 });
 

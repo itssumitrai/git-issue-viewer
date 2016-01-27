@@ -53,7 +53,7 @@ describe('Comment', function () {
 
         it('should not render owner label, if user is not a site_admin', function () {
             props.issue.user.site_admin = false;
-            jsx.assertRender(Comment, props,
+            jsx.assertNotRender(Comment, props,
                 '<span class="labelBox+></span>'
             );
         });
