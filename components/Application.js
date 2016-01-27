@@ -9,7 +9,6 @@ import { handleHistory } from 'fluxible-router';
 import IssueList from '../components/IssueList';
 import { IntlProvider } from 'react-intl';
 import strings from '../lang/strings.json';
-import pages from '../configs/routes';
 
 class Application extends React.Component {
     render() {

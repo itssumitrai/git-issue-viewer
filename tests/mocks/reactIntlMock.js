@@ -54,6 +54,12 @@ export default {
         }
     }),
 
+    IntlProvider: React.createClass({
+        render: function () {
+            return React.createElement('IntlProvider', {}, this.props.children);
+        }
+    }),
+
     injectIntl: (WrappedComponent, options) => {
         var intl = {
             formatMessage: formatMessage

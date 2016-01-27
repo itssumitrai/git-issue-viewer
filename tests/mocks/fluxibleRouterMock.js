@@ -35,5 +35,8 @@ class NavLink extends React.Component {
 }
 
 export default {
-    NavLink: NavLink
+    NavLink: NavLink,
+    handleHistory: (WrappedComponent) => {
+        return WrappedComponent;
+    }
 };

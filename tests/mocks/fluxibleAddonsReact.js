@@ -16,5 +16,8 @@ export default {
 
         callback(context, { routeParams: { get: function(){} }});
         return Component;
+    },
+    provideContext: (component) => {
+        return component;
     }
 };
