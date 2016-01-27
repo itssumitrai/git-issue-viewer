@@ -92,4 +92,15 @@ describe('utils', function () {
             });
         });
     });
+
+    describe('#getPaginationInfo', function () {
+        it('should return pagination info extracted from Link Header', function () {
+            expect(utils.getPaginationInfo(headersData.link)).to.deep.equal({
+                first: '1',
+                last: '75',
+                prev: '9',
+                next: '11'
+            });
+        });
+    });
 });

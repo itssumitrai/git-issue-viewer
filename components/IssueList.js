@@ -87,9 +87,9 @@ class IssueList extends React.Component {
         return (
             <div>
                 <RepoSelector owner={state.owner} repo={state.repo}/>
-                <PaginationBar routeParams={props.routeParams} pageNumber={state.pageNumber} totalPages={25}/>
+                <PaginationBar paginationInfo={props.paginationInfo} routeParams={props.routeParams} pageNumber={state.pageNumber} />
                 {this.renderMainContent()}
-                <PaginationBar routeParams={props.routeParams} pageNumber={state.pageNumber} totalPages={25}/>
+                <PaginationBar paginationInfo={props.paginationInfo} routeParams={props.routeParams} pageNumber={state.pageNumber} />
                 <ScrollUp/>
             </div>
         );
@@ -110,7 +110,8 @@ IssueList = connectToStores(IssueList, [IssueListStore], (context, props) => {
     return {
         issues: issueListStore.getIssues(),
         error: issueListStore.getError(),
-        isLoading: issueListStore.isLoading()
+        isLoading: issueListStore.isLoading(),
+        paginationInfo: issueListStore.getPageInfo()
     };
 });
 

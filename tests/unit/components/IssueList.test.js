@@ -34,7 +34,6 @@ describe('IssueList', function () {
         mockery.disable();
     });
 
-
     describe('#render', function () {
         let props;
         let context;
@@ -47,12 +46,19 @@ describe('IssueList', function () {
             props = {
                 routeParams: Immutable.fromJS({
                     owner: 'npm',
-                    repo: 'npm'
+                    repo: 'npm',
+                    page: '2'
                 }),
                 context: context,
                 issues: issuesMockData,
                 error: null,
-                isLoading: false
+                isLoading: false,
+                paginationInfo: {
+                    first: 1,
+                    last: 75,
+                    next: 3,
+                    prev: 1
+                }
             };
         });
 
@@ -64,8 +70,8 @@ describe('IssueList', function () {
 
         it('should render pagination bars', function () {
             jsx.assertRender(IssueList, props,
-                '<PaginationBar data-routeparams* data-totalpages="25"></PaginationBar>*' +
-                '<PaginationBar data-routeparams* data-totalpages="25"></PaginationBar>'
+                '<PaginationBar data-paginationinfo* data-routeparams*  data-pagenumber="2"></PaginationBar>*' +
+                '<PaginationBar data-paginationinfo* data-routeparams*  data-pagenumber="2"></PaginationBar>'
             );
         });
 

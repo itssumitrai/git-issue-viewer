@@ -5,6 +5,7 @@
 
 'use strict';
 
+import { getPaginationInfo } from '../lib/utils';
 const debug = require('debug')('createIssueListAction');
 
 /**
@@ -32,7 +33,7 @@ export default function createIssueList(context, params, done) {
         // Now extract link header information and send it along to store
         // we don't need to process other headers at this point of time, so no point in sending to store
         const storePayload = {
-            paginationInfo: res.headers.link,
+            paginationInfo: getPaginationInfo(res.headers.link),
             issues: res.body
         };
 

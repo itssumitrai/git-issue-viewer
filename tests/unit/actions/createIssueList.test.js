@@ -20,8 +20,10 @@ describe('createIssueList', function () {
 
     beforeEach(function () {
         resData = {
-            paginationInfo: '<https://api.github.com/repositories/321278/issues?page=2&per_page=25>; rel="next", ' +
-                '<https://api.github.com/repositories/321278/issues?page=75&per_page=25>; rel="last"',
+            paginationInfo: {
+                next: '2',
+                last: '75'
+            },
             issues: [{
                 id: '1',
                 title: 'This is some issue',

@@ -70,13 +70,15 @@ PaginationBar.propTypes = {
     routeParams: React.PropTypes.object.isRequired,
     pageNumber: React.PropTypes.string.isRequired,
     totalPages: React.PropTypes.number.isRequired,
-    pagesToShow: React.PropTypes.number
+    pagesToShow: React.PropTypes.number,
+    paginationInfo: React.PropTypes.object.isRequired    // gives info about the pagination extracted from response header
 };
 
 PaginationBar.defaultProps = {
     pageNumber: '1',
     totalPages: 25,
-    pagesToShow: appConfig.pagesToShow
+    pagesToShow: appConfig.pagesToShow,
+    paginationInfo: {}
 };
 
 export default PaginationBar;
