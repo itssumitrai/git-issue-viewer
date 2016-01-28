@@ -27,13 +27,13 @@ class IssueDetail extends React.Component {
 
         if (!issue && error) {
             return (
-                <div class="error-message">{error}</div>
+                <section class="error-message" aria-label="Error Message">{error}</section>
             );
         } else if (!issue) {
             return (
-                <div className="spinner">
+                <section className="spinner" aria-label="Issue Detail" aria-busy="true">
                     <div className="image"/>
-                </div>
+                </section>
             );
         }
 
@@ -71,12 +71,16 @@ class IssueDetail extends React.Component {
 
         return (
             <div>
-                <RepoSelector owner={owner} repo={repo} headingLink={true}/>
-                <IssueDetailHeader issue={issue} />
-                <ul>
-                    {commentList}
-                </ul>
-                <ScrollUp/>
+                <main>
+                    <RepoSelector owner={owner} repo={repo} headingLink={true}/>
+                    <section aria-labelledby="issueTitle">
+                        <IssueDetailHeader issue={issue} />
+                        <ul>
+                            {commentList}
+                        </ul>
+                        <ScrollUp/>
+                    </section>
+                </main>
             </div>
         );
     }

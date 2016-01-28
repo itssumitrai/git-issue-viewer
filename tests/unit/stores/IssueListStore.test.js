@@ -23,8 +23,10 @@ describe('IssueListStore', function () {
         store = context.getStore(IssueListStore);
 
         data = {
-            paginationInfo: '<https://api.github.com/repositories/321278/issues?page=2&per_page=25>; rel="next", ' +
-                '<https://api.github.com/repositories/321278/issues?page=75&per_page=25>; rel="last"',
+            paginationInfo: {
+                next: '2',
+                last: '75'
+            },
             issues: [{
                 id: '1',
                 title: 'this is issue 1'
@@ -44,7 +46,10 @@ describe('IssueListStore', function () {
                 title: 'this is issue 2'
             }],
             loading: true,
-            pageInfo: 'some page info'
+            pageInfo: {
+                next: '3',
+                last: '75'
+            }
         };
 
     });
@@ -56,7 +61,7 @@ describe('IssueListStore', function () {
                 issues: null,
                 error: null,
                 loading: false,
-                pageInfo: null
+                pageInfo: {}
             });
         });
     });
@@ -107,7 +112,10 @@ describe('IssueListStore', function () {
                 error: 'Boom!',
                 issues: [],
                 loading: true,
-                pageInfo: 'something'
+                pageInfo: {
+                    next: '4',
+                    last: '75'
+                }
             });
             expect(store.getError()).equal('Boom!');
         });
@@ -116,7 +124,7 @@ describe('IssueListStore', function () {
     describe('#getPageInfo', function () {
         it('should return the store page info', function () {
             store.rehydrate(newState);
-            expect(store.getPageInfo()).equal('some page info');
+            expect(store.getPageInfo()).deep.equal(newState.pageInfo);
         });
     });
 
@@ -133,7 +141,7 @@ describe('IssueListStore', function () {
                 issues: null,
                 error: null,
                 loading: false,
-                pageInfo: null
+                pageInfo: {}
             });
         });
     });
@@ -144,7 +152,7 @@ describe('IssueListStore', function () {
             expect(store.getIssues()).to.deep.equal(newState.issues);
             expect(store.isLoading()).to.be.true;
             expect(store.getError()).to.equal('Boom!');
-            expect(store.getPageInfo()).equal('some page info');
+            expect(store.getPageInfo()).to.deep.equal(newState.pageInfo);
         });
     });
 });

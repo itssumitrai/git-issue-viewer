@@ -42,7 +42,7 @@ class PaginationBar extends React.Component {
         });
 
         return (
-            <div className="pagination ShadowBox">
+            <nav className="pagination ShadowBox">
                 <ul className="page-number-list">
                     <li key="previous" className="page">
                         <NavLink
@@ -62,7 +62,7 @@ class PaginationBar extends React.Component {
                         </NavLink>
                     </li>
                 </ul>
-            </div>
+            </nav>
         );
     }
 }

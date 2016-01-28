@@ -23,15 +23,16 @@ class IssueListItem extends React.Component {
         const title = this.props.intl.formatMessage({ id: 'GOTO_ISSUE' }, { issue: issue.number});
 
         return (
-            <div className="issue-info Ov-h ShadowBox">
+            <article className="issue-info Ov-h ShadowBox">
+                <h4 className="hidden-text">{issue.title}</h4>
                 <div className="top Mb-10px">
                     <NavLink
                         className="titleLink Fz-m bold"
                         routeName="issue"
                         navParams={{
-                            owner: owner,
-                            repo: repo,
-                            issueNumber: issue.number
+                           owner: owner,
+                           repo: repo,
+                           issueNumber: issue.number
                         }}
                         title={title}
                     >
@@ -59,7 +60,7 @@ class IssueListItem extends React.Component {
                         <IssueDate className="Fl-end Fz-s C-Gray" dateType="list" date={issue.created_at}/>
                     </span>
                 </div>
-            </div>
+            </article>
         );
     }
 }

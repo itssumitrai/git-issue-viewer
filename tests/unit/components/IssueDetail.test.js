@@ -87,7 +87,7 @@ describe('IssueDetail', function () {
         it('should render spinner if no `issue` was provided', function () {
             props.issue = null;
             jsx.assertRender(IssueDetail, props,
-                '<div class="spinner"><div+></div></div>'
+                '<section class="spinner"+><div+></div></section>'
             );
         });
 
@@ -95,7 +95,7 @@ describe('IssueDetail', function () {
             props.issue = null;
             props.error = 'UnAuthorized Error';
             jsx.assertRender(IssueDetail, props,
-                '<div>UnAuthorized Error</div>'
+                '<section+>UnAuthorized Error</section>'
             );
         });
     });

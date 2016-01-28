@@ -47,18 +47,16 @@ describe('IssueListItem', function () {
 
         it('should render Issue title', function () {
             jsx.assertRender(IssueListItem, props,
-                '<div+>' +
-                    '<div+>' +
-                        '<a *title="Go to Issue #11217" href="/npm/npm/issue/11217">' +
-                            'Cannot find module &#x27;read-package-json&#x27;</a>'
+                '<article+>' +
+                    '<h4+>Cannot find module &#x27;read-package-json&#x27;</h4>*' +
+                    '<a *title="Go to Issue #11217" href="/npm/npm/issue/11217">' +
+                        'Cannot find module &#x27;read-package-json&#x27;</a>'
             );
         });
 
         it('should render Issue Number', function () {
             jsx.assertRender(IssueListItem, props,
-                '<div+>' +
-                    '<div+>*' +
-                        '<a *title="Go to Issue #11217" href="/npm/npm/issue/11217"><span>#11217</span></a>'
+                '<a *title="Go to Issue #11217" href="/npm/npm/issue/11217"><span>#11217</span></a>'
             );
         });
 

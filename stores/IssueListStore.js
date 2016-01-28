@@ -21,7 +21,7 @@ let IssueListStore = createStore({
         this.issues = null;
         this.error = null;
         this.loading = false;
-        this.pageInfo = null;
+        this.pageInfo = {};
     },
 
     _loadIssues(payload) {

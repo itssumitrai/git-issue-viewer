@@ -61,15 +61,17 @@ class IssueList extends React.Component {
     renderMainContent() {
         if (this.props.isLoading) {
             return (
-                <div className="spinner">
+                <section className="spinner" aria-labelledby="heading" aria-busy="true">
                     <div className="image"/>
-                </div>
+                </section>
             );
         } else {
             return (
-                <ul className="issue-list">
-                    {this.props.issues.map(this.renderIssue, this)}
-                </ul>
+                <section aria-labelledby="heading">
+                    <ul className="issue-list">
+                        {this.props.issues.map(this.renderIssue, this)}
+                    </ul>
+                </section>
             );
         }
     }
@@ -78,20 +80,20 @@ class IssueList extends React.Component {
         const { props, state } = this;
         if (!props.issues && props.error) {
             return (
-                <div class="error-message">{props.error}</div>
+                <section class="error-message" aria-label="Error Message">{props.error}</section>
             );
         } else if (!props.issues && !props.isLoading) {
             return null;
         }
 
         return (
-            <div>
+            <main>
                 <RepoSelector owner={state.owner} repo={state.repo}/>
                 <PaginationBar paginationInfo={props.paginationInfo} routeParams={props.routeParams} pageNumber={state.pageNumber} />
                 {this.renderMainContent()}
                 <PaginationBar paginationInfo={props.paginationInfo} routeParams={props.routeParams} pageNumber={state.pageNumber} />
                 <ScrollUp/>
-            </div>
+            </main>
         );
     }
 }

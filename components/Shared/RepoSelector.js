@@ -40,7 +40,7 @@ class RepoSelector extends React.Component {
         if (!props.headingLink) {
             // If headingLink is false, just return heading (h2)
             return (
-                <h2 className="Mt-10px Mb-0">{textMessage}</h2>
+                <h2 id="heading" className="Mt-10px Mb-0">{textMessage}</h2>
             );
         }
 
@@ -48,7 +48,7 @@ class RepoSelector extends React.Component {
         // We still render a hidden h2 for accessibility purpose.
         return (
             <div className="heading-text Mt-10px">
-                <h2 className="hidden-text">{textMessage}</h2>
+                <h2 id="heading" className="hidden-text">{textMessage}</h2>
                 <NavLink
                     className="titleLink Fz-l bold"
                     routeName="issueList"
@@ -100,6 +100,7 @@ class RepoSelector extends React.Component {
         if (!this.state.editable) {
             return (
                 <span
+                    role="button"
                     onClick={this.onSwitchEditable.bind(this, true)}
                     className="Fw-b Fz-m static-form"
                     title={this.props.intl.formatMessage({id: 'CLICK_TO_CHANGE'})}
@@ -130,10 +131,10 @@ class RepoSelector extends React.Component {
         }
 
         return (
-            <span className="D-ib" onSubmit={this.onSwitchRepo}>
-                <input ref="owner" type="text" className="Mend-10px Fz-m" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.owner}/>
+            <span className="D-ib" onSubmit={this.onSwitchRepo} role="form">
+                <input ref="owner" type="text" className="Mend-10px Fz-m" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.owner} required/>
                 <span className="Mend-10px">{DIVIDER}</span>
-                <input ref="repo" type="text" className="Fz-m" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.repo}/>
+                <input ref="repo" type="text" className="Fz-m" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.repo} required/>
                 {buttonContainer}
             </span>
         );
@@ -141,13 +142,13 @@ class RepoSelector extends React.Component {
 
     render() {
         return (
-            <div className="repo-selector">
+            <section className="repo-selector" aria-label="Top Header">
                 <div className="form-container">
                     <span className="mega-octicon octicon-repo C-Gray Va-m Mend-10px" />
                     {this.renderForm()}
                 </div>
                 {this.renderHeading()}
-            </div>
+            </section>
         );
     }
 }

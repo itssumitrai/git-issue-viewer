@@ -53,7 +53,7 @@ describe('RepoSelector', function () {
             props.headingLink = true;
             jsx.assertRender(RepoSelector, props,
                 '<div+>' +
-                    '<h2 class="hidden-text"><span>All Issues from npm/npm</span></h2>' +
+                    '<h2 *class="hidden-text"><span>All Issues from npm/npm</span></h2>' +
                     '<a *href="/npm/npm/1"><span>All Issues from npm/npm</span></a>' +
                 '</div>'
             );
