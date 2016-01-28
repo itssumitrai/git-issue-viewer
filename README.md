@@ -7,16 +7,27 @@ A Simple Git Issues Viewer made with React and fluxible
 ## Installation
 
 ```bash
-  $ npm install
-  $ npm run dev
+$ npm install
+$ npm run dev
 ```
 Now hit `http://localhost:3000` on your browser.
 
 ## Run Unit Tests
 
 ```bash
-  $ npm test
+$ npm test
 ```
+## Directory Structure
+
+Coming Soon
+
+## Screenshots
+
+Coming Soon
+
+## Description
+
+Coming Soon
 
 ## License
 
