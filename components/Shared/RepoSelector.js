@@ -50,7 +50,7 @@ class RepoSelector extends React.Component {
             <div className="heading-text Mt-10px">
                 <h2 id="heading" className="hidden-text">{textMessage}</h2>
                 <NavLink
-                    className="titleLink Fz-l bold"
+                    className="titleLink Fz-m bold"
                     routeName="issueList"
                     navParams={{
                         owner: props.owner,
@@ -102,7 +102,7 @@ class RepoSelector extends React.Component {
                 <span
                     role="button"
                     onClick={this.onSwitchEditable.bind(this, true)}
-                    className="Fw-b Fz-m static-form"
+                    className="Fw-b Fz-l static-form C-Gray"
                     title={this.props.intl.formatMessage({id: 'CLICK_TO_CHANGE'})}
                 >
                     {props.owner + ' / ' + props.repo}
@@ -121,6 +121,7 @@ class RepoSelector extends React.Component {
             buttonContainer = (
                 <span>
                     <button type="submit" className="show-issues Mstart-10px" onClick={this.onSwitchRepo}>
+                        <span className="octicon octicon-search"/>&nbsp;
                         <FormattedMessage id="SHOW_ALL_ISSUES" />
                     </button>
                     <button className="cancel Mstart-10px" onClick={this.onSwitchEditable.bind(this, false)}>
@@ -132,9 +133,9 @@ class RepoSelector extends React.Component {
 
         return (
             <span className="D-ib" onSubmit={this.onSwitchRepo} role="form">
-                <input ref="owner" type="text" className="Mend-10px Fz-m" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.owner} required/>
+                <input ref="owner" type="text" className="Mend-10px Fz-l" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.owner} required/>
                 <span className="Mend-10px">{DIVIDER}</span>
-                <input ref="repo" type="text" className="Fz-m" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.repo} required/>
+                <input ref="repo" type="text" className="Fz-l" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.repo} required/>
                 {buttonContainer}
             </span>
         );

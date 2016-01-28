@@ -20,6 +20,7 @@ class Comment extends React.Component {
         return (
             <div className="comment ShadowBox">
                 <div className="bar">
+                    <span className="octicon octicon-clock Mend-5px C-Gray Va-m" />
                     <IssueDate className="Fz-s C-Gray" dateType="comment" date={issue.created_at}/>
                     {ownerLabel}
                 </div>

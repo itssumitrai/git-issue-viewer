@@ -39,7 +39,7 @@ class IssueListItem extends React.Component {
                         {issue.title}
                     </NavLink>
                     <NavLink
-                        className="Mstart-10px link C-Gray"
+                        className="Mstart-10px link C-Gray Fw-m"
                         routeName="issue"
                         navParams={{
                             owner: owner,
@@ -56,7 +56,9 @@ class IssueListItem extends React.Component {
                 <div className="Mt-10px">
                     <Labels labels={issue.labels}/>
                     <span className="Fl-end Fz-s C-Gray">
+                        <span className="octicon octicon-comment Mend-5px Va-m" />
                         <FormattedMessage id="COMMENTS" values={{ number: String(issue.comments) }} />&nbsp;&bull;&nbsp;
+                        <span className="Fl-end octicon octicon-clock Mstart-5px C-Gray Va-m" />
                         <IssueDate className="Fl-end Fz-s C-Gray" dateType="list" date={issue.created_at}/>
                     </span>
                 </div>

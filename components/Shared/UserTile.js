@@ -17,6 +17,7 @@ class UserTile extends React.Component {
                     <img src={user.avatar_url} className="gravatar" alt={user.login}/>
                 </a>
                 <div className="gravatar-info">
+                    <span className="octicon octicon-mention Mend-2px C-Gray Va-m"/>
                     <a href={user.html_url} className="link Fw-b C-Gray">{user.login}</a>
                 </div>
             </div>
