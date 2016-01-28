@@ -44,8 +44,7 @@ class ScrollUp extends React.Component {
         let scrollButton;
         if (this.state.visible) {
             scrollButton = (
-                <button onClick={this.onClick} className="scroll-up" title={this.props.intl.formatMessage({ id: 'GOTO_TOP'})}>
-                    &#9650;
+                <button onClick={this.onClick} className="scroll-up mega-octicon octicon-chevron-up" title={this.props.intl.formatMessage({ id: 'GOTO_TOP'})}>
                 </button>
             );
         }

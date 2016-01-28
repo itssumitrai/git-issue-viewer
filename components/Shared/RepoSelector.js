@@ -143,7 +143,7 @@ class RepoSelector extends React.Component {
     render() {
         return (
             <section className="repo-selector" aria-label="Top Header">
-                <div className="form-container">
+                <div className="form-container D-ib">
                     <span className="mega-octicon octicon-repo C-Gray Va-m Mend-10px" />
                     {this.renderForm()}
                 </div>
