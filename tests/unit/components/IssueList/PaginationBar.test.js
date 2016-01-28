@@ -39,7 +39,10 @@ describe('PaginationBar', function () {
                 }),
                 pageNumber: '5',
                 totalPages: 20,
-                pagesToShow: 15
+                pagesToShow: 15,
+                paginationInfo: {
+                    last: '50'
+                }
             };
         });
 

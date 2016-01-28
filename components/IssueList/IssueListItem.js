@@ -23,7 +23,7 @@ class IssueListItem extends React.Component {
         const title = this.props.intl.formatMessage({ id: 'GOTO_ISSUE' }, { issue: issue.number});
 
         return (
-            <div className="issue-info ShadowBox">
+            <div className="issue-info Ov-h ShadowBox">
                 <div className="top Mb-10px">
                     <NavLink
                         className="titleLink Fz-m bold"

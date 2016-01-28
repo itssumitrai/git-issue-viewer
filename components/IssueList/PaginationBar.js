@@ -17,8 +17,9 @@ class PaginationBar extends React.Component {
         const { routeParams } = props;
         const currentUrlPrefix = '/' + routeParams.get('owner') + '/' + routeParams.get('repo') + '/';
         const pageNumber = parseInt(props.pageNumber, 10);
+        const lastPageNumber = parseInt(props.paginationInfo.last, 10);
 
-        const pageNumbers = getPageNumbers(pageNumber, props.pagesToShow).map((number) => {
+        const pageNumbers = getPageNumbers(pageNumber, lastPageNumber, props.pagesToShow).map((number) => {
             if (number === pageNumber) {
                 return (
                     <li key={number} className="page number selected">
