@@ -32,7 +32,7 @@ describe('Label', function () {
         it('should render label link and label name correctly', function () {
             jsx.assertRender(Label, props,
                 '<li title="bug" *style="background-color:#C40233;">' +
-                    '<a href="https://api.github.com/repos/npm/npm/labels/bug">bug</a></li>'
+                    '<a href="https://github.com/npm/npm/labels/bug" target="_blank">bug</a></li>'
             );
         });
     });

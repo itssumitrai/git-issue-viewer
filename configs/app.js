@@ -11,5 +11,6 @@ export default {
     initialPageNumber: 1,
     itemsPerPage: 25,
     pagesToShow: 15,
-    apiHost: 'https://api.github.com/'
+    apiHost: 'https://api.github.com/',
+    gitHubHost: 'https://github.com/'
 };

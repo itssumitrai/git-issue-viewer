@@ -6,11 +6,13 @@
 'use strict';
 
 import React from 'react';
+import appConfig from '../../configs/app';
 
 class Label extends React.Component {
     render() {
         const { props } = this;
         const { label } = props;
+        const labelUrl = label.url.replace(appConfig.apiHost + 'repos/', appConfig.gitHubHost);
 
         return (
             <li
@@ -19,7 +21,7 @@ class Label extends React.Component {
                 className="label bold Bdrs"
                 style={{ backgroundColor: '#' + label.color }}
             >
-                <a href={label.url}>{label.name}</a>
+                <a href={labelUrl} target="_blank">{label.name}</a>
             </li>
         );
     }
