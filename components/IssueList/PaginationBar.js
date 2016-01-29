@@ -12,14 +12,11 @@ import { FormattedMessage } from 'react-intl';
 import appConfig from '../../configs/app';
 
 class PaginationBar extends React.Component {
-    render() {
-        const { props } = this;
-        const { routeParams } = props;
-        const currentUrlPrefix = '/' + routeParams.get('owner') + '/' + routeParams.get('repo') + '/';
-        const pageNumber = parseInt(props.pageNumber, 10);
-        const lastPageNumber = parseInt(props.paginationInfo.last, 10);
 
-        const pageNumbers = getPageNumbers(pageNumber, lastPageNumber, props.pagesToShow).map((number) => {
+    renderPageNumbers(pageNumber, currentUrlPrefix, lastPageNumber) {
+        // Render page Numbers in the pagination bar
+
+        return getPageNumbers(pageNumber, lastPageNumber, this.props.pagesToShow).map((number) => {
             if (number === pageNumber) {
                 return (
                     <li key={number} className="page number selected">
@@ -40,27 +37,67 @@ class PaginationBar extends React.Component {
                 </li>
             );
         });
+    }
+
+    renderPreviousLink(pageNumber, currentUrlPrefix, paginationInfo) {
+        // Render previous link
+
+        if (paginationInfo.prev) {
+            return (
+                <li key="previous" className="page number">
+                    <NavLink
+                        className="Td-n C-LinkBlue Fz-m Mend-5px"
+                        href={currentUrlPrefix + paginationInfo.prev}
+                    >
+                        <FormattedMessage id="PREVIOUS" />
+                    </NavLink>
+                </li>
+            );
+        }
+
+        return (
+            <li key="previous" className="page disabled Mend-5px">
+                <span className="Fz-m"><FormattedMessage id="PREVIOUS" /></span>
+            </li>
+        );
+    }
+
+    renderNextLink(pageNumber, currentUrlPrefix, paginationInfo) {
+        // Render next link
+
+        if(paginationInfo.next) {
+            return (
+                <li key="next" className="page number">
+                    <NavLink
+                        href={currentUrlPrefix + paginationInfo.next}
+                        className="Td-n C-LinkBlue Fz-m Mstart-5px"
+                    >
+                        <FormattedMessage id="NEXT" />
+                    </NavLink>
+                </li>
+            );
+        }
+
+        return (
+            <li key="next" className="page disabled Mstart-5px">
+                <span className="Fz-m"><FormattedMessage id="NEXT" /></span>
+            </li>
+        );
+    }
+
+    render() {
+        const { props } = this;
+        const { routeParams, paginationInfo } = props;
+        const currentUrlPrefix = '/' + routeParams.get('owner') + '/' + routeParams.get('repo') + '/';
+        const pageNumber = parseInt(props.pageNumber, 10);
+        const lastPageNumber = parseInt(paginationInfo.last, 10);
 
         return (
             <nav className="pagination ShadowBox">
                 <ul className="page-number-list">
-                    <li key="previous" className="page">
-                        <NavLink
-                            className="link C-LinkBlue Fz-m Mend-5px"
-                            href={currentUrlPrefix + Math.max(pageNumber - 1, 1)}
-                        >
-                            <FormattedMessage id="PREVIOUS" />
-                        </NavLink>
-                    </li>
-                    {pageNumbers}
-                    <li key="next" className="page">
-                        <NavLink
-                            href={currentUrlPrefix + Math.min(pageNumber + 1, props.totalPages)}
-                            className="link C-LinkBlue Fz-m Mstart-5px"
-                        >
-                            <FormattedMessage id="NEXT" />
-                        </NavLink>
-                    </li>
+                    {this.renderPreviousLink(pageNumber, currentUrlPrefix, paginationInfo)}
+                    {this.renderPageNumbers(pageNumber, currentUrlPrefix, lastPageNumber)}
+                    {this.renderNextLink(pageNumber, currentUrlPrefix, paginationInfo)}
                 </ul>
             </nav>
         );
@@ -70,14 +107,12 @@ class PaginationBar extends React.Component {
 PaginationBar.propTypes = {
     routeParams: React.PropTypes.object.isRequired,
     pageNumber: React.PropTypes.string.isRequired,
-    totalPages: React.PropTypes.number.isRequired,
     pagesToShow: React.PropTypes.number,
     paginationInfo: React.PropTypes.object.isRequired    // gives info about the pagination extracted from response header
 };
 
 PaginationBar.defaultProps = {
     pageNumber: '1',
-    totalPages: 25,
     pagesToShow: appConfig.pagesToShow,
     paginationInfo: {}
 };

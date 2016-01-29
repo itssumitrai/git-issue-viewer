@@ -7,8 +7,8 @@
     .page {
       display: inline;
       &.number {
-        margin-left: 5px;
-        margin-right: 5px;
+        margin-left: 3px;
+        margin-right: 3px;
         border: 1px solid transparent;
         a {
           padding: 5px 8px;
@@ -31,6 +31,11 @@
       }
       a {
         color: $primaryBlue;
+      }
+      &.disabled {
+        background-color: $backgroundGray;
+        padding: 5px 8px;
+        color: #888;
       }
     }
   }

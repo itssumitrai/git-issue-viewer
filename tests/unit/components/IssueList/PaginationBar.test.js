@@ -41,7 +41,10 @@ describe('PaginationBar', function () {
                 totalPages: 20,
                 pagesToShow: 15,
                 paginationInfo: {
-                    last: '50'
+                    next: '6',
+                    last: '50',
+                    prev: '4',
+                    first: '1'
                 }
             };
         });
@@ -52,9 +55,29 @@ describe('PaginationBar', function () {
             );
         });
 
+        it('should render Previous page link as disabled if we are on first page', function () {
+            props.paginationInfo.next = '2';
+            props.paginationInfo.prev = undefined;
+            props.pageNumber = '1';
+
+            jsx.assertRender(PaginationBar, props,
+                '<li+>*<span>Previous</span>*</li>'
+            );
+        });
+
         it('should render Next page Link', function () {
             jsx.assertRender(PaginationBar, props,
                 '<li+><a href="/npm/npm/6"+><span>Next</span></a></li>'
+            );
+        });
+
+        it('should render Next page link as disabled if we are on last page', function () {
+            props.paginationInfo.next = undefined;
+            props.paginationInfo.prev = '49';
+            props.pageNumber = '50';
+
+            jsx.assertRender(PaginationBar, props,
+                '<li+>*<span>Next</span>*</li>'
             );
         });
 
