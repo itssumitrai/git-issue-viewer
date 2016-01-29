@@ -151,11 +151,50 @@ describe('issueService', function () {
             issueService.read(req, 'issueService', params, {}, function (err, res) {
                 expect(err).to.have.property('message')
                     .that.is.a('string')
-                    .that.equals('HTTP Status 403 received Expected: 200. {"message":"Maximum number of ..');
+                    .that.equals('Internal Server Error. HTTP Status 403 received');
                 expect(res).to.have.property('headers')
                     .that.is.an('object');
                 expect(res).to.have.property('body')
                     .that.is.a('string');
+            });
+        });
+
+        it('should return error if body is falsy', function () {
+            var params = {
+                owner: 'npm',
+                repo: 'npm',
+                issueNumber: '11220'
+            };
+
+            issueService.read(req, 'issueService', params, {}, function (err, res) {
+                expect(err).to.have.property('statusCode')
+                    .that.equals(500);
+                expect(err).to.have.property('message')
+                    .that.is.a('string')
+                    .that.equals('Internal Server Error. HTTP Status 500 received');
+                expect(res).to.have.property('headers')
+                    .that.is.an('object');
+                expect(res).to.have.property('body').not.be.ok;
+            });
+        });
+
+        it('should return 404 if body is an empty array', function () {
+            var params = {
+                owner: 'npm',
+                repo: 'npm',
+                issueNumber: '11221'
+            };
+
+            issueService.read(req, 'issueService', params, {}, function (err, res) {
+                expect(err).to.have.property('statusCode')
+                    .that.equals(404);
+                expect(err).to.have.property('message')
+                    .that.is.a('string')
+                    .that.equals('Not Found');
+                expect(res).to.have.property('headers')
+                    .that.is.an('object');
+                expect(res).to.have.property('body')
+                    .that.deep.equals([]);
             });
         });
 

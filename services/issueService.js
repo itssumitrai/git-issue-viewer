@@ -40,30 +40,38 @@ export default {
             return request.get(reqOptions, function (error, response, body) {
                 const usefulHeaders = extractUsefulHeaders(response.headers);
 
-                if (error) {
-                    // If error occured
-                    return callback(error, {
+                if (error || response.statusCode !== 200 || !body) {
+                    // This is a not ok response Some error occured
+
+                    const statusCode = !body ? 500 : response.statusCode;
+                    let errorObj = error || {
+                            statusCode: statusCode,
+                            message: 'Internal Server Error. HTTP Status ' + statusCode + ' received'
+                        };
+
+                    return callback(errorObj, {
                         headers: usefulHeaders,
                         body: body
                     });
                 }
 
-                if (!error && response.statusCode !== 200) {
-                    // This is a not ok response, send down an error in this case
+                const responseBody = JSON.parse(body);
+                if (Array.isArray(responseBody) && responseBody.length === 0) {
+                    // Empty Array here means data not found, send down 404
 
-                    const message = 'HTTP Status ' + response.statusCode + ' received ' +
-                        'Expected: 200. ' + body.toString().substr(0, 30) + '..';
-
-                    return callback(new Error(message), {
+                    return callback({
+                        statusCode: 404,
+                        message: 'Not Found'
+                    }, {
                         headers: usefulHeaders,
-                        body: body
+                        body: responseBody
                     });
                 }
 
                 // Everything's fine, send the response
                 return callback(null, {
                     headers: usefulHeaders,
-                    body: JSON.parse(body)
+                    body: responseBody
                 });
             });
         }

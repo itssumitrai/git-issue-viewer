@@ -78,12 +78,15 @@ class IssueList extends React.Component {
 
     render() {
         const { props, state } = this;
-        if (!props.issues && props.error) {
-            return (
-                <section class="error-message" aria-label="Error Message">{props.error}</section>
-            );
-        } else if (!props.issues && !props.isLoading) {
-            return null;
+
+        if (!props.isLoading) {
+            if (!props.issues || props.issues.length === 0 || props.error) {
+                let errorMessage = props.error || 'Could not get Data';
+
+                return (
+                    <section class="error-message" aria-label="Error Message">{errorMessage}</section>
+                );
+            }
         }
 
         return (

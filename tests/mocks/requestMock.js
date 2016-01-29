@@ -52,6 +52,16 @@ export default {
             error = null;
             response.statusCode = 403;
             body = JSON.stringify(issueServiceErrorResponse);
+        } else if (url === 'https://api.github.com/repos/npm/npm/issues/11220') {
+            // no body response
+            error = null;
+            response.statusCode = 200;
+            body = null;
+        } else if (url === 'https://api.github.com/repos/npm/npm/issues/11221') {
+            // empty array body response
+            error = null;
+            response.statusCode = 200;
+            body = '[]';
         }
 
         callback(error, response, body);

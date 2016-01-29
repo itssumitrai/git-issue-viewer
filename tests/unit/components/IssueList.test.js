@@ -110,7 +110,7 @@ describe('IssueList', function () {
             props.issues = null;
             props.isLoading = false;
             jsx.assertRender(IssueList, props,
-                '<noscript></noscript>'
+                '<section aria-label="Error Message">Could not get Data</section>'
             );
         });
     });
