@@ -39,7 +39,7 @@ describe('RepoSelector', function () {
 
         it('should render the repo form', function () {
             jsx.assertRender(RepoSelector, props,
-                '<div+><span+></span><span+>npm / npm</span></div>'
+                '<div+><button+><span+></span><span>npm / npm</span></button></div>'
             );
         });
 

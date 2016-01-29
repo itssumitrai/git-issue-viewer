@@ -3,6 +3,11 @@
   color: $primaryText;
 
   .form-container {
+    .static-form {
+      background: none;
+      border: 0;
+      padding: 0;
+    }
     &:hover{
       cursor: pointer;
       .static-form {

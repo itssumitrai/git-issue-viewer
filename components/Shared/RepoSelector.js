@@ -99,14 +99,16 @@ class RepoSelector extends React.Component {
         
         if (!this.state.editable) {
             return (
-                <span
-                    role="button"
-                    onClick={this.onSwitchEditable.bind(this, true)}
-                    className="Fw-b Fz-l static-form C-Gray"
-                    title={this.props.intl.formatMessage({id: 'CLICK_TO_CHANGE'})}
-                >
-                    {props.owner + ' / ' + props.repo}
-                </span>
+                <div className="form-container D-ib">
+                    <button
+                        onClick={this.onSwitchEditable.bind(this, true)}
+                        className="Fw-b Fz-l static-form C-Gray"
+                        title={this.props.intl.formatMessage({id: 'CLICK_TO_CHANGE'})}
+                    >
+                        <span className="mega-octicon octicon-repo C-Gray Va-m Mend-10px" />
+                        {props.owner + ' / ' + props.repo}
+                    </button>
+                </div>
             );
         }
 
@@ -132,22 +134,22 @@ class RepoSelector extends React.Component {
         }
 
         return (
-            <span className="D-ib" onSubmit={this.onSwitchRepo} role="form">
-                <input ref="owner" type="text" className="Mend-10px Fz-l" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.owner} required/>
-                <span className="Mend-10px">{DIVIDER}</span>
-                <input ref="repo" type="text" className="Fz-l" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.repo} required/>
-                {buttonContainer}
-            </span>
+            <div className="form-container D-ib">
+                <span className="mega-octicon octicon-repo C-Gray Va-m Mend-10px" />
+                <span className="D-ib" onSubmit={this.onSwitchRepo} role="form">
+                    <input ref="owner" type="text" className="Mend-10px Fz-l" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.owner} required/>
+                    <span className="Mend-10px">{DIVIDER}</span>
+                    <input ref="repo" type="text" className="Fz-l" onChange={this.onTextChange} onKeyPress={this.onTextSubmit} placeholder={props.repo} required/>
+                    {buttonContainer}
+                </span>
+            </div>
         );
     }
 
     render() {
         return (
             <section className="repo-selector" aria-label="Top Header">
-                <div className="form-container D-ib">
-                    <span className="mega-octicon octicon-repo C-Gray Va-m Mend-10px" />
-                    {this.renderForm()}
-                </div>
+                {this.renderForm()}
                 {this.renderHeading()}
             </section>
         );
