@@ -9,6 +9,7 @@
 @import 'pagination';
 @import 'scroll';
 @import 'repo-selector';
+@import 'error-page';
 
 body {
   max-width: $max-screen-size;
@@ -42,6 +43,10 @@ body {
     }
   }
 
+  .Center {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .ShadowBox {
     border: 1px solid $borderGray;
     box-shadow: $boxShadow;

@@ -14,6 +14,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import app from './app';
 import HtmlComponent from './components/Html';
+import Error from './components/Error';
 import { createElementWithContext } from 'fluxible-addons-react';
 import appConfig from './configs/app';
 const env = process.env.NODE_ENV;
@@ -54,8 +55,18 @@ server.use((req, res, next) => {
         if (err) {
             if (err.statusCode && err.statusCode === 404) {
                 // Pass through to next middleware
+                res.status(err.statusCode).send(
+                    '<!DOCTYPE html>' + ReactDOM.renderToString(
+                        <Error error={err} response={res} />
+                    )
+                );
                 next();
             } else {
+                res.status(err.statusCode).send(
+                    '<!DOCTYPE html>' + ReactDOM.renderToString(
+                        <Error error={err} response={res} />
+                    )
+                );
                 next(err);
             }
             return;
