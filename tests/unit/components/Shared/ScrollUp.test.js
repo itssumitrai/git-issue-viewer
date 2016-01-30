@@ -6,53 +6,81 @@
 
 'use strict';
 
-import jsx from 'jsx-test';
-import mockery from 'mockery';
-// import ReactTestUtils from 'react-addons-test-utils';
-// import { jsdom } from 'jsdom';
-import reactIntlMock from '../../../mocks/reactIntlMock';
+import React from 'react';
+import ReactTestUtils from 'react-addons-test-utils';
+import ReactDOM from 'react-dom';
+import { IntlProvider } from 'react-intl';
+import strings from '../../../../lang/strings.json';
+import Waypoint from 'react-waypoint';
 
 describe('ScrollUp', function () {
     let ScrollUp;
 
     before(function () {
-        /*global.document = jsdom('<html><body></body></html>', {});
-        global.window = global.document.defaultView;
-        global.navigator = {
-            userAgent: 'node.js'
-        };*/
-
-        mockery.enable({ useCleanCache: true, warnOnUnregistered: false });
-        mockery.registerMock('react-intl', reactIntlMock);
-        mockery.registerMock('react-waypoint', jsx.stubComponent('Waypoint', null, true));
         ScrollUp = require('../../../../components/Shared/ScrollUp');
     });
 
-    after(function () {
-        mockery.deregisterAll();
-        mockery.disable();
-
-        /*delete global.document;
-        delete global.window;
-        delete global.navigator;*/
-    });
-
     describe('#render', function () {
-        it('should render Waypoint', function () {
-            jsx.assertRender(ScrollUp, null, '<Waypoint+></Waypoint>');
+        let component;
+        before(function () {
+            component = ReactTestUtils.renderIntoDocument(
+                <IntlProvider locale="en" messages={strings}>
+                    <ScrollUp/>
+                </IntlProvider>
+            );
+
+            let injectIntlScrollUp = ReactTestUtils.findRenderedComponentWithType(component, ScrollUp);
+            component = injectIntlScrollUp.refs.wrappedElement;
         });
 
-        // TODO: fix this test later
-        /*it('should render button if state is visible', function () {
-            const component = jsx.renderComponent(ScrollUp, null);
+        it('should render Waypoint component', function () {
+            let waypoint = ReactTestUtils.findRenderedComponentWithType(component, Waypoint);
+            expect(waypoint.props.onEnter).to.be.a.function;
+            expect(waypoint.props.onLeave).to.be.a.function;
+            expect(waypoint.props.threshold).to.equal(2.0);
 
+            let waypointNode = ReactDOM.findDOMNode(waypoint);
+
+            // do a mouse enter
+            ReactTestUtils.Simulate.scroll(
+                waypointNode,
+                {
+                    bubbles: true,
+                    cancelable: false,
+                    currentTarget: null,
+                    detail: false
+                }
+            );
+
+            expect(component.state.visible).to.be.true;
+
+            // do a mouse leave
+            ReactTestUtils.Simulate.scroll(
+                waypointNode,
+                {}
+            );
+
+            expect(component.state.visible).to.be.false;
+        });
+
+        it('should render button if state is visible', function () {
             component.setState({
                 visible: true
-            });
+            }, () => {
+                const button = ReactTestUtils.findRenderedDOMComponentWithTag(component, 'button');
 
-            console.log('>>>component:', component.getDOMNode().innerHTML);
-            const button = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'button');
-            expect(button).to.have.length(1);
-        });*/
+                let buttonNode = ReactDOM.findDOMNode(button);
+
+                expect(buttonNode.getAttribute('title')).to.equal('Scroll to the Top');
+
+                // Now do the mouse click
+                ReactTestUtils.Simulate.click(
+                    buttonNode,
+                    {}
+                );
+
+                expect(component.state.visible).to.be.false;
+            });
+        });
     });
 });
