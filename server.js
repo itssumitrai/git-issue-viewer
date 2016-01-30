@@ -57,14 +57,14 @@ server.use((req, res, next) => {
                 // Pass through to next middleware
                 res.status(err.statusCode).send(
                     '<!DOCTYPE html>' + ReactDOM.renderToString(
-                        <Error error={err} response={res} />
+                        <Error error={err} />
                     )
                 );
                 next();
             } else {
                 res.status(err.statusCode).send(
                     '<!DOCTYPE html>' + ReactDOM.renderToString(
-                        <Error error={err} response={res} />
+                        <Error error={err} />
                     )
                 );
                 next(err);

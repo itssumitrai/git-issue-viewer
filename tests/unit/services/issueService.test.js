@@ -132,12 +132,10 @@ describe('issueService', function () {
             };
 
             issueService.read(req, 'issueService', params, {}, function (err, res) {
-                expect(err).to.equal('Boom!');
-                expect(res).to.have.property('headers')
-                    .that.is.an('object');
-                expect(res).to.have.property('body')
+                expect(err).to.have.property('message')
                     .that.is.a('string')
-                    .that.equals('Some Error Occured');
+                    .that.equals('Boom!');
+                expect(res).to.be.null;
             });
         });
 
@@ -151,11 +149,27 @@ describe('issueService', function () {
             issueService.read(req, 'issueService', params, {}, function (err, res) {
                 expect(err).to.have.property('message')
                     .that.is.a('string')
-                    .that.equals('Internal Server Error. HTTP Status 403 received');
-                expect(res).to.have.property('headers')
+                    .that.equals('Maximum number of login attempts exceeded. Please try again later.');
+                expect(err).to.have.property('headers')
                     .that.is.an('object');
-                expect(res).to.have.property('body')
-                    .that.is.a('string');
+                expect(res).to.be.null;
+            });
+        });
+
+        it('should return error if the http response is not ok (200) and no message in response', function () {
+            var params = {
+                owner: 'npm',
+                repo: 'npm',
+                issueNumber: '11222'
+            };
+
+            issueService.read(req, 'issueService', params, {}, function (err, res) {
+                expect(err).to.have.property('message')
+                    .that.is.a('string')
+                    .that.equals('Internal Server Error. HTTP Status 403 received');
+                expect(err).to.have.property('headers')
+                    .that.is.an('object');
+                expect(res).to.be.null;
             });
         });
 
@@ -172,17 +186,16 @@ describe('issueService', function () {
                 expect(err).to.have.property('message')
                     .that.is.a('string')
                     .that.equals('Internal Server Error. HTTP Status 500 received');
-                expect(res).to.have.property('headers')
+                expect(err).to.have.property('headers')
                     .that.is.an('object');
-                expect(res).to.have.property('body').not.be.ok;
+                expect(res).to.be.null;
             });
         });
 
-        it('should return 404 if body is an empty array', function () {
+        it('should return 404 if body is an empty array for list call', function () {
             var params = {
-                owner: 'npm',
-                repo: 'npm',
-                issueNumber: '11221'
+                owner: 'yahoo',
+                repo: 'fluxible'
             };
 
             issueService.read(req, 'issueService', params, {}, function (err, res) {
@@ -191,10 +204,9 @@ describe('issueService', function () {
                 expect(err).to.have.property('message')
                     .that.is.a('string')
                     .that.equals('Not Found');
-                expect(res).to.have.property('headers')
+                expect(err).to.have.property('headers')
                     .that.is.an('object');
-                expect(res).to.have.property('body')
-                    .that.deep.equals([]);
+                expect(res).to.be.null;
             });
         });
 
@@ -202,7 +214,7 @@ describe('issueService', function () {
             issueService.read(req, 'issueService', null, {}, function (err, res) {
                 expect(err).to.have.property('message')
                     .that.is.a('string')
-                    .that.equals('IssueService: params must have owner and repo');
+                    .that.equals('Required Params for rest call must have `owner` and `repo`');
                 expect(res).to.be.null;
             });
         });
@@ -215,7 +227,7 @@ describe('issueService', function () {
             issueService.read(req, 'issueService', params, {}, function (err, res) {
                 expect(err).to.have.property('message')
                     .that.is.a('string')
-                    .that.equals('IssueService: params must have owner and repo');
+                    .that.equals('Required Params for rest call must have `owner` and `repo`');
                 expect(res).to.be.null;
             });
         });
@@ -228,7 +240,7 @@ describe('issueService', function () {
             issueService.read(req, 'issueService', params, {}, function (err, res) {
                 expect(err).to.have.property('message')
                     .that.is.a('string')
-                    .that.equals('IssueService: params must have owner and repo');
+                    .that.equals('Required Params for rest call must have `owner` and `repo`');
                 expect(res).to.be.null;
             });
         });

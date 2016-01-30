@@ -20,7 +20,7 @@ export default {
             statusCode: 400,
             headers: headersData
         };
-        let body = '{ message: Something definitely wrong }';
+        let body = JSON.stringify({ message: 'Something definitely wrong' });
 
         if (url === 'https://api.github.com/repos/npm/npm/issues') {
             if (qs && qs.page === '2' && qs.per_page == '5') {
@@ -32,6 +32,10 @@ export default {
                 response.statusCode = 200;
                 body = JSON.stringify(issueListResponse);
             }
+        } else if (url === 'https://api.github.com/repos/yahoo/fluxible/issues') {
+            error = null;
+            response.statusCode = 200;
+            body = '[]';
         } else if (url === 'https://api.github.com/repos/npm/npm/issues/11217') {
             error = null;
             response.statusCode = 200;
@@ -43,9 +47,9 @@ export default {
             body = JSON.stringify(issueDetailCommentsResponse);
         } else if (url === 'https://api.github.com/repos/npm/npm/issues/11218') {
             // error http response
-            error = 'Boom!';
+            error = new Error('Boom!');
             response.statusCode = 400;
-            body = 'Some Error Occured';
+            body =  JSON.stringify({ message: 'Some Error Occured' });
 
         } else if (url === 'https://api.github.com/repos/npm/npm/issues/11219') {
             // not ok http response
@@ -62,6 +66,12 @@ export default {
             error = null;
             response.statusCode = 200;
             body = '[]';
+        } else if (url === 'https://api.github.com/repos/npm/npm/issues/11222') {
+            // not ok http response with no message
+            error = null;
+            response.statusCode = 403;
+            body =  JSON.stringify({});
+
         }
 
         callback(error, response, body);

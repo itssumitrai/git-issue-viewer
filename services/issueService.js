@@ -43,29 +43,32 @@ export default {
                 if (error || response.statusCode !== 200 || !body) {
                     // This is a not ok response Some error occured
 
-                    const statusCode = !body ? 500 : response.statusCode;
+                    const statusCode = response.statusCode === 200 ? 500 : response.statusCode;
+                    let errorMessage = 'Internal Server Error. HTTP Status ' + statusCode + ' received';
+
+                    if (body) {
+                        const parsedBody = JSON.parse(body);
+                        errorMessage = parsedBody.message || errorMessage;
+                    }
+
                     let errorObj = error || {
                             statusCode: statusCode,
-                            message: 'Internal Server Error. HTTP Status ' + statusCode + ' received'
+                            headers: usefulHeaders,
+                            message: errorMessage
                         };
 
-                    return callback(errorObj, {
-                        headers: usefulHeaders,
-                        body: body
-                    });
+                    return callback(errorObj, null);
                 }
 
                 const responseBody = JSON.parse(body);
-                if (Array.isArray(responseBody) && responseBody.length === 0) {
-                    // Empty Array here means data not found, send down 404
+                if (Array.isArray(responseBody) && responseBody.length === 0 && !params.issueNumber) {
+                    // Empty Array for issue List call here means data not found, send down 404
 
                     return callback({
                         statusCode: 404,
-                        message: 'Not Found'
-                    }, {
-                        headers: usefulHeaders,
-                        body: responseBody
-                    });
+                        message: 'Not Found',
+                        headers: usefulHeaders
+                    }, null);
                 }
 
                 // Everything's fine, send the response
@@ -77,6 +80,9 @@ export default {
         }
 
         // required params not found
-        callback(new Error('IssueService: params must have owner and repo'), null);
+        return callback({
+            statusCode: 500,
+            message: 'Required Params for rest call must have `owner` and `repo`'
+        }, null);
     }
 };

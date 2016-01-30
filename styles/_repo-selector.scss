@@ -40,26 +40,26 @@
     }
     input {
       border: 1px solid $borderGray;
-      font-weight: bold;
+      font-weight: 500;
 
       &::-webkit-input-placeholder {
-        font-weight: bold;
-        color: black;
+        font-weight: 500;
+        color: $primaryText;
       }
 
       &::-moz-placeholder {
-        font-weight: bold;
-        color: black;
+        font-weight: 500;
+        color: $primaryText;
       }
 
       &:-ms-input-placeholder {
-        font-weight: bold;
-        color: black;
+        font-weight: 500;
+        color: $primaryText;
       }
 
       &:-moz-placeholder {
-        font-weight: bold;
-        color: black;
+        font-weight: 500;
+        color: $primaryText;
       }
     }
   }
