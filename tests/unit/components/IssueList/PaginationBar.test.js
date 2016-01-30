@@ -1,4 +1,4 @@
-/* globals before, after, beforeEach, it, describe */
+/* globals expect, before, after, beforeEach, it, describe */
 /**
  * Copyright 2016, Sumit Rai
  * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
@@ -6,11 +6,9 @@
 
 'use strict';
 
-import { expect } from 'chai';
 import jsx from 'jsx-test';
 import mockery from 'mockery';
 import Immutable from 'immutable';
-import { getPageNumbers } from '../../../../lib/utils';
 import reactIntlMock from '../../../mocks/reactIntlMock';
 import fluxibleRouterMock from '../../../mocks/fluxibleRouterMock';
 

@@ -6,7 +6,6 @@ import React from 'react';
 import ApplicationStore from '../stores/ApplicationStore';
 import { connectToStores, provideContext } from 'fluxible-addons-react';
 import { handleHistory } from 'fluxible-router';
-import IssueList from '../components/IssueList';
 import { IntlProvider } from 'react-intl';
 import strings from '../lang/strings.json';
 

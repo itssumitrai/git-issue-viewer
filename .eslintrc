@@ -1,9 +1,51 @@
----
-  parser: "babel-eslint"
-  env:
-    node: true
-  rules:
-    strict: 0
-    indent: [2, 4]
-    quotes: [2, 'single']
-    no-unused-vars: 0 // see https://github.com/babel/babel-eslint/issues/21
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "ecmaFeatures": {
+        "jsx": true
+    },
+    "rules": {
+        "block-scoped-var": 2,
+        "comma-style": 0,
+        "complexity": 0,
+        "curly": [2, "all"],
+        "dot-notation": 0,
+        "eqeqeq": 2,
+        "global-strict": 0,
+        "guard-for-in": 2,
+        "max-depth": 0,
+        "max-len":  0,
+        "max-params": 0,
+        "max-statements": 0,
+        "new-cap": 0,
+        "no-bitwise": 2,
+        "no-caller": 2,
+        "no-cond-assign": 0,
+        "no-debugger": 0,
+        "no-empty":  0,
+        "no-eval": 0,
+        "no-iterator": 0,
+        "no-loop-func": 0,
+        "no-multi-str": 0,
+        "no-new": 0,
+        "no-plusplus": 0,
+        "no-proto": 0,
+        "no-script-url": 0,
+        "no-trailing-spaces": 0,
+        "no-shadow": 0,
+        "no-undef": 2,
+        "no-unused-vars": [2, {"vars": "all", "args": "none"}],
+        "no-use-before-define":  [2, "nofunc"],
+        "quotes": 0,
+        "semi":  [2, "always"],
+        "strict": 0,
+        "wrap-iife": [2, "inside"]
+    },
+    "plugins": [
+        "react"
+    ]
+}

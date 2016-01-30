@@ -1,11 +1,10 @@
-/* globals before, after, beforeEach, it, describe */
+/* globals expect, before, after, beforeEach, it, describe */
 /**
  * Copyright 2016, Sumit Rai
  * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
  */
 
 'use strict';
-import { expect } from 'chai';
 import jsx from 'jsx-test';
 import Immutable from 'immutable';
 import mockery from 'mockery';

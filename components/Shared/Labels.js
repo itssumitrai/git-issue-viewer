@@ -12,7 +12,7 @@ import Label from './Label';
 class Labels extends React.Component {
     render() {
         const labels = this.props.labels.map((label, index) => {
-            return <Label key={index} label={label} />
+            return <Label key={index} label={label} />;
         });
 
         return (

@@ -1,4 +1,5 @@
-/* globals before, after, beforeEach, it, describe */
+/* globals expect, before, after, beforeEach, it, describe */
+/*eslint camelcase:0*/
 /**
  * Copyright 2016, Sumit Rai
  * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
@@ -6,10 +7,9 @@
 
 'use strict';
 
-import { expect } from 'chai';
 import jsx from 'jsx-test';
 import mockery from 'mockery';
-import issue from '../../../data/issueDetailServiceResponse.json'
+import issue from '../../../data/issueDetailServiceResponse.json';
 
 describe('Comment', function () {
     let Comment;

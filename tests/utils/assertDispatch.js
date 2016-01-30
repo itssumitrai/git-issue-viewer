@@ -1,4 +1,3 @@
-/* globals before, beforeEach, it, describe */
 /**
  * Copyright 2016, Sumit Rai
  * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
@@ -15,4 +14,4 @@ export default function assertDispatch(context, action, actionParams, actionCall
         expect(context.dispatchCalls[index].name).to.equal(expectedEvents[index]);
         expect(context.dispatchCalls[index].payload).to.deep.equal(expectedPayload[index]);
     });
-};
+}

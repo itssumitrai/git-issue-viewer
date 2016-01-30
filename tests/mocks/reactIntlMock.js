@@ -10,9 +10,11 @@ var strings = require('../../lang/strings.json');
 
 function formatMessage (obj, values) {
     var mess = strings[obj.id];
-    values && Object.keys(values).forEach(function (value) {
-        mess = mess.replace('{' + value + '}', values[value]);
-    });
+    if (values) {
+        Object.keys(values).forEach(function (value) {
+            mess = mess.replace('{' + value + '}', values[value]);
+        });
+    }
 
     return mess;
 }

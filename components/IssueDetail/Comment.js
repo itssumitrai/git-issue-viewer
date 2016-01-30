@@ -14,7 +14,7 @@ class Comment extends React.Component {
         const { issue } = this.props;
         let ownerLabel;
         if (issue.user.site_admin) {
-            ownerLabel = <span className="labelBox Fl-end">Owner</span>
+            ownerLabel = <span className="labelBox Fl-end">Owner</span>;
         }
 
         return (

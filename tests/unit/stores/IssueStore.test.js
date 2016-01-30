@@ -1,4 +1,4 @@
-/* globals beforeEach, it, describe */
+/* globals expect, beforeEach, it, describe */
 /**
  * Copyright 2016, Sumit Rai
  * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
@@ -6,7 +6,6 @@
 
 'use strict';
 
-import { expect } from 'chai';
 import { createMockActionContext } from 'fluxible/utils';
 import IssueStore from '../../../stores/IssueStore';
 
@@ -109,7 +108,7 @@ describe('IssueStore', function () {
     describe('#getError', function () {
         let state;
         beforeEach(function () {
-            state =  {
+            state = {
                 error: 'Boom!',
                 issueNumber: 12345
             };

@@ -8,9 +8,9 @@
   "scripts": {
     "build": "webpack & webpack --config webpack.config.production.js",
     "dev": "node webpack-dev-server.js",
-    "lint": "eslint ./*.js ./**/*.js --quiet",
+    "lint": "eslint --quiet . --ext .js --ext .jsx",
     "start": "node start.js",
-    "test": "jenkins-mocha tests/unit --recursive --full-trace --compilers js:babel/register"
+    "test": "jenkins-mocha tests/unit --require tests/unit/globals.js --recursive --full-trace --compilers js:babel/register"
   },
   "dependencies": {
     "autoprefixer": "^6.3.1",
@@ -44,7 +44,9 @@
     "bundle-loader": "^0.5.0",
     "chai": "^3.4.0",
     "css-loader": "^0.23.1",
+    "dirty-chai": "^1.2.2",
     "eslint": "^0.24.0",
+    "eslint-plugin-react": "^3.16.1",
     "image-webpack-loader": "^1.6.3",
     "immutable": "^3.7.6",
     "jenkins-mocha": "^2.5.0",

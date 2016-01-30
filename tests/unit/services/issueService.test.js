@@ -1,4 +1,4 @@
-/* globals before, after, beforeEach, it, describe */
+/* globals expect, before, after, beforeEach, it, describe */
 /**
  * Copyright 2016, Sumit Rai
  * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
@@ -8,7 +8,6 @@
 
 import mockery from 'mockery';
 import requestMock from '../../mocks/requestMock';
-import { expect } from 'chai';
 
 describe('issueService', function () {
     var issueService;

@@ -2,4 +2,5 @@
 
 # Ignore built files except build/index.js
 build/
+artifacts/
 !build/index.js

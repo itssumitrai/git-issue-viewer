@@ -23,7 +23,7 @@ export default {
         let body = JSON.stringify({ message: 'Something definitely wrong' });
 
         if (url === 'https://api.github.com/repos/npm/npm/issues') {
-            if (qs && qs.page === '2' && qs.per_page == '5') {
+            if (qs && qs.page === '2' && qs.per_page === '5') {
                 error = null;
                 response.statusCode = 200;
                 body = JSON.stringify(issueListPaginationResponse);
@@ -49,7 +49,7 @@ export default {
             // error http response
             error = new Error('Boom!');
             response.statusCode = 400;
-            body =  JSON.stringify({ message: 'Some Error Occured' });
+            body = JSON.stringify({ message: 'Some Error Occured' });
 
         } else if (url === 'https://api.github.com/repos/npm/npm/issues/11219') {
             // not ok http response
@@ -70,7 +70,7 @@ export default {
             // not ok http response with no message
             error = null;
             response.statusCode = 403;
-            body =  JSON.stringify({});
+            body = JSON.stringify({});
 
         }
 

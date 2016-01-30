@@ -5,7 +5,6 @@
 
 'use strict';
 
-import React from 'react';
 import { createMockComponentContext } from 'fluxible/utils';
 
 export default {

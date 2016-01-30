@@ -96,7 +96,7 @@ class RepoSelector extends React.Component {
 
     renderForm() {
         const { props } = this;
-        
+
         if (!this.state.editable) {
             return (
                 <div className="form-container D-ib">

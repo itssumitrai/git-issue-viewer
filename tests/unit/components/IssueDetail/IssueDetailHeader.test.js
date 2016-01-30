@@ -1,4 +1,4 @@
-/* globals before, after, beforeEach, it, describe */
+/* globals expect, before, after, beforeEach, it, describe */
 /**
  * Copyright 2016, Sumit Rai
  * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
@@ -6,11 +6,10 @@
 
 'use strict';
 
-import { expect } from 'chai';
 import jsx from 'jsx-test';
 import mockery from 'mockery';
 import reactIntlMock from '../../../mocks/reactIntlMock';
-import issue from '../../../data/issueDetailServiceResponse.json'
+import issue from '../../../data/issueDetailServiceResponse.json';
 
 describe('IssueDetailHeader', function () {
     let IssueDetailHeader;

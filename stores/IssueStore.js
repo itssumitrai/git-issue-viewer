@@ -6,7 +6,6 @@
 'use strict';
 
 import { createStore } from 'fluxible/addons';
-import RouteStore from './RouteStore';
 
 let IssueStore = createStore({
     storeName: 'IssueStore',

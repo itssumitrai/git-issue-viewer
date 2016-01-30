@@ -1,4 +1,4 @@
-/* globals before, after, beforeEach, it, describe */
+/* globals expect, before, after, beforeEach, it, describe */
 /**
  * Copyright 2016, Sumit Rai
  * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
@@ -6,7 +6,6 @@
 
 'use strict';
 
-import { expect } from 'chai';
 import jsx from 'jsx-test';
 import mockery from 'mockery';
 import Immutable from 'immutable';
@@ -56,7 +55,8 @@ describe('Application', function () {
                     },
                     title: 'Issues from npm/npm'
                 }),
-                pageTitle: 'Issues from npm/npm'
+                pageTitle: 'Issues from npm/npm',
+                context: context
             };
         });
 
