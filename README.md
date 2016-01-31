@@ -28,7 +28,7 @@ $ npm run devtest        # run only tests
     ├── assets                      # consists of static assets such as icons, images, etc
     ├── components                  # all the `react` components
     ├── configs                     # config files
-    ├── lang                        # all the files consisting of internationalized messages 
+    ├── lang                        # all the files consisting of internationalized messages (react-intl)
     ├── lib                         # Any utility files
     ├── services                    # all the `service` source files
     ├── stores                      # all the `fluxible` stores
@@ -45,7 +45,31 @@ $ npm run devtest        # run only tests
     
 ## Description
 
-Coming Soon
+There are 3 different pages in total:
+- **IssueList Page:** Lists all issues for a given repository
+- **IssueDetail Page:** Show details for a given issue
+- **Error Page:** Error page
+
+This app uses `fluxible`, more details: https://github.com/yahoo/fluxible
+Some details on this project specific components:
+
+- **Actions:**
+  - **createIssueList:** gets data for list of issues from `Issue service`, and loads the `IssueList` store
+  - **getIssue:** gets data for issue details from `Issue service`, and loads the `Issue` store
+
+- **Service:**
+  - **Issue:** makes the http request and gets data from github apis for both issue list and issue details
+
+- **Stores:**
+  - **Issue:** stores issue details and makes it available for the `IssueDetail` component
+  - **IssueList:** stores list of issues and makes it available for the `IssueList` component
+
+- **Components:**
+  - **IssueDetail:** renders the Issue Detail Page
+  - **IssueList:** renders the Issue List Page
+  - **Error:** renders the Error page
+
+Other primitive components are kept in directories specific to the page. for eg: `IssueDetail` directory has primitive components required on `IssueDetail` page. While `Shared` directory keeps components shared by different pages.
 
 ## Screenshots
 
