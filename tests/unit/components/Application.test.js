@@ -9,6 +9,7 @@
 import jsx from 'jsx-test';
 import mockery from 'mockery';
 import Immutable from 'immutable';
+import ReactTestUtils from 'react-addons-test-utils';
 import { createMockComponentContext } from 'fluxible/utils';
 import fluxibleAddonsReactMock from '../../mocks/fluxibleAddonsReact';
 import fluxibleRouterMock from '../../mocks/fluxibleRouterMock';
@@ -16,6 +17,8 @@ import reactIntlMock from '../../mocks/reactIntlMock';
 
 describe('Application', function () {
     let Application;
+    let TestParent;
+
     let ApplicationStore = function(){};
     ApplicationStore.storeName = 'ApplicationStore';
     ApplicationStore.prototype.getPageTitle = function () {
@@ -30,6 +33,7 @@ describe('Application', function () {
         mockery.registerMock('react-intl', reactIntlMock);
         mockery.registerMock('../stores/ApplicationStore', ApplicationStore);
         Application = require('../../../components/Application');
+        TestParent = require('../../mocks/TestParentComponent');
     });
 
     after(function () {
@@ -64,6 +68,27 @@ describe('Application', function () {
             jsx.assertRender(Application, props,
                 '<div><IntlProvider><IssueList></IssueList></IntlProvider></div>'
             );
+        });
+
+        it('should update pageTitle when title changes', function () {
+            let testProps = {
+                Component: Application,
+                compProps: props
+            };
+
+            let testComponent = jsx.renderComponent(TestParent, testProps);
+            let application = ReactTestUtils.findRenderedComponentWithType(testComponent, Application);
+
+            expect(application.props.pageTitle).to.equal('Issues from npm/npm');
+
+            // Now update pageTitle
+            testProps.compProps.pageTitle = 'Issues from yahoo/fluxible';
+            testComponent.setState(testProps);
+
+            expect(application.props.pageTitle).to.equal('Issues from yahoo/fluxible');
+
+            // Now set the same title for code coverage
+            testComponent.setState(testProps);
         });
     });
 });

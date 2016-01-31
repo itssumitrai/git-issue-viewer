@@ -8,7 +8,7 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import path from 'path';
 import serialize from 'serialize-javascript';
-import {navigateAction} from 'fluxible-router';
+import { navigateAction } from 'fluxible-router';
 import debugLib from 'debug';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
