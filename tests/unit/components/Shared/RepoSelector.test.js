@@ -114,6 +114,31 @@ describe('RepoSelector', function () {
             expect(buttons[0].getAttribute('type')).to.equal('submit');
             expect(buttons[0].innerHTML).to.contain('Show all Issues');
             expect(buttons[1].innerHTML).to.contain('Cancel');
+        });
+
+        it('should navigate to the next repo when show all issues button is clicked', function () {
+            component.setState({
+                editable: true
+            });
+
+            // Now editable form open up, enter something
+            let inputs = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'input');
+
+            // change values for textboxes
+            inputs[0].value = 'yahoo';
+            inputs[1].value = 'fluxible';
+
+            // Now do the change event
+            ReactTestUtils.Simulate.change(
+                inputs[0],
+                {}
+            );
+
+            let buttons = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'button');
+            expect(buttons).to.have.length(2);
+            expect(buttons[0].getAttribute('type')).to.equal('submit');
+            expect(buttons[0].innerHTML).to.contain('Show all Issues');
+            expect(buttons[1].innerHTML).to.contain('Cancel');
 
             // Now do a click on submit button
             ReactTestUtils.Simulate.click(
@@ -131,11 +156,34 @@ describe('RepoSelector', function () {
                 }
             });
 
+            expect(component.state.editable).to.be.false;
+        });
+
+        it('should navigate to the next repo when enter is pressed', function () {
+            component.setState({
+                editable: true
+            });
+
+            // Now editable form open up, enter something
+            let inputs = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'input');
+
             // change values for textboxes
             inputs[0].value = '';
             inputs[1].value = '';
             inputs[0].placeholder = 'npm';
             inputs[1].placeholder = 'npm';
+
+            // Now do the change event
+            ReactTestUtils.Simulate.change(
+                inputs[0],
+                {}
+            );
+
+            let buttons = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'button');
+            expect(buttons).to.have.length(2);
+            expect(buttons[0].getAttribute('type')).to.equal('submit');
+            expect(buttons[0].innerHTML).to.contain('Show all Issues');
+            expect(buttons[1].innerHTML).to.contain('Cancel');
 
             // Now do a submit with Enter
             ReactTestUtils.Simulate.keyPress(inputs[0], {
@@ -145,8 +193,8 @@ describe('RepoSelector', function () {
                 which: 13
             });
 
-            expect(props.context.executeAction.callCount).to.equal(2);
-            expect(props.context.executeAction.getCall(1).args[1]).to.deep.equal({
+            expect(props.context.executeAction.callCount).to.equal(1);
+            expect(props.context.executeAction.getCall(0).args[1]).to.deep.equal({
                 routeName: 'issueList',
                 params: {
                     owner: 'npm',
@@ -154,6 +202,33 @@ describe('RepoSelector', function () {
                     page: '1'
                 }
             });
+
+            expect(component.state.editable).to.be.false;
+        });
+
+        it('should not navigate to the next repo when any other key is pressed', function () {
+            component.setState({
+                editable: true
+            });
+
+            // Now editable form open up, enter something
+            let inputs = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'input');
+
+            // change values for textboxes
+            inputs[0].value = 'yahoo';
+            inputs[1].value = 'fluxible';
+
+            // Now do the change event
+            ReactTestUtils.Simulate.change(
+                inputs[0],
+                {}
+            );
+
+            let buttons = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'button');
+            expect(buttons).to.have.length(2);
+            expect(buttons[0].getAttribute('type')).to.equal('submit');
+            expect(buttons[0].innerHTML).to.contain('Show all Issues');
+            expect(buttons[1].innerHTML).to.contain('Cancel');
 
             // Now do a key press with something else
             ReactTestUtils.Simulate.keyPress(inputs[0], {
@@ -163,7 +238,8 @@ describe('RepoSelector', function () {
                 which: 20
             });
 
-            expect(props.context.executeAction.callCount).to.equal(2);
+            expect(props.context.executeAction.called).to.be.false;
+            expect(component.state.editable).to.be.true;
         });
 
         it('should render the heading', function () {

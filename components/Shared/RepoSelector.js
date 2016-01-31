@@ -92,6 +92,8 @@ class RepoSelector extends React.Component {
                 page: '1'
             }
         });
+        // Now the component is no more editable
+        this.onSwitchEditable(false);
     }
 
     renderForm() {
