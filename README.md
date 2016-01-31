@@ -41,13 +41,31 @@ $ npm test
     ├── LICENSE                     # License file
     └── README.md                   # Readme
     
-## Screenshots
-
-Coming Soon
-
 ## Description
 
 Coming Soon
+
+## Screenshots
+
+**Issue List Page:**
+
+![Issue List Page]
+(http://i.imgur.com/n12HBGU.png)
+
+**Issue Details Page:**
+
+![Issue Details Page]
+(http://i.imgur.com/L8v5lCm.png)
+
+**Error Page:**
+
+![Error Page]
+(http://i.imgur.com/3kNf18e.png)
+
+**In Transition:**
+
+![In Transition]
+(http://i.imgur.com/R42gAO4.png)
 
 ## Known Issues
 
