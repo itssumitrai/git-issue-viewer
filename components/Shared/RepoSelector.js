@@ -113,7 +113,7 @@ class RepoSelector extends React.Component {
         }
 
         let buttonContainer = (
-            <button className="cancel Mstart-10px" onClick={this.onSwitchEditable.bind(this, false)}>
+            <button type="submit" className="cancel Mstart-10px" onClick={this.onSwitchEditable.bind(this, false)}>
                 <FormattedMessage id="CANCEL" />
             </button>
         );
@@ -166,4 +166,5 @@ RepoSelector.defaultProps = {
     headingLink: false
 };
 
+export let Component = RepoSelector;
 export default injectIntl(RepoSelector);

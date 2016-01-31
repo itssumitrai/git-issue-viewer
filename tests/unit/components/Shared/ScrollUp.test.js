@@ -24,9 +24,9 @@ describe('ScrollUp', function () {
         let component;
         before(function () {
             component = ReactTestUtils.renderIntoDocument(
-                <IntlProvider locale="en" messages={strings}>
-                    <ScrollUp/>
-                </IntlProvider>
+                React.createElement(IntlProvider, { locale: 'en', messages: strings },
+                    React.createElement(ScrollUp)
+                )
             );
 
             let injectIntlScrollUp = ReactTestUtils.findRenderedComponentWithType(component, ScrollUp);

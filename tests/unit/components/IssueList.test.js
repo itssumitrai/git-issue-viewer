@@ -13,6 +13,7 @@ import { createMockComponentContext } from 'fluxible/utils';
 import IssueListStore from '../../../stores/IssueListStore';
 import issuesMockData from '../../data/issueListServiceResponse.json';
 import fluxibleAddonsReactMock from '../../mocks/fluxibleAddonsReact';
+import sinon from 'sinon';
 
 describe('IssueList', function () {
     let IssueList;
@@ -104,6 +105,38 @@ describe('IssueList', function () {
             jsx.assertRender(IssueList, props,
                 '<section+>UnAuthorized Error</section>'
             );
+        });
+
+        it('should change issueList when props are changed', function () {
+            let component = jsx.renderComponent(IssueList, props);
+            component.componentWillReceiveProps({
+                routeParams: Immutable.fromJS({
+                    owner: 'yahoo',
+                    repo: 'fluxible',
+                    page: '5'
+                })
+            });
+
+            expect(component.state).to.deep.equal({
+                owner: 'yahoo',
+                repo: 'fluxible',
+                pageNumber: '5',
+                scrollVisible: false
+            });
+        });
+
+        it('should not change issueList when the same props are passed again', function () {
+            let component = jsx.renderComponent(IssueList, props);
+            sinon.spy(component, 'setState');
+            component.componentWillReceiveProps({
+                routeParams: Immutable.fromJS({
+                    owner: 'npm',
+                    repo: 'npm',
+                    page: '2'
+                })
+            });
+
+            expect(component.setState.called).to.be.false;
         });
 
         it('should not render anything if no `issues` was provided and `isLoading` is false', function () {
