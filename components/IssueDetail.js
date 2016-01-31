@@ -14,6 +14,7 @@ import ItemLayout from './Shared/ItemLayout';
 import UserTile from './Shared/UserTile';
 import ScrollUp from './Shared/ScrollUp';
 import RepoSelector from './Shared/RepoSelector';
+import Footer from './Shared/Footer';
 
 // Stores
 import IssueStore from '../stores/IssueStore';
@@ -81,6 +82,7 @@ class IssueDetail extends React.Component {
                         <ScrollUp/>
                     </section>
                 </main>
+                <Footer/>
             </div>
         );
     }

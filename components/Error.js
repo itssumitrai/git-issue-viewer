@@ -6,6 +6,7 @@
 'use strict';
 
 import React from 'react';
+import Footer from './Shared/Footer';
 
 class Error extends React.Component {
     render() {
@@ -38,6 +39,7 @@ class Error extends React.Component {
                         </div>
                     </section>
                 </main>
+                <Footer/>
             </body>
         </html>
         );

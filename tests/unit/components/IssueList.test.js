@@ -26,6 +26,7 @@ describe('IssueList', function () {
         mockery.registerMock('./Shared/ScrollUp', jsx.stubComponent('ScrollUp', null, true));
         mockery.registerMock('./Shared/RepoSelector', jsx.stubComponent('RepoSelector', null, true));
         mockery.registerMock('./IssueList/PaginationBar', jsx.stubComponent('PaginationBar', null, true));
+        mockery.registerMock('./Shared/Footer', jsx.stubComponent('Footer', null, true));
         mockery.registerMock('fluxible-addons-react', fluxibleAddonsReactMock);
         IssueList = require('../../../components/IssueList');
     });
@@ -89,6 +90,12 @@ describe('IssueList', function () {
         it('should render scrollup component', function () {
             jsx.assertRender(IssueList, props,
                 '<ScrollUp></ScrollUp>'
+            );
+        });
+
+        it('should render Footer component', function () {
+            jsx.assertRender(IssueList, props,
+                '<Footer></Footer>'
             );
         });
 

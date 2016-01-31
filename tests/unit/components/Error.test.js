@@ -1,4 +1,4 @@
-/* globals expect, before, beforeEach, it, describe */
+/* globals expect, before, after, beforeEach, it, describe */
 /**
  * Copyright 2016, Sumit Rai
  * Copyrights licensed under the New MIT License. See the accompanying LICENSE file for terms.
@@ -7,12 +7,20 @@
 'use strict';
 
 import jsx from 'jsx-test';
+import mockery from 'mockery';
 
 describe('Error', function () {
     let ErrorComponent;
 
     before(function () {
+        mockery.enable({ useCleanCache: true, warnOnUnregistered: false });
+        mockery.registerMock('./Shared/Footer', jsx.stubComponent('Footer', null, true));
         ErrorComponent = require('../../../components/Error');
+    });
+
+    after(function () {
+        mockery.deregisterAll();
+        mockery.disable();
     });
 
     describe('#render', function () {
@@ -54,6 +62,7 @@ describe('Error', function () {
                             '</div>' +
                         '</section>' +
                     '</main>' +
+                    '<Footer></Footer>' +
                 '</body>'
             );
         });

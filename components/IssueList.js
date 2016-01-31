@@ -14,6 +14,7 @@ import UserTile from './Shared/UserTile';
 import PaginationBar from './IssueList/PaginationBar';
 import ScrollUp from './Shared/ScrollUp';
 import RepoSelector from './Shared/RepoSelector';
+import Footer from './Shared/Footer';
 
 // Stores
 import IssueListStore from '../stores/IssueListStore';
@@ -90,13 +91,16 @@ class IssueList extends React.Component {
         }
 
         return (
-            <main>
-                <RepoSelector owner={state.owner} repo={state.repo}/>
-                <PaginationBar paginationInfo={props.paginationInfo} routeParams={props.routeParams} pageNumber={state.pageNumber} />
-                {this.renderMainContent()}
-                <PaginationBar paginationInfo={props.paginationInfo} routeParams={props.routeParams} pageNumber={state.pageNumber} />
-                <ScrollUp/>
-            </main>
+            <div>
+                <main>
+                    <RepoSelector owner={state.owner} repo={state.repo}/>
+                    <PaginationBar paginationInfo={props.paginationInfo} routeParams={props.routeParams} pageNumber={state.pageNumber} />
+                    {this.renderMainContent()}
+                    <PaginationBar paginationInfo={props.paginationInfo} routeParams={props.routeParams} pageNumber={state.pageNumber} />
+                    <ScrollUp/>
+                </main>
+                <Footer/>
+            </div>
         );
     }
 }
