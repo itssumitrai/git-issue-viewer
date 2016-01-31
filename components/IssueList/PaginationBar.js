@@ -90,7 +90,8 @@ class PaginationBar extends React.Component {
         const { routeParams, paginationInfo } = props;
         const currentUrlPrefix = '/' + routeParams.get('owner') + '/' + routeParams.get('repo') + '/';
         const pageNumber = parseInt(props.pageNumber, 10);
-        const lastPageNumber = parseInt(paginationInfo.last, 10);
+        // In case when we are on last Page, the api doesn't have last page information
+        const lastPageNumber = paginationInfo.last ? parseInt(paginationInfo.last, 10) : pageNumber;
 
         return (
             <nav className="pagination ShadowBox">

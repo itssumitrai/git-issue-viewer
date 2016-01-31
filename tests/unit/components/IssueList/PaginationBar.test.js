@@ -72,6 +72,7 @@ describe('PaginationBar', function () {
         it('should render Next page link as disabled if we are on last page', function () {
             props.paginationInfo.next = undefined;
             props.paginationInfo.prev = '49';
+            props.paginationInfo.last = undefined;
             props.pageNumber = '50';
 
             jsx.assertRender(PaginationBar, props,
