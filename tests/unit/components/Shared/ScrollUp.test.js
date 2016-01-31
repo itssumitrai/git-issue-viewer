@@ -39,27 +39,15 @@ describe('ScrollUp', function () {
             expect(waypoint.props.onLeave).to.be.a.function;
             expect(waypoint.props.threshold).to.equal(2.0);
 
-            let waypointNode = ReactDOM.findDOMNode(waypoint);
+            // do a waypoint enter
+            // We can't really fire manual events to fire off waypoint enter and leave, also we check our component
+            // in isolation, assuming waypoint works and it will fire the handler when it needs to
 
-            // do a mouse enter
-            ReactTestUtils.Simulate.scroll(
-                waypointNode,
-                {
-                    bubbles: true,
-                    cancelable: false,
-                    currentTarget: null,
-                    detail: false
-                }
-            );
-
+            component.handleWaypointEnter();
             expect(component.state.visible).to.be.true;
 
-            // do a mouse leave
-            ReactTestUtils.Simulate.scroll(
-                waypointNode,
-                {}
-            );
-
+            // Now do a waypoint leave
+            component.handleWaypointLeave();
             expect(component.state.visible).to.be.false;
         });
 
