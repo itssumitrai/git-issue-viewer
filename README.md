@@ -17,10 +17,30 @@ Now hit `http://localhost:3000` on your browser.
 ```bash
 $ npm test
 ```
-## Directory Structure
 
-Coming Soon
+### Directory Structure
 
+    .
+    ├── build                       # Compiled js and css files
+    ├── actions                     # all the `action` source files
+    ├── assets                      # consists of static assets such as icons, images, etc
+    ├── components                  # all the `react` components
+    ├── configs                     # config files
+    ├── lang                        # all the files consisting of internationalized messages 
+    ├── lib                         # Any utility files
+    ├── services                    # all the `service` source files
+    ├── stores                      # all the `fluxible` stores
+    ├── styles                      # all `css`, `scss` files for styling
+    ├── tests                       # all the tests for all files
+    ├── app.js                      # express main application
+    ├── client.js                   # express `client`
+    ├── server.js                   # express `server`
+    ├── start.js                    # another entrypoint for app
+    ├── package.json                # all the requirements
+    ├── webpack.config.js           # webpack config for running the app on browser
+    ├── LICENSE                     # License file
+    └── README.md                   # Readme
+    
 ## Screenshots
 
 Coming Soon
@@ -28,6 +48,13 @@ Coming Soon
 ## Description
 
 Coming Soon
+
+## Known Issues
+
+As Github has rate limiting, and since this application is not authenticated. After 60 requests/hr, you might come across 
+application not running because github requests being forbidden.
+
+More Details: https://developer.github.com/v3/#rate-limiting
 
 ## License
 
