@@ -15,7 +15,9 @@ Now hit `http://localhost:3000` on your browser.
 ## Run Unit Tests
 
 ```bash
-$ npm test
+$ npm test               # run lint + tests
+$ npm run lint           # run only lint
+$ npm run devtest        # run only tests
 ```
 
 ### Directory Structure
